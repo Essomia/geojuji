@@ -10,8 +10,7 @@ The following guide assume that:
 
 
 If yes, keep reading:
-
-> Soon
+- [Install shell's configurations](./install-shell.md)
 
 
 
@@ -20,6 +19,7 @@ If yes, keep reading:
 Installation of the most useful packages and creation of symbolic links to replace MacOS native component files by those of the current repository.
 
 1. Install shell's configurations
+    - Create a new SSH key
     - Create symlinks for `/shell/git/*` files
         + `gituser` - Your personal profile
         + `gitconfig` - Common configuration
