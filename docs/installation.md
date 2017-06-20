@@ -48,3 +48,4 @@ Installation of the most useful packages and creation of symbolic links to repla
         + [gulp-cli](https://github.com/gulpjs/gulp-cli/)
         + [grunt-cli](https://gruntjs.com/)
         + [webpack](https://webpack.github.io/)
+    - [Composer](https://getcomposer.org/)
