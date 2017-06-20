@@ -1,0 +1,53 @@
+###########
+#  ~/.bash_profile
+#  The personal initialization file, executed for login shells.
+###########
+
+
+# --------------------------------
+# INCLUDES
+# --------------------------------
+
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+
+# --------------------------------
+# PATHS
+# tells the shell which directories to search for executable files.
+# --------------------------------
+
+export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH'
+
+
+# --------------------------------
+# COMPLETION
+# Help shell to be smarter.
+# --------------------------------
+
+# Brew
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# Git
+if [ -f ~/.gitcompletion.bash ]; then
+    . ~/.gitcompletion.bash
+fi
+
+
+# --------------------------------
+# COLORED PROMPT
+# [HH:MM] username@/directory/path: [branch]
+# --------------------------------
+
+get_current_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
+export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;14m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]] \[$(tput sgr0)\]\[\033[38;5;10m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;12m\]\$(get_current_branch)\[$(tput sgr0)\]\[\033[38;5;15m\]\n\\$ \["

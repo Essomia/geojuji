@@ -1,0 +1,76 @@
+###########
+#  ~/.bashrc
+#  The individual per-interactive-shell startup file.
+###########
+
+
+# --------------------------------
+# SHELL OPTIONS
+# --------------------------------
+
+# If not running interactively, don't do anything.
+[[ $- != *i* ]] && return
+
+# Window options.
+shopt -s checkwinsize
+
+# History options.
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTFILESIZE=2000
+HISTSIZE=1000
+
+
+# --------------------------------
+# COLORED PROMPT
+# --------------------------------
+
+# 1. Set a fancy prompt (non-color, unless we know we "want" color).
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# 2. Colored prompt (yes/no), if the terminal has the capability.
+force_color_prompt=yes
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        color_prompt=yes
+    else
+        color_prompt=no
+    fi
+fi
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\n\t '
+    PS1="\n\[$(tput setaf 7)\]\[$(tput setab 1)\]\[$(tput bold)\] \t ➜ \[$(tput sgr0)\] "
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# 3. If this is an xterm set the title to user@host:dir.
+case "$TERM" in
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+    ;;
+esac
+
+# 4. Enable color support of ls and also add handy aliases.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+# @use: http://geoff.greer.fm/lscolors/
+# @use: http://bashrcgenerator.com/
+export TERM=xterm-color
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+export PS1="\[\033[38;5;14m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;10m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \\$ \[$(tput sgr0)\]"

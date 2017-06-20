@@ -26,3 +26,7 @@ Installation of the most useful packages and creation of symbolic links to repla
         + `gitaliases` - Contains classic aliases
         + `gitignore` - Global list of files to be ignored
         + `gitattributes` - Common attributes configuration
+    - Create symlinks for `/shell/bash/*` files
+        + `bashrc` - Common no-login configuration
+        + `bash_profile` - Common login configuration
+        + `bash_aliases` - Contains classic aliases
