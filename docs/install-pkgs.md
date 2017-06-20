@@ -67,3 +67,15 @@ npm install -g webpack
 ```bash
 sudo chown -R $USER:admin /usr/local
 ```
+
+
+
+## [Composer](https://getcomposer.org/), the dependency manager for PHP
+
+As `composer` became a usefull tools to manage dependencies for PHP projects, you can install the executable in `/usr/local/bin` folder for MacOS with the following command:
+
+```bash
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+Or you can follow the tutorial [how to install composer on Windows](http://webdevzoom.com/how-to-install-composer-on-windows/).
