@@ -10,6 +10,7 @@ Geojuji contains all the basic configurations and dependencies needed to develop
 
 The concept is to keep versioned:
 - shell configuration files in `/shell`
+- packages managers dependencies in `/pkgs`
 
 Then, it is possible to remount a user station quickly with a constant configuration between each station.
 
