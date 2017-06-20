@@ -41,3 +41,4 @@ Installation of the most useful packages and creation of symbolic links to repla
         + [node](http://nodejs.org/)
         + [ngrok](https://ngrok.com/) *(with cask)*
         + [mysql](https://dev.mysql.com/doc/refman/5.7/en/)
+    - [Ruby](https://www.ruby-lang.org/)
