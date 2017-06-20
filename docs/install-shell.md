@@ -1,6 +1,18 @@
 # GeoJuji, install shell's configurations
 
 
+## [SSH Key](https://help.github.com/articles/connecting-to-github-with-ssh/)
+
+To create a new SSH key, run the following command and hit return a couple of times for no passphrase:
+
+```bash
+ssh-keygen
+```
+
+Then, copy the new public SSH key from `~/.ssh/id_rsa.pub` to add the key to any service account you use.
+
+
+
 ## [Git](https://git-scm.com/)
 
 First, rename `gituser.example` into `gituser`. In this file, update the `name` and `email` to let Git use your information when you will commit your changes.

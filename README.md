@@ -8,7 +8,8 @@ Geojuji is a kit to install all front-end tools and basic PHP environment.
 
 Geojuji contains all the basic configurations and dependencies needed to develop PHP projects.
 
-The concept is to keep versioned files.
+The concept is to keep versioned:
+- shell configuration files in `/shell`
 
 Then, it is possible to remount a user station quickly with a constant configuration between each station.
 
