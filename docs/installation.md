@@ -13,6 +13,7 @@ If yes, keep reading:
 - [Install shell's configurations](./install-shell.md)
 - [Install packages managers](./install-pkgs.md)
 - [Install application's configurations](./install-app.md)
+- [Install PHP environment tools](./install-envphp.md)
 
 
 
@@ -59,3 +60,10 @@ Installation of the most useful packages and creation of symbolic links to repla
 3. Install application's configurations
     - Create symlinks for `/app/sublime-text/*` files
         + that also contain [Package Control](https://packagecontrol.io/) dependencies.
+
+4. Install PHP environment tools
+    - Installation
+        + [PHP](http://php.net/)
+        + [Apache Server](https://httpd.apache.org/)
+        + [MySQL](https://www.mysql.com/)
+        + [phpMyAdmin](https://www.phpmyadmin.net/)
