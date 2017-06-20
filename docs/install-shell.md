@@ -34,3 +34,21 @@ mklink ~/Sites/geojuji/shell/git/gitaliases    ~/.gitaliases
 mklink ~/Sites/geojuji/shell/git/gitignore     ~/.gitignore
 mklink ~/Sites/geojuji/shell/git/gitattributes ~/.gitattributes
 ```
+
+
+
+## [Bash](https://www.gnu.org/software/bash/)
+
+As we use `bash` as command-line interface, we will symlink our configuration to be sourced when a new shell is started.
+
+```bash
+# MacOS
+ln -sf ~/Sites/geojuji/shell/bash/bash_aliases ~/.bash_aliases
+ln -sf ~/Sites/geojuji/shell/bash/bash_profile ~/.bash_profile
+ln -sf ~/Sites/geojuji/shell/bash/bashrc       ~/.bashrc
+
+# Windows
+mklink ~/Sites/geojuji/shell/bash/bash_aliases ~/.bash_aliases
+mklink ~/Sites/geojuji/shell/bash/bash_profile ~/.bash_profile
+mklink ~/Sites/geojuji/shell/bash/bashrc       ~/.bashrc
+```

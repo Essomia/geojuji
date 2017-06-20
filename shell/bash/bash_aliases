@@ -1,0 +1,82 @@
+###########
+#  ~/.bash_aliases
+#  All your additions into a separate file.
+###########
+
+
+# --------------------------------
+# PREFERRED IMPLEMENTATION
+# --------------------------------
+
+alias ll='ls -lF '                 # List content // long format with symbol
+alias lal='ls -lFa '               # List content // long format with symbol + hidden
+alias mkdir='mkdir -pv '           # Make directories // recursive + verbose
+alias mv='mv -iv '                 # Move files // prompt + verbose
+alias cp='cp -iv '                 # Copy files // prompt + verbose
+alias less='less -RS '             # Minusq // raw window + nowrap
+alias grep='grep --color -Ii '     # Preferred Search // ignore binary + ignore case
+
+
+# --------------------------------
+# FILES
+# --------------------------------
+
+alias sudo='sudo '                 # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
+alias file_open='open -a Finder '  # Opens current directory in MacOS Finder
+alias file_edit='subl '            # Opens any file/folder in Sublime Text editor
+
+alias file_showhidden=_hidden      # Show/Hide hidden files - @use: file_showhidden [TRUE/FALSE]
+_hidden() {
+    defaults write com.apple.Finder AppleShowAllFiles $1 ; killAll Finder ;
+}
+
+alias file_clean=_remove_file
+_remove_file() {
+    find . -name "$1" -type f -delete
+}
+
+alias file_chmod=_chmod
+_chmod() {
+    # find in $1 type directory and apply permission on {} file path;
+    # drwxr-xr-x for directory
+    find $1 -type d -exec chmod 755 {} \;
+    # -rw-r--r-- for files
+    find $1 -type f -exec chmod 644 {} \;
+}
+
+
+# --------------------------------
+# EDIT CONFIG ENV.
+# --------------------------------
+
+alias conf_bash='file_edit ~/.bashrc ~/.bash_profile ~/.bash_aliases'
+alias conf_git='file_edit ~/.gitconfig ~/.gitaliases ~/.gitattributes ~/.gitignore'
+
+alias conf_apache='file_edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf /etc/hosts'
+alias conf_php='file_edit /etc/php.ini'
+alias conf_mysql='file_edit /private/etc/my.cnf'
+
+
+# --------------------------------
+# CONTROL ENV.
+# --------------------------------
+
+# Apache
+alias apache2='sudo apachectl '
+alias apache2_log_err='less /var/log/apache2/dev_error_log'
+alias apache2_log_acc='less /var/log/apache2/dev_access_log'
+
+# MySQL
+alias mysql_server='mysql.server '
+alias mysql_connect='mysql -u root -p '
+
+
+# --------------------------------
+# DEPENDENCY ENV.
+# --------------------------------
+
+# Homebrew - Missing package manager for MacOSX
+alias ls_brew='brew ls --versions'
+
+# NPM - Javascript package manager (installed with Homebrew)
+alias ls_npm='npm list --depth=0'
