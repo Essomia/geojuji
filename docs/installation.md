@@ -67,3 +67,5 @@ Installation of the most useful packages and creation of symbolic links to repla
         + [Apache Server](https://httpd.apache.org/)
         + [MySQL](https://www.mysql.com/)
         + [phpMyAdmin](https://www.phpmyadmin.net/)
+    - Set default localhost
+    - Add a custom local host
