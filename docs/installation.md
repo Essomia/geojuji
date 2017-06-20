@@ -20,6 +20,7 @@ Installation of the most useful packages and creation of symbolic links to repla
 
 1. Install shell's configurations
     - Create a new SSH key
+    - Install xCode command line tools
     - Create symlinks for `/shell/git/*` files
         + `gituser` - Your personal profile
         + `gitconfig` - Common configuration

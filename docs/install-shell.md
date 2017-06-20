@@ -13,6 +13,22 @@ Then, copy the new public SSH key from `~/.ssh/id_rsa.pub` to add the key to any
 
 
 
+## XCode, the basic command line tool for MacOS
+
+When  you develop with MacOS, you will need the basic command tools.
+
+```bash
+xcode-select --install
+```
+
+A software update pop-up window will appear that asks:
+_“The xcode-select command requires the command line developer tools. Would you like to install the tools now?”_.
+Choose to confirm this by clicking _Install_ and then agree to the Terms of Service when requested.
+
+Once complete, the installer goes away and you should have `git`, `svn`, `make` and more command available in `/Library/Developer/CommandLineTools/usr/bin/`.
+
+
+
 ## [Git](https://git-scm.com/)
 
 First, rename `gituser.example` into `gituser`. In this file, update the `name` and `email` to let Git use your information when you will commit your changes.
