@@ -42,3 +42,9 @@ Installation of the most useful packages and creation of symbolic links to repla
         + [ngrok](https://ngrok.com/) *(with cask)*
         + [mysql](https://dev.mysql.com/doc/refman/5.7/en/)
     - [Ruby](https://www.ruby-lang.org/)
+    - [Node.Js](http://nodejs.org/)
+        + [npm](https://www.npmjs.com/)
+        + [bower](https://bower.io/)
+        + [gulp-cli](https://github.com/gulpjs/gulp-cli/)
+        + [grunt-cli](https://gruntjs.com/)
+        + [webpack](https://webpack.github.io/)
