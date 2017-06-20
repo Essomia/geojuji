@@ -11,6 +11,7 @@ The following guide assume that:
 
 If yes, keep reading:
 - [Install shell's configurations](./install-shell.md)
+- [Install packages managers](./install-pkgs.md)
 
 
 
@@ -31,3 +32,12 @@ Installation of the most useful packages and creation of symbolic links to repla
         + `bashrc` - Common no-login configuration
         + `bash_profile` - Common login configuration
         + `bash_aliases` - Contains classic aliases
+
+2. Install packages managers
+    - [Homebrew](http://brew.sh/)
+        + [git](http://git-scm.com/)
+        + [bash](https://www.gnu.org/software/bash/)
+        + bash-completion
+        + [node](http://nodejs.org/)
+        + [ngrok](https://ngrok.com/) *(with cask)*
+        + [mysql](https://dev.mysql.com/doc/refman/5.7/en/)
