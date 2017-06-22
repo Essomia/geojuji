@@ -21,3 +21,13 @@ ln -s ~/Sites/geojuji/app/sublime-text ~/Library/Application Support/Sublime Tex
 ```
 
 Now, all Sublime Text's configurations can be found under `/app/sublime-text/` folder of this repository.
+
+To add the `subl` command to our shell, create the symlink with the following command:
+
+```bash
+# MacOS
+ln -s "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+
+# Windows
+Set-Alias subl 'C:\Program Files\Sublime Text 3\sublime_text.exe'
+```
