@@ -12,6 +12,7 @@ The following guide assume that:
 If yes, keep reading:
 - [Install shell's configurations](./install-shell.md)
 - [Install packages managers](./install-pkgs.md)
+- [Install application's configurations](./install-app.md)
 
 
 
@@ -54,3 +55,7 @@ Installation of the most useful packages and creation of symbolic links to repla
         + [grunt-cli](https://gruntjs.com/)
         + [webpack](https://webpack.github.io/)
     - [Composer](https://getcomposer.org/)
+
+3. Install application's configurations
+    - Create symlinks for `/app/sublime-text/*` files
+        + that also contain [Package Control](https://packagecontrol.io/) dependencies.

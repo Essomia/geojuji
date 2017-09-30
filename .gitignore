@@ -1,3 +1,11 @@
+# /app
+
+*.crt
+*-ca-bundle
+*.tmTheme
+*.last-run
+*.cache
+
 # /shell
 
 shell/git/gituser
