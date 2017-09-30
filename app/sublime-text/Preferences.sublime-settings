@@ -1,0 +1,37 @@
+{
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 14.0,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Clojure",
+		"D",
+		"Erlang",
+		"Go",
+		"Graphviz",
+		"Groovy",
+		"Haskell",
+		"LaTeX",
+		"Lisp",
+		"Lua",
+		"Matlab",
+		"OCaml",
+		"Pascal",
+		"Perl",
+		"Python",
+		"R",
+		"Rails",
+		"RestructuredText",
+		"Rust",
+		"Scala",
+		"TCL",
+		"Textile",
+		"Vintage"
+	],
+	"tab_size": 4,
+	"translate_tabs_to_spaces": false,
+	"trim_trailing_white_space_on_save": true
+}

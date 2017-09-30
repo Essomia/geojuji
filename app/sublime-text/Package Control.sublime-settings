@@ -1,0 +1,26 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"install_missing": true,
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"Babel",
+		"BracketHighlighter",
+		"Color Highlighter",
+		"CSS3",
+		"Emmet",
+		"Highlight",
+		"HTML5",
+		"jQuery",
+		"LESS",
+		"Package Control",
+		"Razor",
+		"SCSS",
+		"StringEncode",
+		"Twig",
+		"TypeScript"
+	]
+}
