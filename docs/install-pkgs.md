@@ -31,6 +31,32 @@ brew install mysql
 
 
 
+## [Chocolatey](https://chocolatey.org/), the missing package manager for Windows
+
+Install Chocolatey with the following command line:
+
+```bash
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```
+
+Once Chocolatey installed, you can install the formulas needed with the following command line:
+
+```bash
+# Git
+choco install git --confirm
+
+# Node
+choco install nodejs.install --confirm
+
+# Ngrok
+choco install ngrok.portable --confirm
+
+# Mysql
+choco install mysql --confirm
+```
+
+
+
 ## [Ruby](https://www.ruby-lang.org/), the package manager for object-oriented
 
 On MacOS, `ruby` is already installed, but on Windows, you need to install `ruby` manually.
