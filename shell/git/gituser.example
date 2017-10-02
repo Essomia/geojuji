@@ -1,0 +1,13 @@
+###########
+#  ~/.gitconfig
+#  Write all your personal git config you don't want to keep versioned
+###########
+
+# --------------------------------
+# ACCOUNT
+# --------------------------------
+
+[user]
+    name = John Doe
+    email = johndoe@domain.tld
+
