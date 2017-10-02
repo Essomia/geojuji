@@ -1,0 +1,113 @@
+###########
+#  ~/.gitignore
+###########
+
+
+# --------------------------------
+# OS AUTO-GENERATED FILES
+# --------------------------------
+
+## -- Views files ----- ##
+
+.DS_Store
+.DS_Store?
+Desktop.ini
+
+## -- Thumbs ---------- ##
+
+._*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+## -- External disks -- ##
+
+.Spotlight-V100
+.Trashes
+
+
+# --------------------------------
+# TEMP AND SWAP FILES
+# --------------------------------
+
+*~
+*.swp
+*.tmp
+
+
+# --------------------------------
+# OTHERS SOURCE
+# --------------------------------
+
+*.aps
+*.bak
+*.cache
+*.class
+*.com
+*.dll
+*.dmg
+*.exe
+*.ilk
+*.lib
+*.ncb
+*.o
+*.obj
+*.pch
+*.pdb
+*.sbr
+*.so
+*.suo
+*.tlb
+*.tlh
+*.user
+*.vspscc
+*_i.c
+*_p.c
+
+
+# --------------------------------
+# PACKAGES
+# --------------------------------
+
+*.7z
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# --------------------------------
+# LOGS AND DATABASES
+# --------------------------------
+
+*.log
+*.sql
+
+
+# --------------------------------
+# LANGUAGES
+# --------------------------------
+
+*.pot
+*.po
+
+
+# --------------------------------
+# MAP FILES
+# --------------------------------
+
+*.css.map
+*.js.map
+
+
+# --------------------------------
+# DIRECTORIES / FILES
+# --------------------------------
+
+/bower_components/
+/node_modules/
+/typings/
+/vendor/
+*.sublime-workspace

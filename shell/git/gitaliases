@@ -1,0 +1,47 @@
+###########
+#  ~/.gitaliases
+###########
+
+
+[alias]
+    # --------------------------------
+    # SHORTCUTS
+    # --------------------------------
+
+    br    = branch
+    ci    = commit
+    co    = checkout
+    d     = diff
+    dc    = diff --cached
+    dn    = diff --name-status
+    lg    = log -p
+    st    = status
+    w     = whatchanged
+
+    who   = shortlog -s --
+    ign   = ls-files -o -i --exclude-standard  # SHOW FILES IGNORED BY GIT
+
+    reba   = rebase -i --autosquash
+    deltag = !sh -c 'git push origin :refs/tags/$1'
+
+    rfl  = "reflog --format='* %C(yellow)%gd%Creset %C(red)%h%Creset %C(green)(%cr)%Creset - %gs' --all"
+
+
+    # --------------------------------
+    # LOG ENCHANTED
+    # --------------------------------
+
+    tree   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short"
+    forest = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all"
+    trs    = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short -n 25"
+    fos    = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all -n 25"
+
+    # --------------------------------
+    # DISPLAY LIST ALIASES
+    # --------------------------------
+
+    # -- MacOS Only
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+
+    # -- Win Only
+    # aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
