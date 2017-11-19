@@ -3,18 +3,11 @@
 Geojuji is a kit to install all front-end tools and basic PHP environment on MacOS.
 
 
-
 ## Concept
 
 Geojuji contains all the basic configurations and dependencies needed to develop PHP projects.
 
-The concept is to keep versioned:
-- shell configuration files in `/shell`
-- packages managers dependencies in `/pkgs`
-- and software configurations files in `/app`
-
-Then, it is possible to remount a user station quickly with a constant configuration between each station.
-
+The concept is to keep versioned shell configuration files and software configurations files. Then, it is possible to remount a user station quickly with a constant configuration between each station.
 
 
 ## Installation
@@ -26,13 +19,17 @@ git clone git@github.com:[username]/geojuji.git /path/to/folder/geojuji
 ```
 
 
-
 ## Step-by-Step Guide
 
-To install all the needed, I will assume that:
-- you are using a MacOS and your OS is up-to-date.
-- you have installed `geojuji` repository into `~/geojuji`.
-- you are familiar with command line installation.
+**Summary of the following guide:**
+
+1. [Install shell's configurations](#1-install-shells-configurations)
+2. [Install packages managers](#2-install-packages-managers)
+3. [Install application's configurations](#3-install-applications-configurations)
+4. [Install PHP environment tools](#4-install-php-environment-tools)
+
+
+-------------------------------------
 
 
 ### 1. Install shell's configurations
