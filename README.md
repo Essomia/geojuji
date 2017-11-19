@@ -186,6 +186,14 @@ We also add `subl` command to our shell by creating a symlink with the following
 ln -s "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 ```
 
+#### 3.2 Terminal theme
+
+As we will use the terminal application as a daily tools, you can create a theme to be more friendly.
+To use the theme `geojuji.terminal` from this repository:
+- Go to `Terminal -> Preferences`.
+- Under the `Profiles` tab, click the settings gear near the bottom and click `Import`.
+- Select the theme (`*.terminal` file).
+
 
 ### 4. Install PHP environment tools
 
