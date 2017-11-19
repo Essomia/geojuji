@@ -13,6 +13,7 @@ alias lal='ls -lFa '               # List content // long format with symbol + h
 alias mkdir='mkdir -pv '           # Make directories // recursive + verbose
 alias mv='mv -iv '                 # Move files // prompt + verbose
 alias cp='cp -iv '                 # Copy files // prompt + verbose
+alias ln='ln -sf '                 # Create a symlink for destination into location // symbolink lien + force
 alias less='less -RS '             # Minusq // raw window + nowrap
 alias grep='grep --color -Ii '     # Preferred Search // ignore binary + ignore case
 
