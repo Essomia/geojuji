@@ -105,9 +105,6 @@ brew install node
 
 # Mysql
 brew install mysql
-
-# Ngrok
-brew cask install ngrok
 ```
 
 #### 2.2 [Ruby](https://www.ruby-lang.org/), the package manager for object-oriented
