@@ -77,7 +77,9 @@ alias mysql_connect='mysql -u root -p '
 # --------------------------------
 
 # Homebrew - Missing package manager for MacOSX
-alias ls_brew='brew ls --versions'
+alias brew_ls='brew ls --versions'
+alias brew_update='brew update; brew upgrade; brew cleanup;'
 
 # NPM - Javascript package manager (installed with Homebrew)
-alias ls_npm='npm list --depth=0'
+alias npm_ls='npm list --depth=0'
+alias npm_update='npm install npm -g; npm update -g;'
