@@ -279,3 +279,13 @@ Then, edit `/etc/hosts` to list your local websites:
 ```
 
 Now, when you go to `http://project1.dev.domain.com`, you will see the sources of the website you develop under `/Users/[username]/Sites/dev/project1/` folder.
+
+
+-------------------------------------
+
+
+## Notes
+
+- All the documentation is MACOS-oriented. But if you use Windows, you will find in `/shell/cmd/` some basic aliases inspired from linux for `cmd.exe`.
+   - First, install the `aliases.cmd` file under your folders name as `~/aliases.cmd`
+   - Then, run the `*.reg` file to register theses aliases.
