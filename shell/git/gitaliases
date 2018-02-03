@@ -22,13 +22,12 @@
     w     = whatchanged
     who   = shortlog -s --
 
-    rank  = shortlog -sn --no-merges
     ign   = ls-files -o -i --exclude-standard
+    rank  = shortlog -sn --no-merges
     reba  = rebase -i --autosquash
     subf  = submodule foreach
-    tagrm = !sh -c 'git push origin :refs/tags/$1'
-    rfl   = "reflog --format='* %C(yellow)%gd%Creset %C(red)%h%Creset %C(green)(%cr)%Creset - %gs' --all"
 
+    rfl   = "reflog --format='* %C(yellow)%gd%Creset %C(red)%h%Creset %C(green)(%cr)%Creset - %gs' --all"
 
     # --------------------------------
     # LOG ENCHANTED
@@ -37,6 +36,3 @@
     leaf   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
     tree   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short"
     forest = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all"
-
-    trs = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short -n 20"
-    fos = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all -n 20"
