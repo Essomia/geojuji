@@ -204,6 +204,17 @@ To use the theme `geojuji.terminal` from this repository:
 - Select the theme (`*.terminal` file).
 
 
+### 3.3 [iTerm2](http://www.iterm2.com/index.html)
+
+As we will use the terminal application as a daily tools, you can also use the iTerm which offer a lot of great feature.
+To use the theme `geojuji.itermcolors` from this repository:
+- Go to `iTerm2 -> Preferences`.
+- Under the `Profiles` tab, click the plus icon near the bottom.
+- Give a name to your profile than go to `Colors` section on the right.
+- In the `Color presets` dropdown, select `Import`.
+- Select the theme (`*.itermcolors` file).
+
+
 -------------------------------------
 
 
