@@ -28,6 +28,15 @@
     required = true
     process = git-lfs filter-process
 
+[branch]
+    autosetuprebase = always
+
+[apply]
+    whitespace = fix
+
+[push]
+    default = simple
+
 
 # --------------------------------
 # DIFF ALGORITHM
@@ -38,15 +47,7 @@
 
 [difftool "diffmerge"]
     cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
-
-[branch]
-    autosetuprebase = always
-
-[apply]
-    whitespace = fix
-
-[push]
-    default = matching
+    #MAC: cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
 
 # --------------------------------
 # MERGE ALGORITHM
@@ -60,6 +61,7 @@
 
 [mergetool "diffmerge"]
     cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+    #MAC: cmd = /Applications/DiffMerge.app/Contents/MacOS/diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
     trustExitCode = true
 
 
@@ -72,7 +74,7 @@
     status = auto
     branch = auto
     interactive = auto
-    ui = always
+    ui = auto
     pager = true
 
 [color "branch"]
