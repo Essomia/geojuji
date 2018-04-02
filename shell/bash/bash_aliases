@@ -76,6 +76,9 @@ alias mysql_connect='mysql -u root -p '
 # DEPENDENCY ENV.
 # --------------------------------
 
+# RubyGems - Package manager for Ruby
+alias gem_ls='gem list --local'
+
 # Homebrew - Missing package manager for MacOSX
 alias brew_ls='brew ls --versions'
 alias brew_update='brew update; brew upgrade; brew cleanup;'
