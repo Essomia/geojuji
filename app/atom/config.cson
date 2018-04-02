@@ -1,0 +1,52 @@
+"*":
+  core:
+    followSymlinks: true
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      "node_modules"
+    ]
+    openEmptyEditorOnStart: false
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "monokai"
+    ]
+  editor:
+    fontSize: 14
+    invisibles: {}
+    nonWordCharacters: "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?…"
+    scrollPastEnd: true
+    showIndentGuide: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "411ac3cb-9f60-4d2b-8c98-2c14644c80e2"
+  "fuzzy-finder":
+    ignoredNames: [
+      "**/node_modules/*"
+    ]
+    prefillFromSelection: true
+  "git-diff":
+    showIconsInEditorGutter: true
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
+  "platformio-ide-terminal":
+    core:
+      scrollback: 0
+    customTexts: {}
+    style:
+      fontSize: "14"
+  "tree-view":
+    hideIgnoredNames: true
+    squashDirectoryNames: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
+    removeTrailingWhitespace: true
