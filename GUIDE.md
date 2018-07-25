@@ -286,6 +286,8 @@ First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost co
 
 Now, http://localhost/ should display your folders and files list from `/Users/[username]/Sites/`.
 
+:closed_book: Since we can add a custom stylesheet for your localhost, you can find under `~/geojuji/app/apache2/` folder an example.
+
 
 ### 4.3 Add a custom local host
 

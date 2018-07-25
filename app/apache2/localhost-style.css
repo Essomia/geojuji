@@ -1,0 +1,104 @@
+/**
+ * Localhost Index Style
+ *
+ * @doc: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
+ **/
+
+ /*
+  * Colors:
+  * - text        : #444
+  * - title       : #555
+  * - links       : #000
+  * - links hover : #555
+  * - border      : #ccc
+  */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: #444;
+    font-size: 16px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: normal;
+    line-height: 24px;
+}
+
+#indextitle {
+    margin: 0 15%;
+    padding: 1.67em 0;
+    width: 70%;
+    color: #555;
+    text-align: center;
+}
+
+a,
+hr,
+img {
+    margin: 0;
+    border: none;
+    outline: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555;
+}
+
+table {
+    margin: 2rem auto;
+    width: 70%;
+    max-width: 1024px;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+th {
+    text-align: left;
+}
+
+tr {
+    border: 0;
+    outline: 0;
+}
+
+td {
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    outline: 0;
+    vertical-align: middle;
+    text-align: left;
+}
+
+td a {
+    display: block;
+}
+
+tr:hover td {
+    background: #eee;
+}
+
+tr.indexhead {
+    border-bottom: 3px solid #ccc;
+}
+
+tr.indexhead th {
+    padding: 10px 5px;
+}
+
+td.indexcolicon {
+    width: 5%;
+    text-align: center;
+}
+
+td.indexcolname {
+    width: 60%;
+}
+
+td.indexcolsize {
+    width: 10%;
+}
