@@ -62,7 +62,6 @@ ln -sf ~/geojuji/shell/git/gitattributes ~/.gitattributes       # Define common 
 Also, since MacOS use by default `bash` as command-line interface, we will symlink our configuration to be sourced when a new shell is started.
 
 ```bash
-ln -sf ~/geojuji/shell/bash/bashrc       ~/.bashrc              # Common no-login configuration.
 ln -sf ~/geojuji/shell/bash/bash_profile ~/.bash_profile        # Common login configuration.
 ln -sf ~/geojuji/shell/bash/bash_aliases ~/.bash_aliases        # Contains needed aliases.
 ```
