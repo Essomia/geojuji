@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
-! Version: 201810122119
+! Version: 201810131538
 ! Title: Geojuji AdBlocks Filter
-! Last modified: 12 Oct 2018 21:19 UTC-4
+! Last modified: 13 Oct 2018 15:38 UTC-4
 ! Expires: 14 days (update frequency)
 !
 ! Homepage: https://github.com/Essomia/geojuji
@@ -10,8 +10,12 @@
 !
 ! ----------------------- blocking filters ----------------------- !
 
+! CHATS / COMMENTS
+disqus.com
+chatango.com
+
 ! FACEBOOK.COM
-@@||facebook.com/ajax/mercury/change_read_status.php$xmlhttprequest
+facebook.com/ajax/mercury/change_read_status.php$xmlhttprequest
 
 ! VIKI.COM
 @@||viki.com^$generichide
