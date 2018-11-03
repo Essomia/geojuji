@@ -46,8 +46,8 @@
     tool = diffmerge
 
 [difftool "diffmerge"]
-    cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
-    #MAC: cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
+    #EX: cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge \"$LOCAL\" \"$REMOTE\"
 
 # --------------------------------
 # MERGE ALGORITHM
@@ -60,8 +60,8 @@
     keepBackup = false
 
 [mergetool "diffmerge"]
-    cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-    #MAC: cmd = /Applications/DiffMerge.app/Contents/MacOS/diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+    #EX: "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+    cmd = /Applications/DiffMerge.app/Contents/MacOS/diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
     trustExitCode = true
 
 
