@@ -5,6 +5,7 @@
 *.tmTheme
 *.last-run
 *.cache
+*.iterm2.plist
 
 # /shell
 
