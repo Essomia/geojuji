@@ -54,7 +54,7 @@ ln -sf ~/geojuji/shell/git/gitaliases    ~/.gitaliases          # All needed ali
 ln -sf ~/geojuji/shell/git/gitattributes ~/.gitattributes       # Define common attributes for files.
 ```
 
-:warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). For this software in particular, you can uncomment in `~/geojuji/shell/git/gitconfig` the `#MAC:` word before the line config.
+:warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the `#ex:` line config.
 
 
 ### 1.4 [Bash](https://www.gnu.org/software/bash/)
