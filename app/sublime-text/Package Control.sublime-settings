@@ -1,30 +1,21 @@
 {
-	"bootstrapped": true,
-	"in_process_packages":
-	[
-	],
-	"install_missing": true,
-	"installed_packages":
-	[
-		"All Autocomplete",
-		"Babel",
-		"BracketHighlighter",
-		"Color Highlighter",
-		"CSS3",
-		"Emmet",
-		"Emmet Css Snippets",
-		"Front-end Project Snippets",
-		"Highlight",
-		"HTML5",
-		"HyperClick",
-		"jQuery",
-		"LESS",
-		"Package Control",
-		"Razor",
-		"SCSS",
-		"SideBarEnhancements",
-		"StringEncode",
-		"Twig",
-		"TypeScript"
-	]
+    "bootstrapped": true,
+    "in_process_packages":
+    [
+    ],
+    "install_missing": true,
+    "installed_packages":
+    [
+        "All Autocomplete",
+        "Babel",
+        "Color Highlighter",
+        "CSS3",
+        "HTML5",
+        "HyperClick",
+        "jQuery",
+        "LESS",
+        "Package Control",
+        "Sass",
+        "SideBarEnhancements"
+    ]
 }
