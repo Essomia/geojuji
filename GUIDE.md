@@ -215,18 +215,6 @@ You can also use the iTerm which offer a lot of great feature. To use the theme 
 - Select the theme (`*.itermcolors` file).
 
 
-### 3.3 [Atom](https://atom.io/)
-
-You can also install Atom, as a code editor, and link a default config:
-- Download and install `atom` from the app website.
-- Open Atom to initialize the application and close it.
-- Run `rm -rf ~/.atom` to delete default folder
-- Then link the config in the repository with `ln -s ~/geojuji/app/atom ~/.atom`.
-- Initialize `atom` package manager by runing `apm install package-sync` command.
-- Open the application and sync all packages with `Package > Package sync. > Sync. packages`.
-- Wait for all packages to be installed, close and restart `atom` to enjoy.
-
-
 -------------------------------------
 
 
