@@ -67,6 +67,13 @@ ln -sf ~/geojuji/shell/bash/bash_aliases ~/.bash_aliases        # Contains neede
 ```
 
 
+### 1.5 CMD
+
+All the documentation written in his guide is MACOS-oriented. However if you use a Windows, you will find under `~/geojuji/shell/cmd/` folder, some basic aliases for `cmd.exe` inspired from linux shell.
+- First, install the `~/geojuji/shell/cmd/aliases.cmd` file under your folders name as `c:\[username]\aliases.cmd`.
+- Then, run the `~/geojuji/shell/cmd/register-aliases.reg` file to register theses aliases.
+
+
 -------------------------------------
 
 
@@ -90,6 +97,7 @@ gem environment
 # ruby: /usr/bin/ruby - version 2.0.0p648
 # gem:  /usr/bin/gem  - version 2.0.14.1
 #--------------------
+
 bigdecimal (1.2.0)
 CFPropertyList (2.3.5)
 io-console (0.4.2)
@@ -167,8 +175,26 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 ## 3. Install application's configurations
 
+### 3.1 Terminal theme
 
-### 3.1 [Sublime Text 3](https://www.sublimetext.com/) with [Package Control](https://packagecontrol.io/)
+As we will use the terminal application as a daily tools, you can create a theme to be more friendly.
+To use the theme `geojuji.terminal` from this repository:
+- Go to `Terminal -> Preferences`.
+- Under the `Profiles` tab, click the settings gear near the bottom and click `Import`.
+- Select the theme (`*.terminal` file) under `~/geojuji/app/terminal/` folder.
+
+
+### 3.2 [iTerm2](http://www.iterm2.com/index.html)
+
+You can also use the iTerm which offer a lot of great feature. To use the theme `geojuji.itermcolors` from this repository:
+- Go to `iTerm2 -> Preferences`.
+- Under the `Profiles` tab, click the plus icon near the bottom.
+- Give a name to your profile than go to `Colors` section on the right.
+- In the `Color presets` dropdown, select `Import`.
+- Select the theme (`*.itermcolors` file) under `~/geojuji/app/iterm/` folder.
+
+
+### 3.3 [Sublime Text 3](https://www.sublimetext.com/) with [Package Control](https://packagecontrol.io/)
 
 If you use Sublime Text as a code editor, you probably already accustomed to use Package Control to enhance your coding experience.
 
@@ -196,25 +222,6 @@ ln -s "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 ```
 
 
-### 3.2 Terminal theme
-
-As we will use the terminal application as a daily tools, you can create a theme to be more friendly.
-To use the theme `geojuji.terminal` from this repository:
-- Go to `Terminal -> Preferences`.
-- Under the `Profiles` tab, click the settings gear near the bottom and click `Import`.
-- Select the theme (`*.terminal` file).
-
-
-### 3.3 [iTerm2](http://www.iterm2.com/index.html)
-
-You can also use the iTerm which offer a lot of great feature. To use the theme `geojuji.itermcolors` from this repository:
-- Go to `iTerm2 -> Preferences`.
-- Under the `Profiles` tab, click the plus icon near the bottom.
-- Give a name to your profile than go to `Colors` section on the right.
-- In the `Color presets` dropdown, select `Import`.
-- Select the theme (`*.itermcolors` file).
-
-
 -------------------------------------
 
 
@@ -226,7 +233,7 @@ You can also use the iTerm which offer a lot of great feature. To use the theme 
 To develop PHP projects, you will need the following to be installed and set:
 - [PHP](http://php.net/)
 - [Apache Server](https://httpd.apache.org/)
-- [MySQL](https://www.mysql.com/) (Should be installed with Homebrew/Chocolatey formulas)
+- [MySQL](https://www.mysql.com/) and to get the right one for your OS, [check the MYSQL archives](https://downloads.mysql.com/archives/community/)
 - [phpMyAdmin](https://www.phpmyadmin.net/)
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in detail and let you use Google.
