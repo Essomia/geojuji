@@ -79,3 +79,43 @@ alias mysql_connect='mysql -u root -p'
 alias gem_ls='gem list --local'
 alias brew_ls='brew ls --versions'
 alias npm_ls='npm list --depth=0'
+
+# Git bilan
+git_bilan() {
+    ROOT=$(pwd)
+
+    find $@ -type d -maxdepth 4 -name '.git' | while read DIR; do
+        PATH=$ROOT/${DIR%.git}
+        cd $PATH;
+
+        echo -e;
+        echo -e "--------------------"
+        echo -e "In ${DIR%.git}";
+        echo -e "--------------------"
+
+        echo -e
+        echo -e "$ git remote";
+        echo -e "--------------------"
+
+        /usr/bin/git remote -vv
+
+        echo -e
+        echo -e "$ git branch";
+        echo -e "--------------------"
+
+        /usr/bin/git branch -vv;
+
+        echo -e
+        echo -e "$ git status";
+        echo -e "--------------------"
+
+        if [[ -n $(/usr/bin/git status -s) ]]; then
+            /usr/bin/git status -s;
+        else
+            echo -e "No change to commit :)"
+        fi
+
+        cd $ROOT;
+        echo -e;
+    done
+}
