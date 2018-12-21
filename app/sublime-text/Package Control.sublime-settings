@@ -1,21 +1,22 @@
 {
-    "bootstrapped": true,
-    "in_process_packages":
-    [
-    ],
-    "install_missing": true,
-    "installed_packages":
-    [
-        "All Autocomplete",
-        "Babel",
-        "Color Highlighter",
-        "CSS3",
-        "HTML5",
-        "HyperClick",
-        "jQuery",
-        "LESS",
-        "Package Control",
-        "Sass",
-        "SideBarEnhancements"
-    ]
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"install_missing": true,
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"Babel",
+		"Color Highlight",
+		"Color Highlighter",
+		"CSS3",
+		"HTML5",
+		"HyperClick",
+		"jQuery",
+		"LESS",
+		"Package Control",
+		"Sass",
+		"SideBarEnhancements"
+	]
 }
