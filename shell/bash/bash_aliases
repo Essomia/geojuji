@@ -21,6 +21,7 @@ alias c='clear'                    # Clear terminal display
 alias edit='subl '                 # Opens any file/folder in Sublime Text editor
 alias finder='open -a Finder '     # Opens current directory in MacOS Finder
 alias sudo='sudo '                 # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
+alias reload='exec /usr/local/bin/bash -l'
 
 
 # --------------------------------
@@ -44,6 +45,15 @@ zip_file() {
     zip -r "$1".zip "$1" ;
 }
 
+# Set project right
+set_chmod_file() {
+    echo "> Set folders right to 755";
+    /usr/bin/find $@ -type d -exec sudo chmod 755 {} \;
+
+    echo "> Set files right to 644";
+    /usr/bin/find $@ -type f -exec sudo chmod 644 {} \;
+}
+
 
 # --------------------------------
 # WEB DEVELOPMENT
@@ -54,7 +64,7 @@ alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.
 alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
 alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitattributes ~/.gitignore'
 alias conf_hosts='sudo edit /etc/hosts'
-alias conf_mysql='edit /private/etc/my.cnf'
+alias conf_mysql='edit /private/etc/my.cnf ~/Sites/@phpmyadmin/config.inc.php'
 alias conf_php='edit /etc/php.ini'
 
 # Apache
@@ -63,8 +73,7 @@ alias apache_errlogs='less +F /var/log/apache2/dev_error_log'
 alias apache_httplogs='tail /var/log/httpd/error_log'
 
 # MySQL
-alias mysql_restart='mysql.server restart'
-alias mysql_connect='mysql -u root -p '
+alias mysql_connect='mysql -u root -p'
 
 # Packages managers
 alias gem_ls='gem list --local'

@@ -31,13 +31,21 @@ HISTCONTROL=ignoreboth
 HISTFILESIZE=2000
 HISTSIZE=1000
 
+# Set shell language to english
+LANG=C
+
 
 # --------------------------------
 # ENVIRONMENTS
 # --------------------------------
 
-# Tells the shell which directories to search for executable files.
-export PATH="$PATH:/usr/local/bin/:/usr/local/git/bin:/usr/sbin:/sbin:/usr/bin:/bin:/usr/local/:/usr/local/sbin"
+# Default OS shell directories to search for executable files.
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/opt/ImageMagick/bin"
+
+# Add new directories to search for executable files.
+export PATH="/usr/local/sbin:/usr/local:/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
 
 # Ignore types of files when you tab from the command line
 export FIGNORE=$FIGNORE:DS_Store
