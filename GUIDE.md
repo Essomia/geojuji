@@ -124,15 +124,18 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 Once Homebrew installed, you can install the formulas needed with the following command line:
 
 ```bash
+# brew: /usr/local/bin/brew - version 1.8.1
+#--------------------
+
+# Git
+brew install git #v2.19.1
+
 # Bash
-brew install bash
-brew install bash-completion
+brew install bash #v4.4.23
+brew install bash-completion #v1.3_3
 
 # Node
-brew install node
-
-# Mysql
-brew install mysql
+brew install node@8 #v8.12.0
 ```
 
 
@@ -142,16 +145,20 @@ We install `node` within the Homebrew formulas.
 So, once `node` is installed, you can install needed packages globally with the following command line:
 
 ```bash
-# NPM (should be installed with Node.JS)
-npm install -g npm
+# node: /usr/local/opt/node@8/bin/node - version 8.12.0
+# npm:  /usr/local/opt/node@8/bin/npm  - version 6.4.1
+#--------------------
+
+# NPM
+npm install -g npm #v6.5.0
 
 # Bower [legacy]
-npm install -g bower
+npm install -g bower #v1.8.4
 
 # Task runners
-npm install -g gulp-cli
-npm install -g grunt-cli
-npm install -g webpack
+npm install -g grunt-cli #v1.3.2
+npm install -g gulp-cli #v2.0.1
+npm install -g webpack #v4.24.0
 ```
 
 :warning: Sometime, on MacOS, you could have issue while installing or executing packages from the `/usr/local/` folder. To fix this issue, the following command will set your username as the owner of the folder:
@@ -166,7 +173,7 @@ sudo chown -R $USER:admin /usr/local
 As `composer` became a usefull tools to manage dependencies for PHP projects, you can install the executable in `/usr/local/bin` folder for MacOS with the following command:
 
 ```bash
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer #v1.5.1
 ```
 
 
