@@ -7,12 +7,9 @@
 	"installed_packages":
 	[
 		"All Autocomplete",
-		"Babel",
-		"Color Highlight",
-		"Color Highlighter",
+		"ColorHelper",
 		"CSS3",
 		"HTML5",
-		"HyperClick",
 		"jQuery",
 		"LESS",
 		"Package Control",

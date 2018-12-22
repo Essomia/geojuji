@@ -7,6 +7,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"ASP",
 		"Clojure",
 		"D",
 		"Erlang",
@@ -14,6 +15,7 @@
 		"Graphviz",
 		"Groovy",
 		"Haskell",
+		"Java",
 		"LaTeX",
 		"Lisp",
 		"Lua",
