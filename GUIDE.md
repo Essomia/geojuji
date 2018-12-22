@@ -67,6 +67,13 @@ ln -sf ~/geojuji/shell/bash/bash_aliases ~/.bash_aliases        # Contains neede
 ```
 
 
+### 1.5 CMD
+
+All the documentation written in his guide is MACOS-oriented. However if you use a Windows, you will find under `~/geojuji/shell/cmd/` folder, some basic aliases for `cmd.exe` inspired from linux shell.
+- First, install the `~/geojuji/shell/cmd/aliases.cmd` file under your folders name as `c:\[username]\aliases.cmd`.
+- Then, run the `~/geojuji/shell/cmd/register-aliases.reg` file to register theses aliases.
+
+
 -------------------------------------
 
 
@@ -90,6 +97,7 @@ gem environment
 # ruby: /usr/bin/ruby - version 2.0.0p648
 # gem:  /usr/bin/gem  - version 2.0.14.1
 #--------------------
+
 bigdecimal (1.2.0)
 CFPropertyList (2.3.5)
 io-console (0.4.2)
@@ -116,15 +124,18 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 Once Homebrew installed, you can install the formulas needed with the following command line:
 
 ```bash
+# brew: /usr/local/bin/brew - version 1.8.1
+#--------------------
+
+# Git
+brew install git #v2.19.1
+
 # Bash
-brew install bash
-brew install bash-completion
+brew install bash #v4.4.23
+brew install bash-completion #v1.3_3
 
 # Node
-brew install node
-
-# Mysql
-brew install mysql
+brew install node@8 #v8.12.0
 ```
 
 
@@ -134,16 +145,20 @@ We install `node` within the Homebrew formulas.
 So, once `node` is installed, you can install needed packages globally with the following command line:
 
 ```bash
-# NPM (should be installed with Node.JS)
-npm install -g npm
+# node: /usr/local/opt/node@8/bin/node - version 8.12.0
+# npm:  /usr/local/opt/node@8/bin/npm  - version 6.4.1
+#--------------------
+
+# NPM
+npm install -g npm #v6.5.0
 
 # Bower [legacy]
-npm install -g bower
+npm install -g bower #v1.8.4
 
 # Task runners
-npm install -g gulp-cli
-npm install -g grunt-cli
-npm install -g webpack
+npm install -g grunt-cli #v1.3.2
+npm install -g gulp-cli #v2.0.1
+npm install -g webpack #v4.24.0
 ```
 
 :warning: Sometime, on MacOS, you could have issue while installing or executing packages from the `/usr/local/` folder. To fix this issue, the following command will set your username as the owner of the folder:
@@ -158,7 +173,7 @@ sudo chown -R $USER:admin /usr/local
 As `composer` became a usefull tools to manage dependencies for PHP projects, you can install the executable in `/usr/local/bin` folder for MacOS with the following command:
 
 ```bash
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer #v1.5.1
 ```
 
 
@@ -167,8 +182,26 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 ## 3. Install application's configurations
 
+### 3.1 Terminal theme
 
-### 3.1 [Sublime Text 3](https://www.sublimetext.com/) with [Package Control](https://packagecontrol.io/)
+As we will use the terminal application as a daily tools, you can create a theme to be more friendly.
+To use the theme `geojuji.terminal` from this repository:
+- Go to `Terminal -> Preferences`.
+- Under the `Profiles` tab, click the settings gear near the bottom and click `Import`.
+- Select the theme (`*.terminal` file) under `~/geojuji/app/terminal/` folder.
+
+
+### 3.2 [iTerm2](http://www.iterm2.com/index.html)
+
+You can also use the iTerm which offer a lot of great feature. To use the theme `geojuji.itermcolors` from this repository:
+- Go to `iTerm2 -> Preferences`.
+- Under the `Profiles` tab, click the plus icon near the bottom.
+- Give a name to your profile than go to `Colors` section on the right.
+- In the `Color presets` dropdown, select `Import`.
+- Select the theme (`*.itermcolors` file) under `~/geojuji/app/iterm/` folder.
+
+
+### 3.3 [Sublime Text 3](https://www.sublimetext.com/) with [Package Control](https://packagecontrol.io/)
 
 If you use Sublime Text as a code editor, you probably already accustomed to use Package Control to enhance your coding experience.
 
@@ -196,37 +229,6 @@ ln -s "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 ```
 
 
-### 3.2 Terminal theme
-
-As we will use the terminal application as a daily tools, you can create a theme to be more friendly.
-To use the theme `geojuji.terminal` from this repository:
-- Go to `Terminal -> Preferences`.
-- Under the `Profiles` tab, click the settings gear near the bottom and click `Import`.
-- Select the theme (`*.terminal` file).
-
-
-### 3.3 [iTerm2](http://www.iterm2.com/index.html)
-
-You can also use the iTerm which offer a lot of great feature. To use the theme `geojuji.itermcolors` from this repository:
-- Go to `iTerm2 -> Preferences`.
-- Under the `Profiles` tab, click the plus icon near the bottom.
-- Give a name to your profile than go to `Colors` section on the right.
-- In the `Color presets` dropdown, select `Import`.
-- Select the theme (`*.itermcolors` file).
-
-
-### 3.3 [Atom](https://atom.io/)
-
-You can also install Atom, as a code editor, and link a default config:
-- Download and install `atom` from the app website.
-- Open Atom to initialize the application and close it.
-- Run `rm -rf ~/.atom` to delete default folder
-- Then link the config in the repository with `ln -s ~/geojuji/app/atom ~/.atom`.
-- Initialize `atom` package manager by runing `apm install package-sync` command.
-- Open the application and sync all packages with `Package > Package sync. > Sync. packages`.
-- Wait for all packages to be installed, close and restart `atom` to enjoy.
-
-
 -------------------------------------
 
 
@@ -238,7 +240,7 @@ You can also install Atom, as a code editor, and link a default config:
 To develop PHP projects, you will need the following to be installed and set:
 - [PHP](http://php.net/)
 - [Apache Server](https://httpd.apache.org/)
-- [MySQL](https://www.mysql.com/) (Should be installed with Homebrew/Chocolatey formulas)
+- [MySQL](https://www.mysql.com/) and to get the right one for your OS, [check the MYSQL archives](https://downloads.mysql.com/archives/community/)
 - [phpMyAdmin](https://www.phpmyadmin.net/)
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in detail and let you use Google.
