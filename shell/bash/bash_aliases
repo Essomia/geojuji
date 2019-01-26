@@ -87,38 +87,47 @@ alias npm_ls='npm list --depth=0'
 git_bilan() {
     ROOT=$(pwd)
 
-    find $@ -type d -maxdepth 4 -name '.git' | while read DIR; do
-        PATH=$ROOT/${DIR%.git}
-        cd $PATH;
+    if [[ -n $@ ]]; then
+        find $@ -type d -maxdepth 4 -name '.git' | while read DIR; do
+            PATH=$ROOT/${DIR%.git}
+            cd $PATH;
 
-        echo -e;
-        echo -e "--------------------"
-        echo -e "In ${DIR%.git}";
-        echo -e "--------------------"
+            echo -e;
+            echo -e "${COLOR_YELLOW}----------------------------------------"
+            echo -e "In ${DIR%.git}";
+            echo -e "----------------------------------------${COLOR_RESET}"
 
-        echo -e
-        echo -e "$ git remote";
-        echo -e "--------------------"
+            echo -e
+            echo -e "$ git remote";
+            echo -e "--------------------"
 
-        /usr/bin/git remote -vv
+            if [[ -n $(/usr/bin/git remote -vv) ]]; then
+                /usr/bin/git remote -vv
+            else
+                echo -e "${COLOR_RED}No remote specified :S${COLOR_RESET}"
+            fi
 
-        echo -e
-        echo -e "$ git branch";
-        echo -e "--------------------"
+            echo -e
+            echo -e "$ git branch";
+            echo -e "--------------------"
 
-        /usr/bin/git branch -vv;
+            /usr/bin/git branch -vv;
 
-        echo -e
-        echo -e "$ git status";
-        echo -e "--------------------"
+            echo -e
+            echo -e "$ git status";
+            echo -e "--------------------"
 
-        if [[ -n $(/usr/bin/git status -s) ]]; then
-            /usr/bin/git status -s;
-        else
-            echo -e "No change to commit :)"
-        fi
+            if [[ -n $(/usr/bin/git status -s) ]]; then
+                /usr/bin/git status -s;
+            else
+                echo -e "${COLOR_GREEN}No changes to commit :)${COLOR_RESET}"
+            fi
 
-        cd $ROOT;
-        echo -e;
-    done
+            cd $ROOT;
+            echo -e;
+        done
+    else
+        echo -e "${COLOR_YELLOW}Please give a folder as arguments.${COLOR_RESET}"
+    fi
+
 }
