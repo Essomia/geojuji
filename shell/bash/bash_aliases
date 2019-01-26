@@ -32,6 +32,9 @@ alias reload='exec /usr/local/bin/bash -l'
 alias finder_ShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finder_HideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 
+# Reset Folder display
+alias finder_ResetFinder='rm ~/Library/Preferences/com.apple.finder.plist'
+
 # Recursively delete .DS_Store files
 alias finder_CleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 
