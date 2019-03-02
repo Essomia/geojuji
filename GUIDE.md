@@ -51,7 +51,6 @@ ln -sf ~/geojuji/shell/git/gituser       ~/.gituser             # Your personal 
 ln -sf ~/geojuji/shell/git/gitconfig     ~/.gitconfig           # The common configuration.
 ln -sf ~/geojuji/shell/git/gitignore     ~/.gitignore           # List global files to be ignored for all repositories.
 ln -sf ~/geojuji/shell/git/gitaliases    ~/.gitaliases          # All needed aliases.
-ln -sf ~/geojuji/shell/git/gitattributes ~/.gitattributes       # Define common attributes for files.
 ```
 
 :warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the `#ex:` line config.
