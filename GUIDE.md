@@ -42,7 +42,7 @@ Once complete, the installer will go away and you should have `git`, `svn`, `mak
 
 ### 1.3 [Git](https://git-scm.com/)
 
-First, rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`. In this file, update the `name` and `email` to let Git use your information when you will commit your changes. Also, note that this repository ignore that file.
+First, rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`. In this file, update the `name`, `username` and `email` to let Git use your information when you will commit your changes. Also, note that this repository ignore that file.
 
 As we will use `git` as versioning tool, we will symlink the configuration files to be use when we run related command line.
 
@@ -51,10 +51,9 @@ ln -sf ~/geojuji/shell/git/gituser       ~/.gituser             # Your personal 
 ln -sf ~/geojuji/shell/git/gitconfig     ~/.gitconfig           # The common configuration.
 ln -sf ~/geojuji/shell/git/gitignore     ~/.gitignore           # List global files to be ignored for all repositories.
 ln -sf ~/geojuji/shell/git/gitaliases    ~/.gitaliases          # All needed aliases.
-ln -sf ~/geojuji/shell/git/gitattributes ~/.gitattributes       # Define common attributes for files.
 ```
 
-:warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the `#ex:` line config.
+:warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the according line config.
 
 
 ### 1.4 [Bash](https://www.gnu.org/software/bash/)
@@ -246,11 +245,11 @@ To develop PHP projects, you will need the following to be installed and set:
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in detail and let you use Google.
 
 
-### 4.2 Set default localhost
+### 4.2 Set default local host
 
 Since we develop multiple websites, we need to set our local hosts to works properly.
 
-First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
+Edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
 
 ```bash
 #
@@ -276,7 +275,7 @@ First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost co
         IndexOptions SuppressHTMLPreamble
         IndexOptions SuppressDescription
         IndexOrderDefault Ascending Name
-        # IndexStyleSheet "localhost.css"  # <-- you can add stylesheet for localhost
+        # IndexStyleSheet "localhost.css"  # <-- path to your stylesheet for localhost
     </ifModule>
 
     ServerAdmin admin@localhost.com
@@ -285,19 +284,21 @@ First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost co
 </VirtualHost>
 ```
 
-Now, http://localhost/ should display your folders and files list from `/Users/[username]/Sites/`.
+Now, http://localhost/ should display your folders and files under your `[DocumentRoot]` folder.
 
-:closed_book: Since we can add a custom stylesheet for your localhost, you can find under `~/geojuji/app/apache2/` folder an example.
+:closed_book: Since we can add a custom stylesheet for your localhost, you can find under `~/geojuji/app/apache2/` folder an example. Note also that the stylesheet file should be under your `[DocumentRoot]` folder.
 
 
 ### 4.3 Add a custom local host
 
-First, always in `httpd-vhosts.conf`, add your local host configuration. Below, an example for `*.dev.domain.com`:
+Below, an example to use `*.*.dev.domain.com` model. Then, when you will go to `http://project.client.dev.domain.com`, you will see the sources of your website that you develop under `[DocumentRoot]/develop/client/project/` folder.
+
+Always in `httpd-vhosts.conf`, add your local host configuration:
 
 ```bash
-# Note:
-# http://sub.folder.domain.ext/
-# http://%-4.%-3.%-2.%-1/  # start from the end
+# Explain:
+# - http://project.client.folder.domain.ext/
+# - http://%-5.%-4.%-3.%-2.%-1/  # start from the end
 
 #
 # Configuration *.DEV.DOMAIN.com
@@ -305,9 +306,9 @@ First, always in `httpd-vhosts.conf`, add your local host configuration. Below, 
 
 <VirtualHost *:80>
     ServerName list.dev.domain.com
-    ServerAlias *.dev.domain.com
-    ServerAlias www.*.dev.domain.com
-    VirtualDocumentRoot /Users/[username]/Sites/dev/%-4/
+    ServerAlias *.*.dev.domain.com
+    ServerAlias www.*.*.dev.domain.com
+    VirtualDocumentRoot /Users/[username]/Sites/develop/%-4/%-5/
 
     ServerAdmin admin@localhost.com
     ErrorLog "/var/log/apache2/dev_error_log"
@@ -315,15 +316,12 @@ First, always in `httpd-vhosts.conf`, add your local host configuration. Below, 
 </VirtualHost>
 ```
 
-Then, edit `/etc/hosts` to list your local websites:
+Then, edit `/etc/hosts` to list your local websites url:
 
 ```bash
 #
 # VIRTUAL HOSTS
 #
 
-127.0.0.1   project1.dev.domain.com
-127.0.0.1   project2.dev.domain.com
+127.0.0.1   project1.client.dev.domain.com
 ```
-
-Now, when you go to `http://project1.dev.domain.com`, you will see the sources of the website you develop under `/Users/[username]/Sites/dev/project1/` folder.

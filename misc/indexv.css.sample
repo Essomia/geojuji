@@ -1,0 +1,35 @@
+/**
+ * Special vhosts localhost styles
+ *
+ * @link: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
+ **/
+
+
+@import url('../app/apache2/localhost.css');
+
+
+.headline {
+    font-size: 13px;
+    font-style: italic;
+}
+
+.flag {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px 7px;
+    min-width: 30px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 12px;
+}
+
+.flag.void         { background: #eeeeee }
+.flag.wp           { background: #21759a; }
+.flag.sf           { background: #db5252; }
+.flag.branch.root  { background: #b7b7b7; }
+.flag.branch.other { background: #e07a7a; }
+.flag.tag          { background: #ade07a; }
