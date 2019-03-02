@@ -245,11 +245,11 @@ To develop PHP projects, you will need the following to be installed and set:
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in detail and let you use Google.
 
 
-### 4.2 Set default localhost
+### 4.2 Set default local host
 
 Since we develop multiple websites, we need to set our local hosts to works properly.
 
-First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
+Edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
 
 ```bash
 #
@@ -275,7 +275,7 @@ First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost co
         IndexOptions SuppressHTMLPreamble
         IndexOptions SuppressDescription
         IndexOrderDefault Ascending Name
-        # IndexStyleSheet "localhost.css"  # <-- you can add stylesheet for localhost
+        # IndexStyleSheet "localhost.css"  # <-- path to your stylesheet for localhost
     </ifModule>
 
     ServerAdmin admin@localhost.com
@@ -284,19 +284,21 @@ First, edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost co
 </VirtualHost>
 ```
 
-Now, http://localhost/ should display your folders and files list from `/Users/[username]/Sites/`.
+Now, http://localhost/ should display your folders and files under your `[DocumentRoot]` folder.
 
-:closed_book: Since we can add a custom stylesheet for your localhost, you can find under `~/geojuji/app/apache2/` folder an example.
+:closed_book: Since we can add a custom stylesheet for your localhost, you can find under `~/geojuji/app/apache2/` folder an example. Note also that the stylesheet file should be under your `[DocumentRoot]` folder.
 
 
 ### 4.3 Add a custom local host
 
-First, always in `httpd-vhosts.conf`, add your local host configuration. Below, an example for `*.dev.domain.com`:
+Below, an example to use `*.*.dev.domain.com` model. Then, when you will go to `http://project.client.dev.domain.com`, you will see the sources of your website that you develop under `[DocumentRoot]/develop/client/project/` folder.
+
+Always in `httpd-vhosts.conf`, add your local host configuration:
 
 ```bash
-# Note:
-# http://sub.folder.domain.ext/
-# http://%-4.%-3.%-2.%-1/  # start from the end
+# Explain:
+# - http://project.client.folder.domain.ext/
+# - http://%-5.%-4.%-3.%-2.%-1/  # start from the end
 
 #
 # Configuration *.DEV.DOMAIN.com
@@ -304,9 +306,9 @@ First, always in `httpd-vhosts.conf`, add your local host configuration. Below, 
 
 <VirtualHost *:80>
     ServerName list.dev.domain.com
-    ServerAlias *.dev.domain.com
-    ServerAlias www.*.dev.domain.com
-    VirtualDocumentRoot /Users/[username]/Sites/dev/%-4/
+    ServerAlias *.*.dev.domain.com
+    ServerAlias www.*.*.dev.domain.com
+    VirtualDocumentRoot /Users/[username]/Sites/develop/%-4/%-5/
 
     ServerAdmin admin@localhost.com
     ErrorLog "/var/log/apache2/dev_error_log"
@@ -314,15 +316,12 @@ First, always in `httpd-vhosts.conf`, add your local host configuration. Below, 
 </VirtualHost>
 ```
 
-Then, edit `/etc/hosts` to list your local websites:
+Then, edit `/etc/hosts` to list your local websites url:
 
 ```bash
 #
 # VIRTUAL HOSTS
 #
 
-127.0.0.1   project1.dev.domain.com
-127.0.0.1   project2.dev.domain.com
+127.0.0.1   project1.client.dev.domain.com
 ```
-
-Now, when you go to `http://project1.dev.domain.com`, you will see the sources of the website you develop under `/Users/[username]/Sites/dev/project1/` folder.

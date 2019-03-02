@@ -10,3 +10,8 @@
 # /shell
 
 shell/git/gituser
+
+# /misc
+
+misc/*
+!misc/*.sample
