@@ -42,7 +42,7 @@ Once complete, the installer will go away and you should have `git`, `svn`, `mak
 
 ### 1.3 [Git](https://git-scm.com/)
 
-First, rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`. In this file, update the `name` and `email` to let Git use your information when you will commit your changes. Also, note that this repository ignore that file.
+First, rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`. In this file, update the `name`, `username` and `email` to let Git use your information when you will commit your changes. Also, note that this repository ignore that file.
 
 As we will use `git` as versioning tool, we will symlink the configuration files to be use when we run related command line.
 
@@ -53,7 +53,7 @@ ln -sf ~/geojuji/shell/git/gitignore     ~/.gitignore           # List global fi
 ln -sf ~/geojuji/shell/git/gitaliases    ~/.gitaliases          # All needed aliases.
 ```
 
-:warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the `#ex:` line config.
+:warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the according line config.
 
 
 ### 1.4 [Bash](https://www.gnu.org/software/bash/)
