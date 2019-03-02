@@ -16,7 +16,6 @@
 [core]
     editor = nano
     pager = less -FRSX
-    attributesfile = ~/.gitattributes
     excludesfile = ~/.gitignore
     autocrlf = input
     filemode = false
