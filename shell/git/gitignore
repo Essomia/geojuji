@@ -3,72 +3,40 @@
 ###########
 
 
-# --------------------------------
 # OS AUTO-GENERATED FILES
 # --------------------------------
 
-## -- Views files ----- ##
-
+# Mac osx
+._*
 .DS_Store
 .DS_Store?
+.Spotlight-V100
+.Trashes
+
+# Windows
 Desktop.ini
-
-## -- Thumbs ---------- ##
-
-._*
 ehthumbs.db
 Icon?
 Thumbs.db
 
-## -- External disks -- ##
 
-.Spotlight-V100
-.Trashes
-
-
-# --------------------------------
-# TEMP AND SWAP FILES
+# SOURCES FILES
 # --------------------------------
 
-*~
-*.swp
-*.tmp
-
-
-# --------------------------------
-# OTHERS SOURCE
-# --------------------------------
-
+# Binary or executable
 *.aps
-*.bak
-*.cache
-*.class
 *.com
 *.dll
 *.dmg
 *.exe
-*.ilk
 *.lib
-*.ncb
+
+# Object or classes
+*.class
 *.o
 *.obj
-*.pch
-*.pdb
-*.sbr
-*.so
-*.suo
-*.tlb
-*.tlh
-*.user
-*.vspscc
-*_i.c
-*_p.c
 
-
-# --------------------------------
-# PACKAGES
-# --------------------------------
-
+# Packages
 *.7z
 *.gz
 *.iso
@@ -77,37 +45,32 @@ Thumbs.db
 *.tar
 *.zip
 
+# Temporary and swap
+*.swp
+*.tmp
+*~
 
-# --------------------------------
-# LOGS AND DATABASES
-# --------------------------------
+# Preference or backup
+*.bak
+*.cache
+*.user
 
+# Logs and databases
 *.log
 *.sql
 
-
-# --------------------------------
-# LANGUAGES
-# --------------------------------
-
+# Languages
 *.pot
 *.po
 
-
-# --------------------------------
-# MAP FILES
-# --------------------------------
-
+# Map
 *.css.map
 *.js.map
 
 
-# --------------------------------
 # DIRECTORIES / FILES
 # --------------------------------
 
 /bower_components/
 /node_modules/
-/typings/
 /vendor/
-*.sublime-workspace

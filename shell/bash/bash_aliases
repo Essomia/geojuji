@@ -1,30 +1,29 @@
 ###########
 #  ~/.bash_aliases
-#  All your additions into a separate file.
+#  Additional aliases into a separate file.
 ###########
 
 
-# --------------------------------
 # PREFERRED IMPLEMENTATION
 # --------------------------------
 
-alias cp='cp -iv '                 # Copy files       - (prompt + verbose)
-alias grep='grep --color -Ii '     # Preferred search - (ignore binary + ignore case)
-alias lal='ls -lFa '               # List content     - (long format with symbol + hidden)
-alias less='less -RS '             # File pager       - (raw window + nowrap)
-alias ll='ls -lF '                 # List content     - (long format with symbol)
-alias ln='ln -sf '                 # Create a symlink - (symbolink link + force)
-alias mkdir='mkdir -pv '           # Make directories - (recursive + verbose)
-alias mv='mv -iv '                 # Move files       - (prompt + verbose)
+alias cp='cp -iv '             # Copy files       - (prompt + verbose)
+alias grep='grep --color -Ii ' # Preferred search - (ignore binary + ignore case)
+alias lal='ls -lFa '           # List content     - (long format with symbol + hidden)
+alias less='less -RS '         # File pager       - (raw window + nowrap)
+alias ll='ls -lF '             # List content     - (long format with symbol)
+alias ln='ln -sf '             # Create a symlink - (symbolink link + force)
+alias mkdir='mkdir -pv '       # Make directories - (recursive + verbose)
+alias mv='mv -iv '             # Move files       - (prompt + verbose)
 
-alias c='clear'                    # Clear terminal display
-alias edit='subl '                 # Opens any file/folder in Sublime Text editor
-alias finder='open -a Finder '     # Opens current directory in MacOS Finder
-alias sudo='sudo '                 # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
+alias c='clear'                # Clear terminal display
+alias edit='subl '             # Opens any file/folder in Sublime Text editor
+alias finder='open -a Finder ' # Opens current directory in MacOS Finder
+alias sudo='sudo '             # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
+
 alias reload='exec /usr/local/bin/bash -l'
 
 
-# --------------------------------
 # FILE/FOLDER MANAGEMENT
 # --------------------------------
 
@@ -32,15 +31,12 @@ alias reload='exec /usr/local/bin/bash -l'
 alias finder_ShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finder_HideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 
-# Reset Folder display
-alias finder_ResetFinder='rm ~/Library/Preferences/com.apple.finder.plist'
-
 # Recursively delete .DS_Store files
 alias finder_CleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Find file under the current directory
 find_file() {
-    /usr/bin/find . -name "$@"
+    /usr/bin/find . -name "$@";
 }
 
 # To create a ZIP archive of a folder
@@ -58,76 +54,100 @@ set_chmod_file() {
 }
 
 
-# --------------------------------
 # WEB DEVELOPMENT
 # --------------------------------
 
 # Edit configuration
 alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
 alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
-alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitattributes ~/.gitignore'
+alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitignore'
 alias conf_hosts='sudo edit /etc/hosts'
 alias conf_mysql='edit /private/etc/my.cnf ~/Sites/@phpmyadmin/config.inc.php'
 alias conf_php='edit /etc/php.ini'
 
 # Apache
-alias apache_restart='sudo apachectl graceful'
 alias apache_errlogs='less +F /var/log/apache2/dev_error_log'
 alias apache_httplogs='tail /var/log/httpd/error_log'
+alias apache_restart='sudo apachectl graceful'
 
 # MySQL
 alias mysql_connect='mysql -u root -p'
 
 # Packages managers
-alias gem_ls='gem list --local'
 alias brew_ls='brew ls --versions'
+alias gem_ls='gem list --local'
 alias npm_ls='npm list --depth=0'
 
-# Git bilan
-git_bilan() {
-    ROOT=$(pwd)
+# Git bilan for a repository
+git_resume() {
+    if [[ -n $1 ]]; then
 
-    if [[ -n $@ ]]; then
-        find $@ -type d -maxdepth 4 -name '.git' | while read DIR; do
-            PATH=$ROOT/${DIR%.git}
-            cd $PATH;
+        ROOT=$(pwd);
+        ARGS_FOLDER=$1;
 
-            echo -e;
-            echo -e "${COLOR_YELLOW}----------------------------------------"
-            echo -e "In ${DIR%.git}";
-            echo -e "----------------------------------------${COLOR_RESET}"
+        if [[ -z $2 ]]; then
+            ARGS_DEPTH=1;
+        else
+            ARGS_DEPTH=$2;
+        fi
+
+        echo -e
+        echo -e "${COLOR_GREEN}Runing 'git_resume' function...${COLOR_RESET}";
+        echo -e "${COLOR_GREEN}- from:${COLOR_RESET} ${ROOT}";
+        echo -e "${COLOR_GREEN}- to:${COLOR_RESET} ${ARGS_FOLDER}";
+        echo -e "${COLOR_GREEN}- maxdepth:${COLOR_RESET} ${ARGS_DEPTH}";
+
+        find $ARGS_FOLDER -type d -maxdepth $ARGS_DEPTH -name '.git' | while read DIR; do
+            PATH_PROJECT=$ROOT/${DIR%.git}
+
+            cd $PATH_PROJECT;
 
             echo -e
+            echo -e "${COLOR_YELLOW}----------------------------------------";
+            echo -e "In ${DIR%.git}";
+            echo -e "----------------------------------------${COLOR_RESET}";
+
+            echo -e "${COLOR_YELLOW}";
             echo -e "$ git remote";
-            echo -e "--------------------"
+            echo -e "--------------------${COLOR_RESET}";
 
             if [[ -n $(/usr/bin/git remote -vv) ]]; then
                 /usr/bin/git remote -vv
             else
-                echo -e "${COLOR_RED}No remote specified :S${COLOR_RESET}"
+                echo -e "${COLOR_RED}No remote specified. Do you have a remote repository?${COLOR_RESET}";
             fi
 
-            echo -e
+            echo -e "${COLOR_YELLOW}";
+            echo -e "$ git pull";
+            echo -e "--------------------${COLOR_RESET}";
+
+            if [[ -n $(/usr/bin/git remote -vv) && -z $(/usr/bin/git status -s) ]]; then
+                /usr/bin/git pull -pv
+            else
+                echo -e "${COLOR_RED}You have change no remote specified or some change to commit before pulling :S${COLOR_RESET}";
+            fi
+
+            echo -e "${COLOR_YELLOW}";
             echo -e "$ git branch";
-            echo -e "--------------------"
+            echo -e "--------------------${COLOR_RESET}";
 
             /usr/bin/git branch -vv;
 
-            echo -e
+            echo -e "${COLOR_YELLOW}";
             echo -e "$ git status";
-            echo -e "--------------------"
+            echo -e "--------------------${COLOR_RESET}";
 
             if [[ -n $(/usr/bin/git status -s) ]]; then
                 /usr/bin/git status -s;
             else
-                echo -e "${COLOR_GREEN}No changes to commit :)${COLOR_RESET}"
+                echo -e "${COLOR_GREEN}No changes to commit :)${COLOR_RESET}";
             fi
 
             cd $ROOT;
-            echo -e;
         done
     else
-        echo -e "${COLOR_YELLOW}Please give a folder as arguments.${COLOR_RESET}"
+        echo -e
+        echo -e "${COLOR_YELLOW}Usage reminder:${COLOR_RESET}";
+        echo -e "${COLOR_YELLOW}    git_resume <folder-path> <max-depth (1 by default)>${COLOR_RESET}";
     fi
-
 }

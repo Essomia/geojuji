@@ -1,14 +1,15 @@
-:: Doc: http://technet.microsoft.com/en-us/library/bb490894.aspx
+:: ###########
+:: Register aliases for windows "cmd"
+:: ###########
 
-:: Note:
-:: Add this file as a REG_SZ/REG_EXPAND_SZ registry variables
-:: in HKEY_CURRENT_USER\Software\Microsoft\Command Processor\AutoRun
-:: or HKEY_LOCAL_MACHINE\Software\Microsoft\Command or Processor\AutoRun
-
+:: @link: http://technet.microsoft.com/en-us/library/bb490894.aspx
+:: @note: Add this file as a REG_SZ/REG_EXPAND_SZ registry variables
+::    in HKEY_CURRENT_USER\Software\Microsoft\Command Processor\AutoRun
+::    or HKEY_LOCAL_MACHINE\Software\Microsoft\Command or Processor\AutoRun
 
 @echo off
 
-:: --------------------------------
+
 :: CREATE LINUX COMMANDS LIKE...
 :: --------------------------------
 
@@ -33,19 +34,12 @@ DOSKEY open    = start $*
 DOSKEY aliases = notepad %USERPROFILE%\aliases.cmd
 
 
-:: --------------------------------
 :: ALIASES
 :: --------------------------------
 
-:: PREFERRED IMPLEMENTATION
-DOSKEY ll         = dir /B /ON $*
-DOSKEY lal        = dir /B /ON /AH $*
+:: Preferred implementation
+DOSKEY ll  = dir /B /ON $*
+DOSKEY lal = dir /B /ON /AH $*
 
-:: PROGRAM SHORCUT
-DOSKEY subl       = "C:\Program Files\Sublime Text 3\subl.exe" $*
-
-:: FILES
-DOSKEY goto_sites = cd "%USERPROFILE%\Sites\$*"
-
-:: DEPENDENCY ENV.
-DOSKEY npm_ls     = npm list --depth=0 $*
+:: Program shorcut
+DOSKEY subl = "C:\Program Files\Sublime Text 3\subl.exe" $*
