@@ -1,5 +1,5 @@
 /**
- * Localhost Index Style
+ * Localhost index style
  *
  * @doc: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
  **/
@@ -70,8 +70,8 @@ td {
     border: 0;
     border-bottom: 1px solid #ccc;
     outline: 0;
-    vertical-align: middle;
     text-align: left;
+    vertical-align: middle;
 }
 
 td a {

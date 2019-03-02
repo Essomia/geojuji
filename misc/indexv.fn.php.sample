@@ -1,0 +1,94 @@
+<?php
+/**
+ * Special vhosts localhost functions
+ *
+ * @use: `httpd-vhosts.conf` and `git
+ **/
+
+function getProjectTechno($projectPath) {
+    if (file_exists($projectPath.'/htdocs/wp-config.php')) {
+        $labelTechno = "<label class='flag techno wp'>WP</label>";
+    } elseif (file_exists($projectPath.'/htdocs/app.php')) {
+        $labelTechno = "<label class='flag techno sf'>SY</label>";
+    } else {
+        $labelTechno = "<label class='flag void'>-</label>";
+    }
+
+    return $labelTechno;
+}
+
+function getProjectCurrentBranch($projectDirectory) {
+    $gitBranch = trim(exec('cd '.$projectDirectory.'; git rev-parse --abbrev-ref HEAD;'));
+
+    if (!empty($gitBranch)) {
+        if (strpos($gitBranch, 'master') !== false) {
+            $labelCurrentBranch = "<label class='flag branch root'>{$gitBranch}</label>";
+        } else {
+            $labelCurrentBranch = "<label class='flag branch other'>{$gitBranch}</label>";
+        }
+    } else {
+        $labelCurrentBranch = "<label class='flag void'>-</label>";
+    }
+
+    return $labelCurrentBranch;
+}
+
+function getProjectLatestTag($projectDirectory) {
+    $gitTag = trim(exec('cd '.$projectDirectory.'; git describe --abbrev=0;'));
+
+    if (!empty($gitTag)) {
+        $labelLatestTag = "<label class='flag tag'>{$gitTag}</label>";
+    } else {
+        $labelLatestTag = "<label class='flag void'>-</label>";
+    }
+
+    return $labelLatestTag;
+}
+
+function createProjectTableList($dirname, $extension) {
+    // Get target folder of localhost
+    $rootLocalhost  = dirname($_SERVER["SCRIPT_FILENAME"]);
+
+    // Define root value
+    $rootCompany    = $rootLocalhost.DIRECTORY_SEPARATOR.$dirname;
+    $nbPathExploded = count(explode(DIRECTORY_SEPARATOR, $rootCompany));
+
+    // Headlines
+    $projectRow  = "<tr class='indexhead'>";
+    $projectRow .= "    <th class='indexcolname' colspan='5'>";
+    $projectRow .= "        {$extension}";
+    $projectRow .= "    </th>";
+    $projectRow .= "</tr>";
+    $projectRow .= "<tr class='row headline'>";
+    $projectRow .= "    <td class='techno' width='60'>Techno</td>";
+    $projectRow .= "    <td>Project</td>";
+    $projectRow .= "    <td class='git' width='100'>Branch</td>";
+    $projectRow .= "    <td class='git' width='80'>Tag</td>";
+    $projectRow .= "</tr>";
+
+    // Foreach project in {projects_namespace}/**/*
+    foreach (glob($rootCompany . '/**/*' , GLOB_ONLYDIR) as $projectPath) {
+        $projectPathData  = array_slice(explode(DIRECTORY_SEPARATOR, $projectPath), $nbPathExploded);
+        $projectDirectory = $rootCompany.DIRECTORY_SEPARATOR.$projectPathData[0].DIRECTORY_SEPARATOR.$projectPathData[1];
+
+        $projectRow .= "<tr class='row'>";
+        $projectRow .= "    <td class='techno' width='60'>";
+        $projectRow .=          getProjectTechno($projectPath);
+        $projectRow .= "    </td>";
+        $projectRow .= "    <td>";
+        $projectRow .= "        <a href='http://{$projectPathData[1]}.{$projectPathData[0]}.{$extension}'>";
+        $projectRow .= "            {$projectPathData[0]} / {$projectPathData[1]}";
+        $projectRow .= "        </a>";
+        $projectRow .= "    </td>";
+        $projectRow .= "    <td class='git' width='100'>";
+        $projectRow .=          getProjectCurrentBranch($projectDirectory);
+        $projectRow .= "    </td>";
+        $projectRow .= "    <td class='git' width='80'>";
+        $projectRow .=          getProjectLatestTag($projectDirectory);
+        $projectRow .= "    </td>";
+        $projectRow .= "</tr>";
+    }
+
+    // Return
+    return $projectRow;
+}
