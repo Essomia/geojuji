@@ -1,11 +1,10 @@
 ###########
 #  ~/.bash_profile
-#  The personal initialization file, executed for login shells.
+#  Personal initialization file for login shells.
 ###########
 
 
-# --------------------------------
-# INCLUDES ALIASES
+# INCLUDES
 # --------------------------------
 
 # Include default bashrc file
@@ -13,12 +12,12 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# Include aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
 
-# --------------------------------
 # SHELL OPTIONS
 # --------------------------------
 
@@ -27,6 +26,7 @@ shopt -s checkwinsize
 
 # Better history in terminal
 shopt -s histappend
+
 HISTCONTROL=ignoreboth
 HISTFILESIZE=2000
 HISTSIZE=1000
@@ -35,32 +35,28 @@ HISTSIZE=1000
 LANG=C
 
 
-# --------------------------------
 # ENVIRONMENTS
 # --------------------------------
 
-# Default OS shell directories to search for executable files.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:/opt/ImageMagick/bin"
-
-# Add new directories to search for executable files.
-export PATH="/usr/local/sbin:/usr/local:/opt/local/bin:/opt/local/sbin:$PATH"
-export PATH="/usr/local/opt/node@8/bin:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
+# Shell directories to search for executable files (Default OSX).
+export PATH="/opt/local/sbin:/opt/local/bin:/usr/local/sbin:/usr/local:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 
 # Ignore types of files when you tab from the command line
-export FIGNORE=$FIGNORE:DS_Store
+export FIGNORE="$FIGNORE:DS_Store"
 
-# Set default editor (change 'nano' to the editor of your choice)
-export EDITOR=/usr/bin/nano
+# Set default editor to be "nano"
+export EDITOR="/usr/bin/nano"
 
 
-# --------------------------------
-# COMPLETIONS
+# AUTO-COMPLETIONS
 # --------------------------------
 
 # Brew
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+    . $(brew --prefix)/etc/bash_completion
 fi
 
 # Git
@@ -69,25 +65,10 @@ if [ -f ~/.gitcompletion.bash ]; then
 fi
 
 
-# --------------------------------
-# COLORED PROMPT
-# @use: http://geoff.greer.fm/lscolors/
-# @use: https://github.com/mathiasbynens/dotfiles
+# LS COLORS
 # --------------------------------
 
-_getGitBranch() {
-    # Check if the current directory is in a Git repository.
-    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
-        local branchName="$(git branch 2>/dev/null | grep '^*' | colrm 1 2 || \
-            echo '(unknown)')";
-
-        echo -e "${1}${branchName}";
-    else
-        return;
-    fi;
-}
-
-export TERM='xterm-color'
+export TERM="xterm-color"
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
@@ -101,14 +82,32 @@ COLOR_PURPLE="\e[1;35m";
 COLOR_CYAN="\e[1;36m";
 COLOR_WHITE="\e[1;37m";
 
-PS1="\n\n"; # newline
+
+# COLORED PROMPT
+# @use: http://geoff.greer.fm/lscolors/
+# @use: https://github.com/mathiasbynens/dotfiles
+# --------------------------------
+
+git_get_current_branch() {
+    # Check if the current directory is in a Git repository.
+    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == "0" ]; then
+        local branchName="$(git branch 2>/dev/null | grep "^*" | colrm 1 2 || \
+            echo "(unknown)")";
+
+        echo -e "${1}${branchName}";
+    else
+        return;
+    fi;
+}
+
+PS1="\n"; # newline
 PS1+="\[${COLOR_CYAN}\][\A] "; # time short (HH:MM)
 PS1+="\[${COLOR_RED}\]\u"; # username
-PS1+="\[${COLOR_WHITE}\] at ";
+PS1+="\[${COLOR_WHITE}\] on ";
 PS1+="\[${COLOR_GREEN}\]\h"; # hostname
 PS1+="\[${COLOR_WHITE}\] in ";
 PS1+="\[${COLOR_YELLOW}\]\w"; # current directory full path
-PS1+="\$(_getGitBranch \"\[${COLOR_WHITE}\] on \[${COLOR_PURPLE}\]\")"; # .git details
+PS1+="\$(git_get_current_branch \"\[${COLOR_WHITE}\] on \[${COLOR_PURPLE}\]\")"; # .git details
 PS1+="\n"; # newline
 PS1+="\[${COLOR_WHITE}\]\$ \[${COLOR_RESET}\]"; # `$` (and reset color)
 
