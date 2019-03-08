@@ -8,6 +8,7 @@
 	[
 		"All Autocomplete",
 		"ColorHelper",
+		"Compare Side-By-Side",
 		"CSS3",
 		"DocBlockr",
 		"HTML5",
@@ -15,6 +16,7 @@
 		"LESS",
 		"Package Control",
 		"Sass",
-		"SideBarEnhancements"
+		"SideBarEnhancements",
+		"Twig"
 	]
 }
