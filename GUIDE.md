@@ -240,7 +240,7 @@ To develop PHP projects, you will need the following to be installed and set:
 - [PHP](http://php.net/)
 - [Apache Server](https://httpd.apache.org/)
 - [MySQL](https://www.mysql.com/) and to get the right one for your OS, [check the MYSQL archives](https://downloads.mysql.com/archives/community/)
-- [phpMyAdmin](https://www.phpmyadmin.net/)
+- [Sequel Pro](https://www.sequelpro.com/)
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in detail and let you use Google.
 
