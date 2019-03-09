@@ -8,10 +8,13 @@ Summary of the following guide:
 4. [Install PHP environment tools](#4-install-php-environment-tools)
 
 
+
 -------------------------------------
 
 
+
 ## 1. Install shell's configurations
+
 
 
 ### 1.1 [SSH Key](https://help.github.com/articles/connecting-to-github-with-ssh/)
@@ -23,6 +26,7 @@ ssh-keygen
 ```
 
 Then, copy the new public SSH key from `~/.ssh/id_rsa.pub` to add the key to any service account you use.
+
 
 
 ### 1.2 XCode, the basic command line tool for MacOS
@@ -38,6 +42,7 @@ _“The xcode-select command requires the command line developer tools. Would yo
 Choose to confirm this by clicking the _Install_ button and then agree to the Terms of Service when requested.
 
 Once complete, the installer will go away and you should have `git`, `svn`, `make` and more command available in `/Library/Developer/CommandLineTools/usr/bin/`.
+
 
 
 ### 1.3 [Git](https://git-scm.com/)
@@ -56,6 +61,7 @@ ln -sf ~/geojuji/shell/git/gitaliases    ~/.gitaliases          # All needed ali
 :warning: Also, since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change in `~/geojuji/shell/git/gitconfig` the according line config.
 
 
+
 ### 1.4 [Bash](https://www.gnu.org/software/bash/)
 
 Also, since MacOS use by default `bash` as command-line interface, we will symlink our configuration to be sourced when a new shell is started.
@@ -66,6 +72,7 @@ ln -sf ~/geojuji/shell/bash/bash_aliases ~/.bash_aliases        # Contains neede
 ```
 
 
+
 ### 1.5 CMD
 
 All the documentation written in his guide is MACOS-oriented. However if you use a Windows, you will find under `~/geojuji/shell/cmd/` folder, some basic aliases for `cmd.exe` inspired from linux shell.
@@ -73,10 +80,14 @@ All the documentation written in his guide is MACOS-oriented. However if you use
 - Then, run the `~/geojuji/shell/cmd/register-aliases.reg` file to register theses aliases.
 
 
+
 -------------------------------------
 
 
+
 ## 2. Install packages managers
+
+
 
 ### 2.1 [Homebrew](http://brew.sh/), the missing package manager for MacOS
 
@@ -89,7 +100,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 Once Homebrew installed, you can install the formulas you need, with the following command line:
 
 ```bash
-# brew: /usr/local/bin/brew - version 2.0.2
+# brew: /usr/local/bin/brew - version 2.0.3
 #--------------------
 
 # Bash
@@ -102,6 +113,16 @@ brew install git #v2.21.0
 # Node
 brew install node@8 #v8.15.1
 ```
+
+:notebook: If you want to keep your Homebrew formulas up-to-date, here some usefull command:
+
+```bash
+brew update
+brew outdated
+brew upgrade
+brew cleanup
+```
+
 
 
 ### 2.2 [Ruby](https://www.ruby-lang.org/), the package manager for object-oriented
@@ -162,6 +183,16 @@ test-unit (3.3.0, 3.2.9)
 xmlrpc (0.3.0)
 ```
 
+:notebook: If you want to keep your `gem` up-to-date, here some usefull command:
+
+```bash
+gem update --system
+gem outdated
+gem update
+gem cleanup
+```
+
+
 
 ### 2.3 [Node.js](http://nodejs.org/), the package manager for Node programs
 
@@ -174,7 +205,7 @@ So, once `node` is installed, you can install needed packages globally with the 
 #--------------------
 
 # NPM
-npm install -g npm #v6.8.0
+npm install -g npm #v6.9.0
 
 # Bower [legacy]
 npm install -g bower #v1.8.8
@@ -185,11 +216,19 @@ npm install -g gulp-cli #v2.0.1
 npm install -g webpack #v4.29.6
 ```
 
+:notebook: If you want to keep your `npm` packages up-to-date, here some usefull command:
+
+```bash
+npm outdated -g --depth=0
+npm update -g
+```
+
 :warning: Sometime, on MacOS, you could have issue while installing or executing packages from the `/usr/local/` folder. To fix this issue, the following command will set your username as the owner of the folder:
 
 ```bash
 sudo chown -R $USER:admin /usr/local
 ```
+
 
 
 ### 2.4 [Composer](https://getcomposer.org/), the dependency manager for PHP
@@ -200,11 +239,21 @@ As `composer` became a usefull tools to manage dependencies for PHP projects, yo
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer #v1.8.4
 ```
 
+:notebook: If you want to keep your `composer` up-to-date, here some usefull command:
+
+```bash
+composer self-update
+```
+
+
 
 -------------------------------------
 
 
+
 ## 3. Install application's configurations
+
+
 
 ### 3.1 Terminal theme
 
@@ -215,6 +264,7 @@ To use the theme `geojuji.terminal` from this repository:
 - Select the theme (`*.terminal` file) under `~/geojuji/app/terminal/` folder.
 
 
+
 ### 3.2 [iTerm2](http://www.iterm2.com/index.html)
 
 You can also use the iTerm which offer a lot of great feature. To use the theme `geojuji.itermcolors` from this repository:
@@ -223,6 +273,7 @@ You can also use the iTerm which offer a lot of great feature. To use the theme 
 - Give a name to your profile than go to `Colors` section on the right.
 - In the `Color presets` dropdown, select `Import`.
 - Select the theme (`*.itermcolors` file) under `~/geojuji/app/iterm/` folder.
+
 
 
 ### 3.3 [Sublime Text 3](https://www.sublimetext.com/) with [Package Control](https://packagecontrol.io/)
@@ -253,10 +304,13 @@ ln -s "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 ```
 
 
+
 -------------------------------------
 
 
+
 ## 4. Install PHP environment tools
+
 
 
 ### 4.1 PHP Environment
@@ -268,6 +322,7 @@ To develop PHP projects, you will need the following to be installed and set:
 - [Sequel Pro](https://www.sequelpro.com/)
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in detail and let you use Google.
+
 
 
 ### 4.2 Set default local host
@@ -312,6 +367,7 @@ Edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
 Now, http://localhost/ should display your folders and files under your `[DocumentRoot]` folder.
 
 :closed_book: Since we can add a custom stylesheet for your localhost, you can find under `~/geojuji/app/apache2/` folder an example. Note also that the stylesheet file should be under your `[DocumentRoot]` folder.
+
 
 
 ### 4.3 Add a custom local host
