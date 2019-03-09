@@ -78,8 +78,35 @@ All the documentation written in his guide is MACOS-oriented. However if you use
 
 ## 2. Install packages managers
 
+### 2.1 [Homebrew](http://brew.sh/), the missing package manager for MacOS
 
-### 2.1 [Ruby](https://www.ruby-lang.org/), the package manager for object-oriented
+Install Homebrew with the following command line:
+
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Once Homebrew installed, you can install the formulas you need, with the following command line:
+
+```bash
+# brew: /usr/local/bin/brew - version 2.0.2
+#--------------------
+
+# Bash
+brew install bash #v5.0.2
+brew install bash-completion #v1.3_3
+
+# Git
+brew install git #v2.21.0
+
+# Node
+brew install node@8 #v8.15.1
+```
+
+
+### 2.2 [Ruby](https://www.ruby-lang.org/), the package manager for object-oriented
+
+##### Default configuration
 
 On MacOS, `ruby` is already installed.
 To check if ruby is installed and get the default ruby information, run the following command:
@@ -87,8 +114,6 @@ To check if ruby is installed and get the default ruby information, run the foll
 ```bash
 gem environment
 ```
-
-:no_entry: Since I don't really work with `ruby` and `gem` for the moment, I will not explain further and just let you set your own `ruby` environment if you need it.
 
 :closed_book: Also, if needed, you can find below the following default `gem` and `ruby` version, path and packages installed on my MacOS ElCapitain:
 
@@ -111,30 +136,30 @@ sqlite3 (1.3.13)
 test-unit (2.0.0.0)
 ```
 
+##### Installed with Homebrew
 
-### 2.2 [Homebrew](http://brew.sh/), the missing package manager for MacOS
-
-Install Homebrew with the following command line:
+In case you need to use `ruby` as a working tool, you can install a more recent version with Homebrew:
 
 ```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install ruby #v2.6.1
 ```
 
-Once Homebrew installed, you can install the formulas needed with the following command line:
+And now, all `gem` and `ruby` version, path and packages installed and that can be used are:
 
 ```bash
-# brew: /usr/local/bin/brew - version 2.0.2
+# ruby: /usr/local/opt/ruby/bin/ruby - version 2.6.1p33
+# gem:  /usr/local/opt/ruby/bin/gem  - version 3.0.3
 #--------------------
 
-# Git
-brew install git #v2.21.0
-
-# Bash
-brew install bash #v5.0.2
-brew install bash-completion #v1.3_3
-
-# Node
-brew install node@8 #v8.15.1
+bundler (2.0.1, default: 1.17.3)
+did_you_mean (1.3.0)
+minitest (5.11.3)
+net-telnet (0.2.0)
+power_assert (1.1.3)
+rake (12.3.2)
+rubygems-update (3.0.3)
+test-unit (3.3.0, 3.2.9)
+xmlrpc (0.3.0)
 ```
 
 
