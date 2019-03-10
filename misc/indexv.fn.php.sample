@@ -7,7 +7,10 @@
 
 function getProjectTechno($projectPath) {
     if (file_exists($projectPath.'/htdocs/wp-config.php')) {
-        $labelTechno = "<label class='flag techno wp'>WP</label>";
+        if (file_exists($projectPath.'/htdocs/wp-includes/version.php')) {
+            include $projectPath.'/htdocs/wp-includes/version.php';
+        }
+        $labelTechno = "<label class='flag techno wp'>WP <small>{$wp_version}</small></label>";
     } elseif (file_exists($projectPath.'/htdocs/app.php')) {
         $labelTechno = "<label class='flag techno sf'>SY</label>";
     } else {
@@ -62,7 +65,7 @@ function createProjectTableList($dirname, $extension) {
     $projectRow .= "<tr class='row headline'>";
     $projectRow .= "    <td class='techno' width='60'>Techno</td>";
     $projectRow .= "    <td>Project</td>";
-    $projectRow .= "    <td class='git' width='100'>Branch</td>";
+    $projectRow .= "    <td class='git' width='300'>Branch</td>";
     $projectRow .= "    <td class='git' width='80'>Tag</td>";
     $projectRow .= "</tr>";
 
