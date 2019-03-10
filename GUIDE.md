@@ -270,9 +270,10 @@ To use the theme `geojuji.terminal` from this repository:
 You can also use the iTerm which offer a lot of great feature. To use the theme `geojuji.itermcolors` from this repository:
 - Go to `iTerm2 -> Preferences`.
 - Under the `Profiles` tab, click the plus icon near the bottom.
-- Give a name to your profile than go to `Colors` section on the right.
+- Give a name to your profile, and then, go to `Colors` section on the right.
 - In the `Color presets` dropdown, select `Import`.
 - Select the theme (`*.itermcolors` file) under `~/geojuji/app/iterm/` folder.
+- The theme imported, reselect `geojuji` preset profile in the dropdown choice.
 
 
 
