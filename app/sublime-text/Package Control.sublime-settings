@@ -7,10 +7,11 @@
 	"installed_packages":
 	[
 		"All Autocomplete",
-		"ColorHelper",
+		"Color Highlight",
 		"Compare Side-By-Side",
 		"CSS3",
 		"DocBlockr",
+		"Emmet",
 		"HTML5",
 		"jQuery",
 		"LESS",
