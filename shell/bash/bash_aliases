@@ -28,11 +28,11 @@ alias reload='exec /usr/local/bin/bash -l'
 # --------------------------------
 
 # Show/Hide hidden files
-alias finder_ShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-alias finder_HideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+alias finder_showhidden='defaults write com.apple.finder ShowAllFiles TRUE'
+alias finder_hidehidden='defaults write com.apple.finder ShowAllFiles FALSE'
 
 # Recursively delete .DS_Store files
-alias finder_CleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
+alias finder_cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Find file under the current directory
 find_file() {
@@ -56,6 +56,10 @@ set_chmod_file() {
 
 # WEB DEVELOPMENT
 # --------------------------------
+
+# Remind aliases
+alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}"; done'
+alias remind_find='# find . -type f -name "filename"'
 
 # Edit configuration
 alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
