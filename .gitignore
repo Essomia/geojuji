@@ -1,17 +1,18 @@
-# /app
-
-*.crt
-*-ca-bundle
-*.tmTheme
-*.last-run
-*.cache
+# /app/iterm
 *.iterm2.plist
-*.sublime-color-scheme.chback
-*.chback
 
+# /app/apache2
 app/apache2/indexv/*
 !app/apache2/indexv/*.sample
 
-# /shell
+# /app/sublime-text
+*-ca-bundle
+*.cache
+*.chback
+*.crt
+*.last-run
+*.sublime-color-scheme
+*.tmTheme
 
+# /shell/git
 shell/git/gituser
