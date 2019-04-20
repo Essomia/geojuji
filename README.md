@@ -21,4 +21,9 @@ git clone git@github.com:[username]/geojuji.git ~/geojuji
 
 ## Step-by-Step Guide
 
-You can read the complete [guide to set and install](./GUIDE.md) all needed tools on a MACOS for front-end development.
+You can read the complete step-by-step guide to set and install all needed tools on a MACOS for front-end development:
+
+1. [Shell: Install and configure shell for development.](./docs/shell.md)
+2. [App: Configure applications and environment.](./docs/app.md)
+
+:notebook: The following guide will refer to the current repository as `~/geojuji/`. Please adjust all commands as needed.
