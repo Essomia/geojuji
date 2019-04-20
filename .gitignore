@@ -7,11 +7,9 @@
 *.cache
 *.iterm2.plist
 
+app/apache2/indexv/*
+!app/apache2/indexv/*.sample
+
 # /shell
 
 shell/git/gituser
-
-# /misc
-
-misc/*
-!misc/*.sample

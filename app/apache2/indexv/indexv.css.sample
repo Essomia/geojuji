@@ -5,7 +5,7 @@
  **/
 
 
-@import url('../app/apache2/localhost.css');
+@import url('../localhost.css');
 
 
 .headline {
