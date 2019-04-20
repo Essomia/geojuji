@@ -32,34 +32,22 @@ alias finder_showhidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finder_hidehidden='defaults write com.apple.finder ShowAllFiles FALSE'
 
 # Recursively delete .DS_Store files
-alias finder_cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
-
-# Find file under the current directory
-find_file() {
-    /usr/bin/find . -name "$@";
-}
+alias finder_cleanupds='find . -type f -name "*.DS_Store" -ls -delete'
 
 # To create a ZIP archive of a folder
 zip_file() {
     zip -r "$1".zip "$1" ;
 }
 
-# Set project right
-set_chmod_file() {
-    echo "> Set folders right to 755";
-    /usr/bin/find $@ -type d -exec sudo chmod 755 {} \;
-
-    echo "> Set files right to 644";
-    /usr/bin/find $@ -type f -exec sudo chmod 644 {} \;
-}
+# Remind some helpers aliases
+alias remind_chmod_set='# chmod 644 "filename" / chmod 755 "folder"'
+alias remind_chmod_get='# stat -f "%OLp" "filename"'
+alias remind_find='# find . -type f -name "filename"'
+alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}"; done'
 
 
 # WEB DEVELOPMENT
 # --------------------------------
-
-# Remind aliases
-alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}"; done'
-alias remind_find='# find . -type f -name "filename"'
 
 # Edit configuration
 alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
@@ -78,9 +66,9 @@ alias apache_restart='sudo apachectl graceful'
 alias mysql_connect='mysql -u root -p'
 
 # Packages managers
-alias brew_ls='brew ls --versions'
-alias gem_ls='gem list --local'
-alias npm_ls='npm list --depth=0'
+alias ls_brew='brew ls --versions'
+alias ls_gem='gem list --local'
+alias ls_npm='npm list --depth=0'
 
 # Git bilan for a repository
 git_resume() {
