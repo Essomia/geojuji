@@ -12,6 +12,7 @@
     - 1. Terminal
     - 2. iTerm2
     - 3. Sublime Text 3, with Package Control
+    - 4. Visual Studio Code
 
 
 -------------------------------------
@@ -189,4 +190,38 @@ To add `subl` command, create a symlink with the following command:
 
 ```bash
 ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+```
+
+
+
+
+### 4.4 [Visual Studio Code](https://code.visualstudio.com/)
+
+Another code editor that you can use is `Visual Studio Code` (VSC).
+
+To ensure to have the same configurations installed between working stations, we will add Sublime Text's configuration files into the repository and symlink the folder to let VSC use them again.
+
+##### Configuration
+
+Copy all current configurations you could have to the repository:
+
+```bash
+cp -Riv ~/Library/Application\ Support/Code/User/ ~/geojuji/app/visual-studio-code
+```
+
+Then, delete the current `User` folder and create a symlink to link the configuration again:
+
+```bash
+rm -r ~/Library/Application\ Support/Code/User/
+ln -s ~/geojuji/app/visual-studio-code ~/Library/Application\ Support/Code/User
+```
+
+Now, all VSC's configurations can be found under `~/geojuji/app/visual-studio-code/` folder.
+
+##### Binary
+
+To add `vscode` command, create a symlink with the following command:
+
+```bash
+ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/vscode
 ```
