@@ -34,11 +34,6 @@ alias finder_hidehidden='defaults write com.apple.finder ShowAllFiles FALSE'
 # Recursively delete .DS_Store files
 alias finder_cleanupds='find . -type f -name "*.DS_Store" -ls -delete'
 
-# To create a ZIP archive of a folder
-zip_file() {
-    zip -r "$1".zip "$1" ;
-}
-
 # Remind some helpers aliases
 alias remind_chmod_set='# chmod 644 "filename" / chmod 755 "folder"'
 alias remind_chmod_get='# stat -f "%OLp" "filename"'
@@ -69,6 +64,7 @@ alias mysql_connect='mysql -u root -p'
 alias ls_brew='brew ls --versions'
 alias ls_gem='gem list --local'
 alias ls_npm='npm list --depth=0'
+alias ls_bin='ls $GEOJUJI_PATH'
 
 # Git bilan for a repository
 git_resume() {
