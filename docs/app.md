@@ -9,9 +9,9 @@
     - 3. Set a custom local host
 
 4. [Install application's configurations](#4-install-applications-configurations)
-    - 1. Terminal theme
+    - 1. Terminal
     - 2. iTerm2
-    - 3. Sublime Text 3 with Package Control
+    - 3. Sublime Text 3, with Package Control
 
 
 -------------------------------------
@@ -135,7 +135,7 @@ Now, when you go to `http://project.client.dev.domain.com`, you can see the sour
 
 
 
-### 4.1 Terminal theme
+### 4.1 Terminal
 
 As we will use the `Terminal` application as a daily tools, you can create a theme to have a friendly shell. To use the theme `geojuji.terminal` from this repository:
 - Go to `Terminal -> Preferences`.
@@ -160,28 +160,33 @@ You can also use the `iTerm` which offer a lot of great feature. To use the them
 
 
 
-### 4.3 [Sublime Text 3](https://www.sublimetext.com/) with [Package Control](https://packagecontrol.io/)
+### 4.3 [Sublime Text 3](https://www.sublimetext.com/), with [Package Control](https://packagecontrol.io/)
 
 If you use `Sublime Text` as your editor, you probably already accustomed to use `Package Control` to enhance your coding experience.
-To ensure to have the same packages and configurations installed between working stations, we will add Sublime Text's configuration files into the repository and symlink the folder to let Sublime Text use them.
+
+To ensure to have the same configurations installed between working stations, we will add Sublime Text's configuration files into the repository and symlink the folder to let Sublime Text use them again.
+
+##### Configuration
 
 Copy all current configurations you could have to the repository:
 
 ```bash
-cp -Riv ~/Library/Application Support/Sublime Text 3/Packages/User/ ~/geojuji/app/sublime-text
+cp -Riv ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ ~/geojuji/app/sublime-text
 ```
 
-Then, delete the current Sublime Text folder and create a symlink to link the configuration again:
+Then, delete the current `User` folder and create a symlink to link the configuration again:
 
 ```bash
-rm -r ~/Library/Application Support/Sublime Text 3/Packages/User/
-ln -s ~/geojuji/app/sublime-text ~/Library/Application Support/Sublime Text 3/Packages/User
+rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
+ln -s ~/geojuji/app/sublime-text ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 ```
 
-Now, all Sublime Text's configurations can be found under `~/geojuji/app/sublime-text/` folder of this repository.
+Now, all Sublime Text's configurations can be found under `~/geojuji/app/sublime-text/` folder.
 
-Also, think to add `subl` command to our shell by creating a symlink with the following command:
+##### Binary
+
+To add `subl` command, create a symlink with the following command:
 
 ```bash
-ln -s "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 ```
