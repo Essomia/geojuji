@@ -4,14 +4,14 @@
 **Summary of the following guide:**:
 
 3. [Configure PHP environment tools](#3-configure-php-environment-tools)
-3.1 Set PHP Environment
-3.2 Set default local host
-3.3 Set a custom local host
+    - 1. Set PHP Environment
+    - 2. Set default local host
+    - 3. Set a custom local host
 
 4. [Install application's configurations](#4-install-applications-configurations)
-4.1 Terminal theme
-4.2 iTerm2
-4.3 Sublime Text 3 with Package Control
+    - 1. Terminal theme
+    - 2. iTerm2
+    - 3. Sublime Text 3 with Package Control
 
 
 -------------------------------------

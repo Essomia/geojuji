@@ -4,17 +4,17 @@
 **Summary of the following guide:**:
 
 1. [Install shell's configurations](#1-install-shells-configurations)
-1.1 SSH Key
-1.2 XCode
-1.3 Git
-1.4 Bash
-1.5 Bonus: CMD
+    - 1. SSH Key
+    - 2. XCode
+    - 3. Git
+    - 4. Bash
+    - 5. Bonus: CMD
 
 2. [Install packages managers](#2-install-packages-managers)
-2.1 Homebrew, the missing package manager for MacOS
-2.2 Ruby, the package manager for object-oriented
-2.3 Node.js
-2.4 Composer
+    - 1. Homebrew, the missing package manager for MacOS
+    - 2. Ruby, the package manager for object-oriented
+    - 3. Node.js
+    - 4. Composer
 
 
 -------------------------------------
