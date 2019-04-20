@@ -1,0 +1,19 @@
+{
+    "telemetry.enableTelemetry": false,
+    "files.insertFinalNewline": true,
+    "editor.fontSize": 14,
+    "editor.tabSize": 4,
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnPaste": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "workbench.colorTheme": "Monokai",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 60000,
+    "update.enableWindowsBackgroundUpdates": false,
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": false,
+    "AllAutocomplete.updateOnlyOnSave": true,
+    "update.mode": "manual",
+    "comments.openPanel": "neverOpen"
+}
