@@ -1,0 +1,195 @@
+#!/bin/bash
+
+###########
+# ENV RESUME
+# A helper to get a status for git repository in a folder.
+###########
+
+
+# COLORS
+# https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
+# --------------------------------
+
+RESET="\033[0m";
+BLUE="\033[0;36m";
+BLUE_BG="\033[7;36m";
+BLUE_UL="\033[4;36m";
+GREEN="\033[0;32m";
+GREEN_BG="\033[7;32m";
+GREEN_UL="\033[4;32m";
+RED="\033[0;31m";
+RED_BG="\033[7;31m";
+RED_UL="\033[4;31m";
+YELLOW="\033[0;33m";
+YELLOW_BG="\033[7;33m";
+YELLOW_UL="\033[4;33m";
+
+
+# USAGE
+# --------------------------------
+
+if [ $# -lt 1 ]; then
+    echo -e "${YELLOW_UL}Usage:${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}<command>${RESET}";
+    echo "";
+    echo -e "${YELLOW_UL}Command:${RESET}";
+    echo -e "  ${GREEN}check${RESET}   - Check current version of installed packages.";
+    echo -e "  ${GREEN}update${RESET}  - Get list of outdated packages.";
+    echo -e "  ${GREEN}upgrade${RESET} - Update outdated packages.";
+    exit 1;
+fi
+
+
+# FUNCTIONS
+# --------------------------------
+
+function resume_title() {
+    echo "";
+    echo -e "${YELLOW_UL}$1...${RESET}";
+}
+
+function resume_subtitle() {
+    echo "";
+    echo -e "${YELLOW_BG}$(printf "%-$((50))s" " ")${RESET}";
+    echo -e "${YELLOW_BG} $1$(printf "%-$((49 - ${#1}))s" " ")${RESET}";
+    echo -e "${YELLOW_BG}$(printf "%-$((50))s" " ")${RESET}";
+    echo "";
+}
+
+function resume_section() {
+    echo -e "${YELLOW_UL}$1${RESET}";
+}
+
+
+function resume_fn_check() {
+    resume_title "Environment Check";
+
+    resume_subtitle "Homebrew";
+
+    if [[ -n $(/usr/bin/which brew) ]]; then
+        resume_section "Brew version";
+        brew --version;
+        resume_section "Brew installed packages";
+        brew ls --versions;
+    else
+        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have homebrew installed.${RESET}";
+    fi
+
+    resume_subtitle "Ruby";
+
+    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+        resume_section "Ruby version";
+        ruby --version;
+        resume_section "Gem version";
+        gem --version;
+        resume_section "Gem installed packages";
+        gem list --local;
+    else
+        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have ruby or gem installed.${RESET}";
+    fi
+
+    resume_subtitle "Node";
+
+    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+        resume_section "Node version";
+        node --version;
+        resume_section "Npm version";
+        npm --version;
+        resume_section "Npm global installed packages";
+        npm list -g --depth=0;
+    else
+        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have npm or node installed.${RESET}";
+    fi
+
+    resume_subtitle "Composer";
+
+    if [[ -n $(/usr/bin/which composer) ]]; then
+        resume_section "Composer version";
+        composer --version;
+    else
+        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have composer installed.${RESET}";
+    fi
+}
+
+function resume_fn_update() {
+    resume_title "Environment Update";
+
+    resume_subtitle "Homebrew";
+
+    if [[ -n $(/usr/bin/which brew) ]]; then
+        brew update;
+        brew outdated;
+    fi
+
+    resume_subtitle "Ruby";
+
+    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+        gem update --system;
+        gem outdated;
+    fi
+
+    resume_subtitle "Node";
+
+    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+        npm outdated -g --depth=0;
+    fi
+
+    resume_subtitle "Composer";
+
+    if [[ -n $(/usr/bin/which composer) ]]; then
+        echo -e "Composer don't have any global packages.";
+    fi
+}
+
+function resume_fn_upgrade() {
+    resume_title "Environment Upgrade";
+
+    resume_subtitle "Homebrew";
+
+    if [[ -n $(/usr/bin/which brew) ]]; then
+        brew upgrade;
+        brew cleanup;
+    fi
+
+    resume_subtitle "Ruby";
+
+    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+        gem update;
+        gem cleanup;
+    fi
+
+    resume_subtitle "Node";
+
+    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+        npm update -g;
+    fi
+
+    resume_subtitle "Composer";
+
+    if [[ -n $(/usr/bin/which composer) ]]; then
+        composer self-update;
+    fi
+}
+
+
+# GIT RESUME
+# --------------------------------
+
+if [ -n "$1" ]; then
+    case $1 in
+        "check")
+            resume_fn_check
+            ;;
+        "update")
+            resume_fn_update
+            ;;
+        "upgrade")
+            resume_fn_upgrade
+            ;;
+        *)
+            echo -e "${RED_UL}ERROR:${RESET}${RED} '$1' is not a valid command.${RESET}"
+            ;;
+    esac
+else
+    echo -e "${RED_UL}ERROR:${RESET}${RED} You need to give a valid command.${RESET}";
+fi
