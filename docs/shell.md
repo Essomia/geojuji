@@ -118,18 +118,18 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 Once Homebrew is installed, you can install the formulas you need, with the following command line:
 
 ```bash
-# brew: /usr/local/bin/brew - version 2.0.3
+# brew: /usr/local/bin/brew - version 2.1.1
 #--------------------
 
 # Bash
-brew install bash #v5.0.2
+brew install bash #v5.0.7
 brew install bash-completion #v1.3_3
 
 # Git
 brew install git #v2.21.0
 
 # Node
-brew install node@8 #v8.15.1
+brew install node@8 #v8.15.1_1
 ```
 
 :notebook: If you want to keep your Homebrew formulas up-to-date, here some usefull command:
@@ -180,24 +180,34 @@ test-unit (2.0.0.0)
 In case you need to use `ruby` as a working tool, you can install a more recent version with Homebrew:
 
 ```bash
-brew install ruby #v2.6.1
+brew install ruby #v2.6.3
 ```
 
 Once `gem` and `ruby` are installed, you will have the following version, path and packages installed:
 
 ```bash
-# ruby: /usr/local/opt/ruby/bin/ruby - version 2.6.1p33
+# ruby: /usr/local/opt/ruby/bin/ruby - version 2.6.3p62
 # gem:  /usr/local/opt/ruby/bin/gem  - version 3.0.3
 #--------------------
 
 bundler (2.0.1, default: 1.17.3)
+chunky_png (1.3.11)
+compass (1.0.3)
+compass-core (1.0.3)
+compass-import-once (1.0.5)
 did_you_mean (1.3.0)
+ffi (1.10.0)
 minitest (5.11.3)
+multi_json (1.13.1)
 net-telnet (0.2.0)
-power_assert (1.1.3)
+power_assert (1.1.4, 1.1.3)
 rake (12.3.2)
+rb-fsevent (0.10.3)
+rb-inotify (0.10.0)
 rubygems-update (3.0.3)
-test-unit (3.3.0, 3.2.9)
+sass (3.7.4, 3.4.25)
+sass-listen (4.0.0)
+test-unit (3.3.2, 3.2.9)
 xmlrpc (0.3.0)
 ```
 
@@ -230,8 +240,11 @@ npm install -g bower #v1.8.8
 
 # Task runners
 npm install -g grunt-cli #v1.3.2
-npm install -g gulp-cli #v2.0.1
-npm install -g webpack #v4.29.6
+npm install -g gulp-cli #v2.2.0
+npm install -g webpack #v4.30.0
+
+# Compilers
+npm install -g less #v3.9.0
 ```
 
 :notebook: If you want to keep your `npm` packages up-to-date, here some usefull command:
@@ -255,7 +268,9 @@ sudo chown -R $USER:admin /usr/local
 As `composer` became a usefull tools to manage dependencies for PHP projects, you can install the executable in `/usr/local/bin` folder for MacOS with the following command:
 
 ```bash
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer #v1.8.4
+# composer: /usr/local/bin/composer - version 1.8.5
+#--------------------
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
 :notebook: If you want to keep your `composer` up-to-date, here some usefull command:
