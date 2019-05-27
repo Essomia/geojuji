@@ -28,12 +28,19 @@
 ### 3.1 Set PHP Environment
 
 To develop PHP projects, you will need the following to be installed and set:
-- [PHP](http://php.net/)
 - [Apache Server](https://httpd.apache.org/)
+- [PHP](http://php.net/)
 - [MySQL](https://www.mysql.com/): To get the right one for your OS, [check the MYSQL archives](https://downloads.mysql.com/archives/community/).
 - [Sequel Pro](https://www.sequelpro.com/)
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in details and let you use Google.
+However, for intel, bellow my configuration:
+
+```bash
+# - /usr/sbin/httpd            - version 2.4.28 (Apache/Unix)
+# - /usr/local/php5/bin/php    - version 7.2.9
+# - /usr/local/mysql/bin/mysql - version 14.14 (Destrib 5.7.16)
+```
 
 
 
