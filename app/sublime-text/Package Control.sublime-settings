@@ -6,18 +6,12 @@
 	"install_missing": true,
 	"installed_packages":
 	[
-		"All Autocomplete",
 		"Color Highlight",
 		"Compare Side-By-Side",
-		"CSS3",
-		"DocBlockr",
 		"Emmet",
-		"HTML5",
-		"jQuery",
-		"LESS",
 		"Package Control",
 		"Sass",
 		"SideBarEnhancements",
-		"Twig"
+		"StringUtilities"
 	]
 }
