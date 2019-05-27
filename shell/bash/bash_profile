@@ -47,6 +47,7 @@ export PATH="/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/php5/bin:$PATH"
 
 # Add personal directory to shell directories to search for executable files.
 export PATH="$GEOJUJI_PATH:$PATH"
