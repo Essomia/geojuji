@@ -121,15 +121,10 @@ Once Homebrew is installed, you can install the formulas you need, with the foll
 # brew: /usr/local/bin/brew - version 2.1.1
 #--------------------
 
-# Bash
-brew install bash #v5.0.7
-brew install bash-completion #v1.3_3
-
-# Git
-brew install git #v2.21.0
-
-# Node
-brew install node@8 #v8.15.1_1
+brew install bash            # v5.0.7
+brew install bash-completion # v1.3_3
+brew install git             # v2.21.0
+brew install node@8          # v8.15.1_1
 ```
 
 :notebook: If you want to keep your Homebrew formulas up-to-date, here some usefull command:
@@ -180,7 +175,7 @@ test-unit (2.0.0.0)
 In case you need to use `ruby` as a working tool, you can install a more recent version with Homebrew:
 
 ```bash
-brew install ruby #v2.6.3
+brew install ruby # v2.6.3
 ```
 
 Once `gem` and `ruby` are installed, you will have the following version, path and packages installed:
@@ -232,19 +227,12 @@ We install `node` within the Homebrew formulas. So, once `node` is installed, yo
 # npm:  /usr/local/opt/node@8/bin/npm  - version 6.4.1
 #--------------------
 
-# NPM
-npm install -g npm #v6.9.0
-
-# Bower [legacy]
-npm install -g bower #v1.8.8
-
-# Task runners
-npm install -g grunt-cli #v1.3.2
-npm install -g gulp-cli #v2.2.0
-npm install -g webpack #v4.30.0
-
-# Compilers
-npm install -g less #v3.9.0
+npm install -g bower     # v1.8.8
+npm install -g grunt-cli # v1.3.2
+npm install -g gulp-cli  # v2.2.0
+npm install -g less      # v3.9.0
+npm install -g npm       # v6.9.0
+npm install -g webpack   # v4.30.0
 ```
 
 :notebook: If you want to keep your `npm` packages up-to-date, here some usefull command:
