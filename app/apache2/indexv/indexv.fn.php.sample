@@ -9,7 +9,10 @@ function getProjectTechno($projectPath) {
     if (file_exists($projectPath.'/htdocs/wp-config.php')) {
         if (file_exists($projectPath.'/htdocs/wp-includes/version.php')) {
             include $projectPath.'/htdocs/wp-includes/version.php';
+        } else {
+            $wp_version = "none";
         }
+
         $labelTechno = "<label class='flag techno wp'>WP <small>{$wp_version}</small></label>";
     } elseif (file_exists($projectPath.'/htdocs/app.php')) {
         $labelTechno = "<label class='flag techno sf'>SY</label>";
