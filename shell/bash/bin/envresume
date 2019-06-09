@@ -30,7 +30,7 @@ YELLOW_UL="\033[4;33m";
 
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${BLUE}<command>${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}<command> [option: brew|ruby|node|composer]${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Command:${RESET}";
     echo -e "  ${GREEN}check${RESET}   - Check current version of installed packages.";
@@ -64,110 +64,182 @@ function resume_section() {
 function resume_fn_check() {
     resume_title "Environment Check";
 
-    resume_subtitle "Homebrew";
+    if [[ -z $1 || $1 == "brew" ]]; then
+        resume_subtitle "Homebrew";
 
-    if [[ -n $(/usr/bin/which brew) ]]; then
-        resume_section "Brew version";
-        brew --version;
-        resume_section "Brew installed packages";
-        brew ls --versions;
-    else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have homebrew installed.${RESET}";
+        if [[ -n $(/usr/bin/which brew) ]]; then
+            resume_section "Brew version";
+            brew --version;
+            resume_section "Brew installed packages";
+            brew ls --versions;
+        else
+            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have homebrew installed.${RESET}";
+        fi
+
+        if [[ $1 == "brew" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Ruby";
+    if [[ -z $1 || $1 == "ruby" ]]; then
+        resume_subtitle "Ruby";
 
-    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
-        resume_section "Ruby version";
-        ruby --version;
-        resume_section "Gem version";
-        gem --version;
-        resume_section "Gem installed packages";
-        gem list --local;
-    else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have ruby or gem installed.${RESET}";
+        if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+            resume_section "Ruby version";
+            ruby --version;
+            resume_section "Gem version";
+            gem --version;
+            resume_section "Gem installed packages";
+            gem list --local;
+        else
+            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have ruby or gem installed.${RESET}";
+        fi
+
+        if [[ $1 == "ruby" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Node";
+    if [[ -z $1 || $1 == "node" ]]; then
+        resume_subtitle "Node";
 
-    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-        resume_section "Node version";
-        node --version;
-        resume_section "Npm version";
-        npm --version;
-        resume_section "Npm global installed packages";
-        npm list -g --depth=0;
-    else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have npm or node installed.${RESET}";
+        if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+            resume_section "Node version";
+            node --version;
+            resume_section "Npm version";
+            npm --version;
+            resume_section "Npm global installed packages";
+            npm list -g --depth=0;
+        else
+            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have npm or node installed.${RESET}";
+        fi
+
+        if [[ $1 == "node" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Composer";
+    if [[ -z $1 || $1 == "composer" ]]; then
+        resume_subtitle "Composer";
 
-    if [[ -n $(/usr/bin/which composer) ]]; then
-        resume_section "Composer version";
-        composer --version;
-    else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have composer installed.${RESET}";
+        if [[ -n $(/usr/bin/which composer) ]]; then
+            resume_section "Composer version";
+            composer --version;
+        else
+            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have composer installed.${RESET}";
+        fi
+
+        if [[ $1 == "composer" ]]; then
+            return;
+        fi
     fi
 }
 
 function resume_fn_update() {
     resume_title "Environment Update";
 
-    resume_subtitle "Homebrew";
+    if [[ -z $1 || $1 == "brew" ]]; then
+        resume_subtitle "Homebrew";
 
-    if [[ -n $(/usr/bin/which brew) ]]; then
-        brew update;
-        brew outdated;
+        if [[ -n $(/usr/bin/which brew) ]]; then
+            brew update;
+            brew outdated;
+        fi
+
+        if [[ $1 == "brew" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Ruby";
+    if [[ -z $1 || $1 == "ruby" ]]; then
+        resume_subtitle "Ruby";
 
-    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
-        gem update --system;
-        gem outdated;
+        if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+            gem update --system;
+            gem outdated;
+        fi
+
+        if [[ $1 == "ruby" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Node";
+    if [[ -z $1 || $1 == "node" ]]; then
+        resume_subtitle "Node";
 
-    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-        npm outdated -g --depth=0;
+        if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+            npm outdated -g --depth=0;
+        fi
+
+        if [[ $1 == "node" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Composer";
+    if [[ -z $1 || $1 == "composer" ]]; then
+        resume_subtitle "Composer";
 
-    if [[ -n $(/usr/bin/which composer) ]]; then
-        echo -e "Composer don't have any global packages.";
+        if [[ -n $(/usr/bin/which composer) ]]; then
+            echo -e "Composer don't have any global packages.";
+        fi
+
+        if [[ $1 == "composer" ]]; then
+            return;
+        fi
     fi
 }
 
 function resume_fn_upgrade() {
     resume_title "Environment Upgrade";
 
-    resume_subtitle "Homebrew";
+    if [[ -z $1 || $1 == "brew" ]]; then
+        resume_subtitle "Homebrew";
 
-    if [[ -n $(/usr/bin/which brew) ]]; then
-        brew upgrade;
-        brew cleanup;
+        if [[ -n $(/usr/bin/which brew) ]]; then
+            brew upgrade;
+            brew cleanup -s;
+        fi
+
+        if [[ $1 == "brew" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Ruby";
+    if [[ -z $1 || $1 == "ruby" ]]; then
+        resume_subtitle "Ruby";
 
-    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
-        gem update;
-        gem cleanup;
+        if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+            gem update;
+            gem cleanup;
+        fi
+
+        if [[ $1 == "ruby" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Node";
+    if [[ -z $1 || $1 == "node" ]]; then
+        resume_subtitle "Node";
 
-    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-        npm update -g;
+        if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+            npm update -g;
+        fi
+
+        if [[ $1 == "node" ]]; then
+            return;
+        fi
     fi
 
-    resume_subtitle "Composer";
+    if [[ -z $1 || $1 == "composer" ]]; then
+        resume_subtitle "Composer";
 
-    if [[ -n $(/usr/bin/which composer) ]]; then
-        composer self-update;
+        if [[ -n $(/usr/bin/which composer) ]]; then
+            composer self-update;
+        fi
+
+        if [[ $1 == "composer" ]]; then
+            return;
+        fi
     fi
 }
 
@@ -178,13 +250,13 @@ function resume_fn_upgrade() {
 if [ -n "$1" ]; then
     case $1 in
         "check")
-            resume_fn_check
+            resume_fn_check $2
             ;;
         "update")
-            resume_fn_update
+            resume_fn_update $2
             ;;
         "upgrade")
-            resume_fn_upgrade
+            resume_fn_upgrade $2
             ;;
         *)
             echo -e "${RED_UL}ERROR:${RESET}${RED} '$1' is not a valid command.${RESET}"
