@@ -38,18 +38,21 @@ LANG=C
 # ENVIRONMENTS
 # --------------------------------
 
-# Get personal directory for executable
-export GEOJUJI_PATH=$(dirname $(readlink "${BASH_SOURCE[0]}"))/bin;
-
 # Shell directories to search for executable files (Default OSX).
-export PATH="/opt/local/sbin:/opt/local/bin:/usr/local/sbin:/usr/local:$PATH"
-export PATH="/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:$PATH"
-export PATH="/usr/local/opt/node@8/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
+# - defaut export give us "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+
+export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="/usr/local/php5/bin:$PATH"
 
-# Add personal directory to shell directories to search for executable files.
+# Get personal directory for executable and add to shell directories to search for executable files.
+export GEOJUJI_PATH=$(dirname $(readlink "${BASH_SOURCE[0]}"))/bin;
 export PATH="$GEOJUJI_PATH:$PATH"
 
 # Ignore types of files when you tab from the command line
