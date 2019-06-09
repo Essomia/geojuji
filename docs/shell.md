@@ -121,11 +121,14 @@ Once Homebrew is installed, you can install the formulas you need, with the foll
 # brew: /usr/local/bin/brew - version 2.1.4
 #--------------------
 
+brew install git             # v2.22.0 (gettext, pcre2)
 brew install bash            # v5.0.7  (-)
 brew install bash-completion # v1.3_3
-brew install git             # v2.22.0 (gettext, pcre2)
 brew install node            # v12.4.0 (gdbm, sqlite, python@2, icu4c)
 brew install ruby            # v2.6.3  (autoconf, automake, libtool, libyaml, openssl, pkg-config, readline)
+
+brew install graphicsmagick  # v1.3.31 (libpng, freetype, xz, python, sphinx-doc, cmake, jpeg, jasper, libtiff, little-cms2, webp)
+brew install imagemagick     # v7.0.8-48 (libde265, intltool, ninja, meson, libffi, pcre, glib, shared-mime-info, nasm, x265, libheif, libomp, ilmbase, openexr, doxygen, openjpeg)
 ```
 
 :notebook: If you want to keep your Homebrew formulas up-to-date, here some usefull command:
