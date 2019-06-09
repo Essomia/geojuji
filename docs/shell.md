@@ -112,19 +112,20 @@ However if you use Windows, you can find under `~/geojuji/shell/cmd/` folder a r
 Install Homebrew with the following command line:
 
 ```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 Once Homebrew is installed, you can install the formulas you need, with the following command line:
 
 ```bash
-# brew: /usr/local/bin/brew - version 2.1.1
+# brew: /usr/local/bin/brew - version 2.1.4
 #--------------------
 
-brew install bash            # v5.0.7
+brew install bash            # v5.0.7  (-)
 brew install bash-completion # v1.3_3
-brew install git             # v2.21.0
-brew install node@8          # v8.15.1_1
+brew install git             # v2.22.0 (gettext, pcre2)
+brew install node            # v12.4.0 (gdbm, sqlite, python@2, icu4c)
+brew install ruby            # v2.6.3  (autoconf, automake, libtool, libyaml, openssl, pkg-config, readline)
 ```
 
 :notebook: If you want to keep your Homebrew formulas up-to-date, here some usefull command:
@@ -133,7 +134,8 @@ brew install node@8          # v8.15.1_1
 brew update
 brew outdated
 brew upgrade
-brew cleanup
+brew cleanup -s
+brew doctor
 ```
 
 
@@ -191,7 +193,7 @@ compass (1.0.3)
 compass-core (1.0.3)
 compass-import-once (1.0.5)
 did_you_mean (1.3.0)
-ffi (1.10.0)
+ffi (1.11.1)
 minitest (5.11.3)
 multi_json (1.13.1)
 net-telnet (0.2.0)
@@ -202,7 +204,7 @@ rb-inotify (0.10.0)
 rubygems-update (3.0.3)
 sass (3.7.4, 3.4.25)
 sass-listen (4.0.0)
-test-unit (3.3.2, 3.2.9)
+test-unit (3.3.3, 3.2.9)
 xmlrpc (0.3.0)
 ```
 
@@ -223,16 +225,15 @@ gem cleanup
 We install `node` within the Homebrew formulas. So, once `node` is installed, you can install needed packages globally with the following command line:
 
 ```bash
-# node: /usr/local/opt/node@8/bin/node - version 8.15.1
-# npm:  /usr/local/opt/node@8/bin/npm  - version 6.4.1
+# node: /usr/local/bin/node - version 12.4.0
+# npm:  /usr/local/bin/npm  - version 6.9.0
 #--------------------
 
 npm install -g bower     # v1.8.8
-npm install -g grunt-cli # v1.3.2
 npm install -g gulp-cli  # v2.2.0
 npm install -g less      # v3.9.0
 npm install -g npm       # v6.9.0
-npm install -g webpack   # v4.30.0
+npm install -g webpack   # v4.33.0
 ```
 
 :notebook: If you want to keep your `npm` packages up-to-date, here some usefull command:
