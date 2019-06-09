@@ -22,7 +22,7 @@ function getProjectCurrentBranch($projectDirectory) {
 }
 
 function getProjectLatestTag($projectDirectory) {
-    $gitTag = trim(exec('cd '.$projectDirectory.'; git describe --abbrev=0;'));
+    $gitTag = trim(exec('cd '.$projectDirectory.'; git describe --abbrev=0 --tags;'));
 
     if (!empty($gitTag)) {
         $labelLatestTag = "<label class='flag tag'>{$gitTag}</label>";
