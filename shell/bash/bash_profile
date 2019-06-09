@@ -58,6 +58,9 @@ export FIGNORE="$FIGNORE:DS_Store"
 # Set default editor to be "nano"
 export EDITOR="/usr/bin/nano"
 
+# Set goto binary local
+export GEOJUJI_BINARY="/usr/local"
+
 
 # AUTO-COMPLETIONS
 # --------------------------------
