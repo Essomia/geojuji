@@ -47,6 +47,8 @@
     ########## RANKING
     rank   = shortlog -sn --no-merges
     who    = shortlog -sn --merges
+    ########## IGNORE
+    ign    = status --ignored
     ########## LOG
     forest = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all"
     leaf   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
