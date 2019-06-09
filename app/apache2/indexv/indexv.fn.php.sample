@@ -5,24 +5,6 @@
  * @use: `httpd-vhosts.conf` and `git
  **/
 
-function getProjectTechno($projectPath) {
-    if (file_exists($projectPath.'/htdocs/wp-config.php')) {
-        if (file_exists($projectPath.'/htdocs/wp-includes/version.php')) {
-            include $projectPath.'/htdocs/wp-includes/version.php';
-        } else {
-            $wp_version = "none";
-        }
-
-        $labelTechno = "<label class='flag techno wp'>WP <small>{$wp_version}</small></label>";
-    } elseif (file_exists($projectPath.'/htdocs/app.php')) {
-        $labelTechno = "<label class='flag techno sf'>SY</label>";
-    } else {
-        $labelTechno = "<label class='flag void'>-</label>";
-    }
-
-    return $labelTechno;
-}
-
 function getProjectCurrentBranch($projectDirectory) {
     $gitBranch = trim(exec('cd '.$projectDirectory.'; git rev-parse --abbrev-ref HEAD;'));
 
@@ -66,7 +48,6 @@ function createProjectTableList($dirname, $extension) {
     $projectRow .= "    </th>";
     $projectRow .= "</tr>";
     $projectRow .= "<tr class='row headline'>";
-    $projectRow .= "    <td class='techno' width='60'>Techno</td>";
     $projectRow .= "    <td>Project</td>";
     $projectRow .= "    <td class='git' width='300'>Branch</td>";
     $projectRow .= "    <td class='git' width='80'>Tag</td>";
@@ -78,9 +59,6 @@ function createProjectTableList($dirname, $extension) {
         $projectDirectory = $rootCompany.DIRECTORY_SEPARATOR.$projectPathData[0].DIRECTORY_SEPARATOR.$projectPathData[1];
 
         $projectRow .= "<tr class='row'>";
-        $projectRow .= "    <td class='techno' width='60'>";
-        $projectRow .=          getProjectTechno($projectPath);
-        $projectRow .= "    </td>";
         $projectRow .= "    <td>";
         $projectRow .= "        <a href='http://{$projectPathData[1]}.{$projectPathData[0]}.{$extension}'>";
         $projectRow .= "            {$projectPathData[0]} / {$projectPathData[1]}";
