@@ -6,12 +6,16 @@
 	"install_missing": true,
 	"installed_packages":
 	[
+		"All Autocomplete",
 		"Color Highlight",
 		"Compare Side-By-Side",
+		"DocBlockr",
 		"Emmet",
+		"HTML Snippets",
+		"JavaScript Snippets",
 		"Package Control",
+		"React ES6 Snippets",
 		"Sass",
-		"SideBarEnhancements",
-		"StringUtilities"
+		"SideBarEnhancements"
 	]
 }
