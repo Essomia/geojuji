@@ -224,6 +224,7 @@ ln -s ~/geojuji/app/visual-studio-code ~/Library/Application\ Support/Code/User
 ```
 
 Now, all VSC's configurations can be found under `~/geojuji/app/visual-studio-code/` folder.
+Note that a little list of recommanded plugins can be found at `~/geojuji/app/visual-studio-code/plugins.json`
 
 ##### Binary
 

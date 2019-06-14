@@ -1,0 +1,16 @@
+{
+    "plugins":
+    [
+        "All Autocomplete",
+        "Auto Close Tag",
+        "Auto Import",
+        "Color Highlight",
+        "ES7 React/redux/GraphQL/React-Native snippets",
+        "HTML Snippets",
+        "JavaScript (ES6) Code Snippets",
+        "Mithril Emmet",
+        "NPM IntelliSense",
+        "PHP IntelliSense",
+        "VS DocBlockr"
+    ]
+}

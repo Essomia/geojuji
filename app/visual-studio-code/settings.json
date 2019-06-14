@@ -4,7 +4,6 @@
     "editor.fontSize": 14,
     "editor.tabSize": 4,
     "files.trimTrailingWhitespace": true,
-    "editor.formatOnPaste": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.snippetSuggestions": "top",
     "workbench.colorTheme": "Monokai",
@@ -15,5 +14,10 @@
     "extensions.autoUpdate": false,
     "AllAutocomplete.updateOnlyOnSave": true,
     "update.mode": "manual",
-    "comments.openPanel": "neverOpen"
+    "comments.openPanel": "neverOpen",
+    "workbench.editor.highlightModifiedTabs": true,
+    "autoimport.filesToScan": "**/*.{ts,tsx}, node_modules/**/*.{js}",
+    "editor.renderWhitespace": "boundary",
+    "editor.tabCompletion": "on",
+    "editor.insertSpaces": false
 }
