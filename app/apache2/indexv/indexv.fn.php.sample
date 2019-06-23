@@ -21,6 +21,17 @@ function getProjectCurrentBranch($projectDirectory) {
     return $labelCurrentBranch;
 }
 
+function getProjectIsWIP($projectDirectory) {
+    $isWIP = trim(exec('cd '.$projectDirectory.'; git status --short | wc -l;'));
+    $labelWIP = "";
+
+    if (!empty($isWIP) && $isWIP > 0) {
+        $labelWIP = "<label class='flag wip'>{$isWIP} diff</label>";
+    }
+
+    return $labelWIP;
+}
+
 function getProjectLatestTag($projectDirectory) {
     $gitTag = trim(exec('cd '.$projectDirectory.'; git describe --abbrev=0 --tags;'));
 
@@ -66,6 +77,7 @@ function createProjectTableList($dirname, $extension) {
         $projectRow .= "    </td>";
         $projectRow .= "    <td class='git' width='100'>";
         $projectRow .=          getProjectCurrentBranch($projectDirectory);
+        $projectRow .=          getProjectIsWIP($projectDirectory);
         $projectRow .= "    </td>";
         $projectRow .= "    <td class='git' width='80'>";
         $projectRow .=          getProjectLatestTag($projectDirectory);
