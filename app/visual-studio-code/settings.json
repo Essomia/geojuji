@@ -19,5 +19,9 @@
     "autoimport.filesToScan": "**/*.{ts,tsx}, node_modules/**/*.{js}",
     "editor.renderWhitespace": "boundary",
     "editor.tabCompletion": "on",
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
+    "search.globalFindClipboard": true,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "search.smartCase": true,
+    "search.useIgnoreFiles": false
 }
