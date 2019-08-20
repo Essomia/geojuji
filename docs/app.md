@@ -36,12 +36,6 @@ To develop PHP projects, you will need the following to be installed and set:
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in details and let you use Google.
 However, for intel, bellow my configuration:
 
-```bash
-# - /usr/sbin/httpd            - version 2.4.28 (Apache/Unix)
-# - /usr/local/php5/bin/php    - version 7.2.9
-# - /usr/local/mysql/bin/mysql - version 14.14 (Destrib 5.7.16)
-```
-
 
 
 
