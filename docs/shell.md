@@ -118,17 +118,7 @@ Install Homebrew with the following command line:
 Once Homebrew is installed, you can install the formulas you need, with the following command line:
 
 ```bash
-# brew: /usr/local/bin/brew - version 2.1.4
-#--------------------
-
-brew install git             # v2.22.0 (gettext, pcre2)
-brew install bash            # v5.0.7  (-)
-brew install bash-completion # v1.3_3
-brew install node            # v12.4.0 (gdbm, sqlite, python@2, icu4c)
-brew install ruby            # v2.6.3  (autoconf, automake, libtool, libyaml, openssl, pkg-config, readline)
-
-brew install graphicsmagick  # v1.3.31 (libpng, freetype, xz, python, sphinx-doc, cmake, jpeg, jasper, libtiff, little-cms2, webp)
-brew install imagemagick     # v7.0.8-48 (libde265, intltool, ninja, meson, libffi, pcre, glib, shared-mime-info, nasm, x265, libheif, libomp, ilmbase, openexr, doxygen, openjpeg)
+brew install <package-name>
 ```
 
 :notebook: If you want to keep your Homebrew formulas up-to-date, here some usefull command:
@@ -154,62 +144,15 @@ On MacOS, `ruby` is already installed. To check if ruby is installed and get the
 gem environment
 ```
 
-You can find below the following default `gem` and `ruby` version, path and packages installed on my MacOS ElCapitain:
-
-```bash
-# ruby: /usr/bin/ruby - version 2.0.0p648
-# gem:  /usr/bin/gem  - version 2.0.14.1
-#--------------------
-
-bigdecimal (1.2.0)
-CFPropertyList (2.3.5)
-io-console (0.4.2)
-json (1.7.7)
-libxml-ruby (3.0.0)
-minitest (4.3.2)
-nokogiri (1.5.6)
-psych (2.0.0)
-rake (0.9.6)
-rdoc (4.0.0)
-sqlite3 (1.3.13)
-test-unit (2.0.0.0)
-```
-
 ##### Installed with Homebrew
 
 In case you need to use `ruby` as a working tool, you can install a more recent version with Homebrew:
 
 ```bash
-brew install ruby # v2.6.3
+brew install ruby
 ```
 
-Once `gem` and `ruby` are installed, you will have the following version, path and packages installed:
-
-```bash
-# ruby: /usr/local/opt/ruby/bin/ruby - version 2.6.3p62
-# gem:  /usr/local/opt/ruby/bin/gem  - version 3.0.3
-#--------------------
-
-bundler (2.0.1, default: 1.17.3)
-chunky_png (1.3.11)
-compass (1.0.3)
-compass-core (1.0.3)
-compass-import-once (1.0.5)
-did_you_mean (1.3.0)
-ffi (1.11.1)
-minitest (5.11.3)
-multi_json (1.13.1)
-net-telnet (0.2.0)
-power_assert (1.1.4, 1.1.3)
-rake (12.3.2)
-rb-fsevent (0.10.3)
-rb-inotify (0.10.0)
-rubygems-update (3.0.3)
-sass (3.7.4, 3.4.25)
-sass-listen (4.0.0)
-test-unit (3.3.3, 3.2.9)
-xmlrpc (0.3.0)
-```
+Once `gem` and `ruby` are installed, you will see that the default versions, packages and paths installed have changed.
 
 :notebook: If you want to keep your `gem` up-to-date, here some usefull command:
 
@@ -228,15 +171,7 @@ gem cleanup
 We install `node` within the Homebrew formulas. So, once `node` is installed, you can install needed packages globally with the following command line:
 
 ```bash
-# node: /usr/local/bin/node - version 12.4.0
-# npm:  /usr/local/bin/npm  - version 6.9.0
-#--------------------
-
-npm install -g bower     # v1.8.8
-npm install -g gulp-cli  # v2.2.0
-npm install -g less      # v3.9.0
-npm install -g npm       # v6.9.0
-npm install -g webpack   # v4.33.0
+npm install -g <package-name>
 ```
 
 :notebook: If you want to keep your `npm` packages up-to-date, here some usefull command:
@@ -260,8 +195,6 @@ sudo chown -R $USER:admin /usr/local
 As `composer` became a usefull tools to manage dependencies for PHP projects, you can install the executable in `/usr/local/bin` folder for MacOS with the following command:
 
 ```bash
-# composer: /usr/local/bin/composer - version 1.8.5
-#--------------------
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
