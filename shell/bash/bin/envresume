@@ -4,8 +4,8 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# Env Resume
-# A helper to get a status for computer dependencies.
+# Env resume
+# A helper to get a status for computer dependencies managers.
 ###########
 
 # USAGE
@@ -13,12 +13,13 @@ source util-titles.sh
 
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${BLUE}<command> [option: brew|ruby|node|composer]${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}<command> [option:brew|ruby|node|composer]${RESET}";
     echo "";
-    echo -e "${YELLOW_UL}Command:${RESET}";
-    echo -e "  ${GREEN}check${RESET}   - Check current version of installed packages.";
-    echo -e "  ${GREEN}update${RESET}  - Get list of outdated packages.";
-    echo -e "  ${GREEN}upgrade${RESET} - Update outdated packages.";
+    echo -e "${YELLOW_UL}Commands:${RESET}";
+    echo -e "  ${GREEN}check${RESET}     Check paths and current version of installed packages.";
+    echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
+    echo -e "  ${GREEN}update${RESET}    Update main packages manager.";
+    echo -e "  ${GREEN}upgrade${RESET}   Update global outdated packages.";
     exit 1;
 fi
 
@@ -26,185 +27,136 @@ fi
 # FUNCTIONS
 # --------------------------------
 
-function resume_fn_check() {
-    resume_title "Environment Check";
+function fnComposer() {
+    styleSubtitle "Composer";
 
-    if [[ -z $1 || $1 == "brew" ]]; then
-        resume_subtitle "Homebrew";
+    if [[ -n $(/usr/bin/which composer) ]]; then
+        BIN_COMPOSER=$(/usr/bin/which composer);
 
-        if [[ -n $(/usr/bin/which brew) ]]; then
-            resume_section "Brew version";
-            brew --version;
-            resume_section "Brew installed packages";
-            brew ls --versions;
-        else
-            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have homebrew installed.${RESET}";
-        fi
-
-        if [[ $1 == "brew" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "ruby" ]]; then
-        resume_subtitle "Ruby";
-
-        if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
-            resume_section "Ruby version";
-            ruby --version;
-            resume_section "Gem version";
-            gem --version;
-            resume_section "Gem installed packages";
-            gem list --local;
-        else
-            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have ruby or gem installed.${RESET}";
-        fi
-
-        if [[ $1 == "ruby" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "node" ]]; then
-        resume_subtitle "Node";
-
-        if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-            resume_section "Node version";
-            node --version;
-            resume_section "Npm version";
-            npm --version;
-            resume_section "Npm global installed packages";
-            npm list -g --depth=0;
-        else
-            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have npm or node installed.${RESET}";
-        fi
-
-        if [[ $1 == "node" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "composer" ]]; then
-        resume_subtitle "Composer";
-
-        if [[ -n $(/usr/bin/which composer) ]]; then
-            resume_section "Composer version";
-            composer --version;
-        else
-            echo -e "${RED_UL}ERROR:${RESET}${RED} You don't have composer installed.${RESET}";
-        fi
-
-        if [[ $1 == "composer" ]]; then
-            return;
-        fi
+        case $1 in
+            "check")
+                echo -e "${YELLOW}Path:${RESET}    $BIN_COMPOSER";
+                echo -e "${YELLOW}Version:${RESET} $($BIN_COMPOSER --version)";
+                ;;
+            "outdated")
+                echo -e "Composer don't have any global packages.";
+                ;;
+            "update")
+                $BIN_COMPOSER self-update;
+                ;;
+            "upgrade")
+                echo -e "Composer don't have any global packages.";
+                ;;
+            *)
+                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                ;;
+        esac
+    else
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"composer\" installed.${RESET}";
     fi
 }
 
-function resume_fn_update() {
-    resume_title "Environment Update";
+function fnNodejs() {
+    styleSubtitle "Node JS";
 
-    if [[ -z $1 || $1 == "brew" ]]; then
-        resume_subtitle "Homebrew";
+    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
+        BIN_NPM=$(/usr/bin/which npm);
+        BIN_NODE=$(/usr/bin/which node);
 
-        if [[ -n $(/usr/bin/which brew) ]]; then
-            brew update;
-            brew outdated;
-        fi
-
-        if [[ $1 == "brew" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "ruby" ]]; then
-        resume_subtitle "Ruby";
-
-        if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
-            gem update --system;
-            gem outdated;
-        fi
-
-        if [[ $1 == "ruby" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "node" ]]; then
-        resume_subtitle "Node";
-
-        if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-            npm outdated -g --depth=0;
-        fi
-
-        if [[ $1 == "node" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "composer" ]]; then
-        resume_subtitle "Composer";
-
-        if [[ -n $(/usr/bin/which composer) ]]; then
-            echo -e "Composer don't have any global packages.";
-        fi
-
-        if [[ $1 == "composer" ]]; then
-            return;
-        fi
+        case $1 in
+            "check")
+                echo -e "${YELLOW}Path:${RESET}    $BIN_NODE";
+                echo -e "${YELLOW}Version:${RESET} $($BIN_NODE --version)";
+                echo -e "${YELLOW}Path:${RESET}    $BIN_NPM";
+                echo -e "${YELLOW}Version:${RESET} $($BIN_NPM --version)";
+                echo -e "";
+                echo -e "${YELLOW}Packages installed:${RESET}";
+                $BIN_NPM list -g --depth=0;
+                ;;
+            "outdated")
+                $BIN_NPM outdated -g;
+                ;;
+            "update")
+                $BIN_NPM update -g npm;
+                ;;
+            "upgrade")
+                $BIN_NPM update -g;
+                ;;
+            *)
+                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                ;;
+        esac
+    else
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"node\" or \"npm\" installed.${RESET}";
     fi
 }
 
-function resume_fn_upgrade() {
-    resume_title "Environment Upgrade";
+function fnRuby() {
+    styleSubtitle "Ruby";
 
-    if [[ -z $1 || $1 == "brew" ]]; then
-        resume_subtitle "Homebrew";
+    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+        BIN_RUBY=$(/usr/bin/which ruby);
+        BIN_GEM=$(/usr/bin/which gem);
 
-        if [[ -n $(/usr/bin/which brew) ]]; then
-            brew upgrade;
-            brew cleanup -s;
-        fi
-
-        if [[ $1 == "brew" ]]; then
-            return;
-        fi
+        case $1 in
+            "check")
+                echo -e "${YELLOW}Path:${RESET}    $BIN_RUBY";
+                echo -e "${YELLOW}Version:${RESET} $($BIN_RUBY --version)";
+                echo -e "${YELLOW}Path:${RESET}    $BIN_GEM";
+                echo -e "${YELLOW}Version:${RESET} $($BIN_GEM --version)";
+                echo -e "";
+                echo -e "${YELLOW}Packages installed:${RESET}";
+                $BIN_GEM list --local;
+                ;;
+            "outdated")
+                $BIN_GEM outdated;
+                ;;
+            "update")
+                $BIN_GEM update --system;
+                ;;
+            "upgrade")
+                $BIN_GEM update;
+                $BIN_GEM cleanup;
+                ;;
+            *)
+                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                ;;
+        esac
+    else
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"ruby\" or \"gem\" installed.${RESET}";
     fi
+}
 
-    if [[ -z $1 || $1 == "ruby" ]]; then
-        resume_subtitle "Ruby";
+function fnBrew() {
+    styleSubtitle "Brew";
 
-        if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
-            gem update;
-            gem cleanup;
-        fi
+    if [[ -n $(/usr/bin/which brew) ]]; then
+        BIN_BREW=$(/usr/bin/which brew);
 
-        if [[ $1 == "ruby" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "node" ]]; then
-        resume_subtitle "Node";
-
-        if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-            npm update -g;
-        fi
-
-        if [[ $1 == "node" ]]; then
-            return;
-        fi
-    fi
-
-    if [[ -z $1 || $1 == "composer" ]]; then
-        resume_subtitle "Composer";
-
-        if [[ -n $(/usr/bin/which composer) ]]; then
-            composer self-update;
-        fi
-
-        if [[ $1 == "composer" ]]; then
-            return;
-        fi
+        case $1 in
+            "check")
+                echo -e "${YELLOW}Path:${RESET}    $BIN_BREW";
+                echo -e "${YELLOW}Version:${RESET} $($BIN_BREW --version)";
+                echo -e "";
+                echo -e "${YELLOW}Packages installed:${RESET}";
+                $BIN_BREW ls --versions;
+                ;;
+            "outdated")
+                $BIN_BREW outdated;
+                ;;
+            "update")
+                $BIN_BREW update;
+                ;;
+            "upgrade")
+                $BIN_BREW upgrade;
+                $BIN_BREW cleanup -s;
+                ;;
+            *)
+                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                ;;
+        esac
+    else
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"brew\" installed.${RESET}";
     fi
 }
 
@@ -213,18 +165,33 @@ function resume_fn_upgrade() {
 # --------------------------------
 
 if [ -n "$1" ]; then
+    styleTitle "Environment $1";
+
     case $1 in
-        "check")
-            resume_fn_check $2
-            ;;
-        "update")
-            resume_fn_update $2
-            ;;
-        "upgrade")
-            resume_fn_upgrade $2
+        "check"|"outdated"|"update"|"upgrade")
+            case $2 in
+                "brew")
+                    fnBrew $1;
+                    ;;
+                "ruby")
+                    fnRuby $1;
+                    ;;
+                "node")
+                    fnNodejs $1;
+                    ;;
+                "composer")
+                    fnComposer $1;
+                    ;;
+                *)
+                    fnBrew $1;
+                    fnRuby $1;
+                    fnNodejs $1;
+                    fnComposer $1;
+                    ;;
+            esac
             ;;
         *)
-            echo -e "${RED_UL}ERROR:${RESET} ${RED}'$1' is not a valid command.${RESET}"
+            echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}"
             ;;
     esac
 else
