@@ -1,16 +1,14 @@
-##
-## Environment check
-## on August 22, 2019
-##
+## Environment check (on August 22, 2019)
 
 
 ### Brew
 
-**Path:**    /usr/local/bin/brew
-**Version:** Homebrew 2.1.10
+- **Path:**    /usr/local/bin/brew
+- **Version:** Homebrew 2.1.10
 Homebrew/homebrew-core (git revision 2bbc; last commit 2019-08-22)
 
-**Packages installed:**
+**Packages installed:**
+```
 autoconf 2.69
 automake 1.16.1_1
 bash 5.0.9
@@ -59,15 +57,18 @@ sqlite 3.29.0
 webp 1.0.3
 x265 3.1.2
 xz 5.2.4
+```
+
 
 ### Ruby
 
-**Path:**    /usr/local/opt/ruby/bin/ruby
-**Version:** ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin15]
-**Path:**    /usr/local/opt/ruby/bin/gem
-**Version:** 3.0.6
+- **Path:**    /usr/local/opt/ruby/bin/ruby
+- **Version:** ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin15]
+- **Path:**    /usr/local/opt/ruby/bin/gem
+- **Version:** 3.0.6
 
-**Packages installed:**
+**Packages installed:**
+```
 bundler (2.0.2, default: 1.17.3)
 chunky_png (1.3.11)
 compass (1.0.3)
@@ -87,15 +88,18 @@ sass (3.7.4, 3.4.25)
 sass-listen (4.0.0)
 test-unit (3.3.3, 3.2.9)
 xmlrpc (0.3.0)
+```
+
 
 ### Node JS
 
-**Path:**    /usr/local/bin/node
-**Version:** v12.9.0
-**Path:**    /usr/local/bin/npm
-**Version:** 6.11.2
+- **Path:**    /usr/local/bin/node
+- **Version:** v12.9.0
+- **Path:**    /usr/local/bin/npm
+- **Version:** 6.11.2
 
-**Packages installed:**
+**Packages installed:**
+```
 /usr/local/lib
 +-- @absolunet/nwayo-cli@3.7.0
 +-- bower@1.8.8
@@ -103,9 +107,10 @@ xmlrpc (0.3.0)
 +-- less@3.10.3
 +-- npm@6.11.2
 `-- webpack@4.39.2
+```
 
 
 ### Composer
 
-**Path:**    /usr/local/bin/composer
-**Version:** Composer version 1.9.0 2019-08-02 20:55:32
+- **Path:**    /usr/local/bin/composer
+- **Version:** Composer version 1.9.0 2019-08-02 20:55:32
