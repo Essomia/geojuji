@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source util-colors.sh
+source util-titles.sh
 
 ###########
 # Env Resume
@@ -24,24 +25,6 @@ fi
 
 # FUNCTIONS
 # --------------------------------
-
-function resume_title() {
-    echo "";
-    echo -e "${YELLOW_UL}$1...${RESET}";
-}
-
-function resume_subtitle() {
-    echo "";
-    echo -e "${YELLOW_BG}$(printf "%-$((50))s" " ")${RESET}";
-    echo -e "${YELLOW_BG} $1$(printf "%-$((49 - ${#1}))s" " ")${RESET}";
-    echo -e "${YELLOW_BG}$(printf "%-$((50))s" " ")${RESET}";
-    echo "";
-}
-
-function resume_section() {
-    echo -e "${YELLOW_UL}$1${RESET}";
-}
-
 
 function resume_fn_check() {
     resume_title "Environment Check";
