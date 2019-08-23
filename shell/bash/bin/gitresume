@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source util-colors.sh
+source util-titles.sh
 
 ###########
 # GIT RESUME
@@ -19,15 +20,6 @@ fi
 
 # FUNCTIONS
 # --------------------------------
-
-function resume_title() {
-    echo -e "${YELLOW_BG}In: $1 $(printf "%-$((50 - ${#1}))s" " ")${RESET}";
-}
-
-function resume_subtitle() {
-    echo -e "${YELLOW_UL}$1:${RESET}";
-}
-
 
 function resume_fn_remotes() {
     if [[ -n $(/usr/bin/git remote -vv) ]]; then
