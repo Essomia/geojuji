@@ -1,29 +1,12 @@
 #!/bin/bash
 
+source util-colors.sh
+source util-titles.sh
+
 ###########
-# GIT RESUME
+# Git resume
 # A helper to get a status for git repository in a folder.
 ###########
-
-
-# COLORS
-# https://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
-# --------------------------------
-
-RESET="\033[0m";
-BLUE="\033[0;36m";
-BLUE_BG="\033[7;36m";
-BLUE_UL="\033[4;36m";
-GREEN="\033[0;32m";
-GREEN_BG="\033[7;32m";
-GREEN_UL="\033[4;32m";
-RED="\033[0;31m";
-RED_BG="\033[7;31m";
-RED_UL="\033[4;31m";
-YELLOW="\033[0;33m";
-YELLOW_BG="\033[7;33m";
-YELLOW_UL="\033[4;33m";
-
 
 # USAGE
 # --------------------------------
@@ -31,6 +14,10 @@ YELLOW_UL="\033[4;33m";
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
     echo -e "  $(basename "$0") ${BLUE}<folder> <max-depth[1]>${RESET}";
+    echo "";
+    echo -e "${YELLOW_UL}Examples:${RESET}";
+    echo -e "  $(basename "$0") ${PINK}sub-folder${RESET}";
+    echo -e "  $(basename "$0") ${PINK}../parent-folder 2${RESET}";
     exit 1;
 fi
 
@@ -38,110 +25,74 @@ fi
 # FUNCTIONS
 # --------------------------------
 
-function resume_title() {
-    echo -e "${YELLOW_BG}In: $1 $(printf "%-$((50 - ${#1}))s" " ")${RESET}";
+BIN_GIT=$(/usr/bin/which git);
+
+function fnRemotes() {
+    styleSubtitle "Remotes";
+
+    if [[ -n $($BIN_GIT remote -vv) ]]; then
+        $BIN_GIT remote -vv;
+    else
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}No remote was specified for this repository.${RESET}";
+    fi
 }
 
-function resume_subtitle() {
-    echo -e "${YELLOW_UL}$1:${RESET}";
+function fnBranches() {
+    styleSubtitle "Branches";
+
+    if [[ -n $($BIN_GIT branch -vv) ]]; then
+        $BIN_GIT branch -vv;
+    else
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You have no local branches used for development.${RESET}";
+    fi
 }
 
+function fnStatus() {
+    styleSubtitle "Status";
 
-function resume_fn_remotes() {
-    if [[ -n $(/usr/bin/git remote -vv) ]]; then
-        echo -e "${GREEN_UL}Ok:${RESET} You have configured a remote for this repository.";
+    if [[ -n $($BIN_GIT status -s) ]]; then
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You have some change to commit.${RESET}";
         echo "";
 
-        /usr/bin/git remote -vv;
+        $BIN_GIT status -s;
     else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} No remote was specified for this repository.${RESET}";
+        echo -e "No changes to commit.";
     fi
 }
 
-function resume_fn_branches() {
-    if [[ -n $(/usr/bin/git branch -vv) ]]; then
-        echo -e "${GREEN_UL}Ok:${RESET} You use branches for development.";
-        echo "";
+function fnFetching() {
+    styleSubtitle "Fetching branches";
 
-        /usr/bin/git branch -vv --no-color;
-    else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} You have no branches to use for development.${RESET}";
-    fi
-}
-
-function resume_fn_status() {
-    if [[ -n $(/usr/bin/git status -s) ]]; then
-        echo -e "${RED_UL}ERROR:${RESET}${RED} You have some change to commit.${RESET}";
-        echo "";
-
-        /usr/bin/git status -s;
-    else
-        echo -e "${GREEN_UL}Ok:${RESET} No changes to commit.";
-    fi
-}
-
-function resume_fn_pulling() {
-    if [[ -n $(/usr/bin/git remote -vv) ]]; then
-        if [[ -z $(/usr/bin/git status -s) ]]; then
-            echo -e "${GREEN_UL}Ok:${RESET} Your local repository is now updated!";
-            echo "";
-
-            /usr/bin/git pull -pv;
-        else
-            echo -e "${RED_UL}ERROR:${RESET}${RED} You have some change to commit (before pulling).${RESET}";
-        fi
-    else
-        echo -e "${RED_UL}ERROR:${RESET}${RED} No remote was specified for this repository.${RESET}";
+    if [[ -n $($BIN_GIT remote -vv) ]]; then
+        $BIN_GIT fetch -pv;
     fi
 }
 
 
-# GIT RESUME
+# SWITCHER
 # --------------------------------
 
 if [ -d "$1" ]; then
-    # Define folders (current and where to look)
+    # actual absolute folder
     FOLDER_ROOT=$(pwd);
-    ARGS_FOLDER=$1;
-
-    # Define max depth
-    if [[ -z $2 ]]; then
-        ARGS_MAXDEPTH=1;
-    else
-        ARGS_MAXDEPTH=$2;
-    fi
-
-    # Display runing header
-    echo -e "${BLUE_UL}Running function:${RESET}";
-    echo -e "${BLUE}- from:${RESET} ${FOLDER_ROOT}";
-    echo -e "${BLUE}- to:${RESET} ${ARGS_FOLDER}";
-    echo -e "${BLUE}- maxdepth:${RESET} ${ARGS_MAXDEPTH}";
+    # relative path to explore
+    ARGS_FOLDER=${1%/};
+    # max depth sub-folder to check
+    ARGS_MAXDEPTH=$([[ -z $2 ]] && echo '1' || echo $2);
 
     # Loop in all git repository found with given arguments
     find $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
         cd $FOLDER_ROOT/${DIR%.git};
 
-        echo "";
-        resume_title ${DIR%.git};
+        styleTitle ${DIR%.git};
 
-        echo "";
-        resume_subtitle "Remotes";
-        resume_fn_remotes;
-
-        echo "";
-        resume_subtitle "Pull";
-        resume_fn_pulling;
-
-        echo "";
-        resume_subtitle "Branches";
-        resume_fn_branches;
-
-        echo "";
-        resume_subtitle "Status";
-        resume_fn_status;
-
-        cd $FOLDER_ROOT;
+        fnRemotes;
+        fnFetching;
+        fnBranches;
+        fnStatus;
     done
+
+    cd $FOLDER_ROOT;
 else
-    echo -e "${RED_UL}ERROR:${RESET}${RED} '$1' is not a folder.${RESET}";
+    echo -e "${RED_UL}ERROR:${RESET} ${RED}'$1' is not a folder.${RESET}";
 fi
