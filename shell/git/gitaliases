@@ -5,51 +5,39 @@
 
 [alias]
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
-    ########## WIP
-    wip    = stash
-    wipa   = stash apply
-    wipd   = stash drop
-    wipl   = stash list
-    wips   = stash push -m
-    wipw   = stash show
-    ########## LOCAL WORK
+
+    ########## ALIAS
+
     ad     = add
     bl     = blame
-    ci     = commit
-    cia    = commit --amend
-    cim    = commit -m
-    sh     = show
-    st     = status
-    subf   = submodule foreach
-    ########## LOCAL BRANCH
     br     = branch
+    ci     = commit
+    cl     = clone
     co     = checkout
-    cob    = checkout -b
     cp     = cherry-pick
     df     = diff
     dfc    = diff --cached
     dft    = difftool
+    fc     = fetch
     mg     = merge
     mgt    = mergetool
-    rb     = rebase -i --autosquash
-    re     = reset
-    tg     = tag
-    ########## REMOTE
-    cl     = clone
-    fc     = fetch
     pl     = pull
-    plrb   = pull --rebase
     ps     = push
-    psf    = push -f
-    pst    = push --tags
-    psu    = push -u
-    rt     = remote
-    ########## RANKING
+    reba   = rebase -i --autosquash
+    sh     = show
+    st     = status
+    subf   = submodule foreach
+    tg     = tag
+    wip    = stash
+
+    ########## SHORTCUT
+
+    ign    = status --ignored
     rank   = shortlog -sn --no-merges
     who    = shortlog -sn --merges
-    ########## IGNORE
-    ign    = status --ignored
+
     ########## LOG
+
     forest = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all"
     leaf   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
     tree   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short"
