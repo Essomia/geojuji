@@ -34,7 +34,6 @@ To develop PHP projects, you will need the following to be installed and set:
 - [Sequel Pro](https://www.sequelpro.com/)
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in details and let you use Google.
-However, for intel, bellow my configuration:
 
 
 
@@ -43,7 +42,9 @@ However, for intel, bellow my configuration:
 
 Since we develop multiple websites, we need to set our local hosts to works properly.
 
-Edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
+First uncommented `Include /etc/apache2/extra/httpd-vhosts.conf` in `/etc/apache2/httpd.conf`.
+
+Then edit `/etc/apache2/extra/httpd-vhosts.conf` to add the basic localhost config:
 
 ```bash
 #
@@ -125,6 +126,57 @@ Then, edit `/etc/hosts` to list your local websites urls:
 Now, when you go to `http://project.client.dev.domain.com`, you can see the sources of your website that you develop under `[DocumentRoot]/develop/client/project/` folder.
 
 
+### 3.3 Confugure SSL for protected website
+
+Sometime we want to get a certificate for our localhost website, either to use in local development or for distribution with a native application that needs to communicate with a web application.
+
+So, to obtain a SSL certificate, you will need to:
+1. Generate a key for the server.
+```
+mkdir ~/.ssh/ssl/
+cd ~/.ssh/ssl/
+sudo ssh-keygen -f php-server.key # with no passphrase
+```
+2. Create the certificate request file with information that will be used in the SSL certificate
+```
+sudo openssl req -new -key php-server.key -out php-request.csr
+```
+3. Create the self-signed certificate
+```
+sudo openssl x509 -req -days 365 -in php-request.csr -signkey php-server.key -out php-server.crt
+```
+4. Configure Apache to use the certificate created
+In `/etc/apache2/httpd.conf`, you need to enable `ssl_module` and include `/etc/apache2/extra/httpd-ssl.conf`.
+In `/etc/apache2/extra/httpd-ssl.conf` add the following lines:
+```
+SSLCertificateFile "~/.ssh/ssl/php-server.crt"
+SSLCertificateKeyFile "~/.ssh/ssl/php-server.key"
+```
+And then remove the following one:
+```
+SSLCACertificatePath
+SSLCARevocationPath
+```
+5. Configure our Virtual Host
+Go to `/etc/apache2/extra/httpd-vhosts.conf` and adjust our virtual host to use SSL:
+```
+<VirtualHost *:443>
+    ServerName list.local
+    ServerAlias *.*.local
+    ServerAlias www.*.*.local
+    VirtualDocumentRoot /Users/[username]/Sites/develop/%-4/%-5/
+
+    SSLEngine on
+    SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
+    SSLCertificateFile /Users/[username]/.ssh/ssl/php-server.crt
+    SSLCertificateKeyFile /Users/[username]/.ssh/ssl/php-server.key
+</VirtualHost>
+```
+6. Restart Apache
+```
+sudo apachectl restart
+sudo apachectl configtest
+```
 
 
 -------------------------------------
