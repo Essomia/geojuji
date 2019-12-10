@@ -33,6 +33,7 @@
     ########## SHORTCUT
 
     ign    = status --ignored
+    author = shortlog -sn --email
     rank   = shortlog -sn --no-merges
     who    = shortlog -sn --merges
 
