@@ -44,6 +44,19 @@ function getProjectLatestTag($projectDirectory) {
     return $labelLatestTag;
 }
 
+function isProjectAbandoned($projectDirectory) {
+    $lastCommitUnix = trim(exec('cd '.$projectDirectory.'; git log -1 --format=%ct;'));
+    $currentUnix    = time();
+    $oneMonthUnix   = 2629743;
+    $classAbandoned = "";
+
+    if (($currentUnix - $oneMonthUnix) >= $lastCommitUnix) {
+        $classAbandoned = "is-abandoned";
+    }
+
+    return $classAbandoned;
+}
+
 function createProjectTableList($dirname, $extension) {
     // Get target folder of localhost
     $rootLocalhost  = dirname($_SERVER["SCRIPT_FILENAME"]);
@@ -68,8 +81,9 @@ function createProjectTableList($dirname, $extension) {
     foreach (glob($rootCompany . '/**/*' , GLOB_ONLYDIR) as $projectPath) {
         $projectPathData  = array_slice(explode(DIRECTORY_SEPARATOR, $projectPath), $nbPathExploded);
         $projectDirectory = $rootCompany.DIRECTORY_SEPARATOR.$projectPathData[0].DIRECTORY_SEPARATOR.$projectPathData[1];
+        $isAbandoned      = isProjectAbandoned($projectDirectory);
 
-        $projectRow .= "<tr class='row'>";
+        $projectRow .= "<tr class='row {$isAbandoned}'>";
         $projectRow .= "    <td>";
         $projectRow .= "        <a href='http://{$projectPathData[1]}.{$projectPathData[0]}.{$extension}'>";
         $projectRow .= "            {$projectPathData[0]} / {$projectPathData[1]}";
