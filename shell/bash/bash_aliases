@@ -45,7 +45,7 @@ alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}";
 # --------------------------------
 
 # Edit configuration
-alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
+alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-ssl.conf'
 alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
 alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitignore'
 alias conf_hosts='sudo edit /etc/hosts'
@@ -55,6 +55,7 @@ alias conf_php="edit /usr/local/php5/lib/php.ini"
 alias apache_errlogs='less +F /var/log/apache2/dev_error_log'
 alias apache_httplogs='tail /var/log/httpd/error_log'
 alias apache_restart='sudo apachectl graceful'
+alias php_memory='php -d memory_limit=-1'
 
 # MySQL
 alias mysql_connect='mysql -u root -p'
