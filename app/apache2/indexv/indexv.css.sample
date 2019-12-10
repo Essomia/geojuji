@@ -1,8 +1,8 @@
 /**
- * Special vhosts localhost styles
- *
- * @link: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
- **/
+* Special vhosts localhost styles
+*
+* @link: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
+**/
 
 
 @import url('../localhost.css');
@@ -34,3 +34,7 @@
 .flag.wip          { background: #eecc0b; }
 .flag.wp           { background: #21759a; }
 .flag.sf           { background: #db5252; }
+
+.is-abandoned {
+    opacity: .1;
+}
