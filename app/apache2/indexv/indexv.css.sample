@@ -31,6 +31,7 @@
 .flag.branch.root  { background: #b7b7b7; }
 .flag.branch.other { background: #e07a7a; }
 .flag.tag          { background: #ade07a; }
+
 .flag.wip          { background: #eecc0b; }
 .flag.wp           { background: #21759a; }
 .flag.sf           { background: #db5252; }
