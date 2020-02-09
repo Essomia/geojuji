@@ -7,6 +7,7 @@
     - 1. Set PHP Environment
     - 2. Set default local host
     - 3. Set a custom local host
+    - 4. Confugure SSL for protected website
 
 4. [Install application's configurations](#4-install-applications-configurations)
     - 1. Terminal
@@ -126,7 +127,7 @@ Then, edit `/etc/hosts` to list your local websites urls:
 Now, when you go to `http://project.client.dev.domain.com`, you can see the sources of your website that you develop under `[DocumentRoot]/develop/client/project/` folder.
 
 
-### 3.3 Confugure SSL for protected website
+### 3.4 Confugure SSL for protected website
 
 Sometime we want to get a certificate for our localhost website, either to use in local development or for distribution with a native application that needs to communicate with a web application.
 
@@ -252,7 +253,7 @@ ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local
 
 Another code editor that you can use is `Visual Studio Code` (VSC).
 
-To ensure to have the same configurations installed between working stations, we will add Sublime Text's configuration files into the repository and symlink the folder to let VSC use them again.
+To ensure to have the same configurations installed between working stations, we will add Visual Studio Code's configuration files into the repository and symlink the folder to let VSC use them again.
 
 ##### Configuration
 
@@ -270,7 +271,6 @@ ln -s ~/geojuji/app/visual-studio-code ~/Library/Application\ Support/Code/User
 ```
 
 Now, all VSC's configurations can be found under `~/geojuji/app/visual-studio-code/` folder.
-Note that a little list of recommanded plugins can be found at `~/geojuji/app/visual-studio-code/plugins.json`
 
 ##### Binary
 
@@ -279,3 +279,29 @@ To add `vscode` command, create a symlink with the following command:
 ```bash
 ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/vscode
 ```
+
+##### Extension
+
+For my recommended extensions for VSC, you can install them easily without find/install. For that, you need to run the following command with the `vscode` binary command we just created:
+
+```bash
+vscode --install-extension Atishay-Jain.All-Autocomplete
+vscode --install-extension dbaeumer.vscode-eslint
+vscode --install-extension dsznajder.es7-react-js-snippets
+vscode --install-extension esbenp.prettier-vscode
+vscode --install-extension felixfbecker.php-intellisense
+vscode --install-extension HookyQR.JSDocTagComplete
+vscode --install-extension ionutvmi.path-autocomplete
+vscode --install-extension jeremyljackson.vs-docblock
+vscode --install-extension jerrylopez.magento2-snippets
+vscode --install-extension naumovs.color-highlight
+vscode --install-extension neilbrayfield.php-docblocker
+vscode --install-extension sleistner.vscode-fileutils
+vscode --install-extension steoates.autoimport
+vscode --install-extension stylelint.vscode-stylelint
+vscode --install-extension xabikos.JavaScriptSnippets
+```
+
+Please note that the `~/geojuji/app/visual-studio-code/settings.json` come with default configurations for linters (`eslint` and `stylelint` extensions). They have some default paths for `php5`, `node` and `prettier` executable. Please ensure that these path are correct for you.
+
+*PS:* If you need to share your own extension, run the followin command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
