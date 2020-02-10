@@ -148,7 +148,7 @@ function fnBrew() {
                 $BIN_BREW update;
                 ;;
             "upgrade")
-                $BIN_BREW upgrade;
+                $BIN_BREW upgrade -v;
                 $BIN_BREW cleanup -s;
                 ;;
             *)
