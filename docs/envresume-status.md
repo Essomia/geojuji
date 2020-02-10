@@ -1,119 +1,85 @@
-## Environment check (on January 22, 2020)
+## Environment check (on 2020-02-09)
 
 
 ### Brew
 
 - **Path:**    /usr/local/bin/brew
-- **Version:** Homebrew 2.2.4
-Homebrew/homebrew-core (git revision 3e76b; last commit 2020-01-22)
+- **Version:** Homebrew 2.2.5
+Homebrew/homebrew-core (git revision 75276; last commit 2020-02-10)
+Homebrew/homebrew-cask (git revision 69f42; last commit 2020-02-10)
 
 **Packages installed:**
+- in `/usr/local/Cellar/`, `/usr/local/opt/`
+
 ```
-autoconf 2.69
-automake 1.16.1_1
 bash 5.0.11
-bash-completion 1.3_3
-bison 3.5.1
-cmake 3.16.2
-doxygen 1.8.17
-freetype 2.10.1
 gdbm 1.18.1
 gettext 0.20.1
-git 2.25.0
-glib 2.62.4
-graphicsmagick 1.3.33
+git 2.25.0_1
 icu4c 64.2
-ilmbase 2.4.0
-imagemagick 7.0.9-16
-intltool 0.51.0
-itstool 2.0.6
-jasper 2.0.16_1
-jpeg 9d
-libde265 1.0.5
-libffi 3.2.1
-libheif 1.6.1
-libomp 9.0.0
-libpng 1.6.37
-libtiff 4.1.0
-libtool 2.4.6_1
-libxml2 2.9.10
-libyaml 0.2.2
-little-cms2 2.9
-meson 0.53.0
-nasm 2.14.02
-ninja 1.9.0
-node 13.7.0
-openexr 2.4.0
-openjpeg 2.3.1
-openssl 1.0.2s
+node 13.8.0
 openssl@1.1 1.1.1d
-pcre 8.43
 pcre2 10.34
 pkg-config 0.29.2
 python 3.7.6_1
-python@2 2.7.17_1
 readline 8.0.1
-ruby 2.6.5
-shared-mime-info 1.15
-sphinx-doc 2.3.1
-sqlite 3.30.1
-webp 1.1.0
-x265 3.2.1
+sqlite 3.31.1
 xz 5.2.4
 ```
 
 
 ### Ruby
 
-- **Path:**    /usr/local/opt/ruby/bin/ruby
-- **Version:** ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-darwin15]
-- **Path:**    /usr/local/opt/ruby/bin/gem
-- **Version:** 3.1.2
+- **Path:**    /usr/bin/ruby
+- **Version:** ruby 2.0.0p648 (2015-12-16 revision 53162) [universal.x86_64-darwin15]
+- **Path:**    /usr/bin/gem
+- **Version:** 2.0.14.1
 
 **Packages installed:**
+- in `/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/gems/2.0.0/gems`
+
 ```
-bundler (2.1.4, default: 2.1.2)
-chunky_png (1.3.11)
-compass (1.0.3)
-compass-core (1.0.3)
-compass-import-once (1.0.5)
-did_you_mean (1.4.0, 1.3.0)
-ffi (1.12.1)
-minitest (5.14.0, 5.11.3)
-multi_json (1.14.1)
-net-telnet (0.2.0)
-power_assert (1.1.5, 1.1.3)
-rake (13.0.1, 12.3.2)
-rb-fsevent (0.10.3)
-rb-inotify (0.10.1)
-rubygems-update (3.1.2)
-sass (3.7.4, 3.4.25)
-sass-listen (4.0.0)
-test-unit (3.3.5, 3.2.9)
-xmlrpc (0.3.0)
+bigdecimal (1.2.0)
+CFPropertyList (2.3.5)
+io-console (0.4.2)
+json (1.7.7)
+libxml-ruby (3.0.0)
+minitest (4.3.2)
+nokogiri (1.5.6)
+psych (2.0.0)
+rake (0.9.6)
+rdoc (4.0.0)
+sqlite3 (1.3.13)
+test-unit (2.0.0.0)
 ```
 
 
 ### Node JS
 
 - **Path:**    /usr/local/bin/node
-- **Version:** v13.7.0
+- **Version:** v13.8.0
 - **Path:**    /usr/local/bin/npm
-- **Version:** 6.13.6
+- **Version:** 6.13.7
 
 **Packages installed:**
+- in `/usr/local/lib/node_modules`
+
 ```
 /usr/local/lib
-+-- @absolunet/nwayo-cli@3.7.1
-+-- bower@1.8.8
++-- eslint@6.8.0
 +-- gulp-cli@2.2.0
-+-- less@3.10.3
-+-- npm@6.13.6
-`-- webpack@4.41.5
++-- npm@6.13.7
++-- prettier@1.19.1
++-- scss@0.2.4
++-- stylelint@13.1.0
++-- stylelint-order@4.0.0
++-- stylelint-scss@3.14.2
++-- webpack@4.41.5
+`-- webpack-cli@3.3.10
 ```
 
 
 ### Composer
 
 - **Path:**    /usr/local/bin/composer
-- **Version:** Composer version 1.9.2 2020-01-14 16:30:31
+- **Version:** Composer version 1.9.3 2020-02-04 12:58:49
