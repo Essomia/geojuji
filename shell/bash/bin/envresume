@@ -20,6 +20,7 @@ if [ $# -lt 1 ]; then
     echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
     echo -e "  ${GREEN}update${RESET}    Update main packages manager.";
     echo -e "  ${GREEN}upgrade${RESET}   Update global outdated packages.";
+    echo -e "  ${GREEN}all${RESET}       ATT: Do all the above in order: outdated -> update -> upgrade -> check";
     exit 1;
 fi
 
@@ -187,6 +188,37 @@ if [ -n "$1" ]; then
                     fnRuby $1;
                     fnNodejs $1;
                     fnComposer $1;
+                    ;;
+            esac
+            ;;
+        "all")
+            case $2 in
+                "brew")
+                    fnBrew 'outdated';
+                    fnBrew 'update';
+                    fnBrew 'upgrade';
+                    fnBrew 'check';
+                    ;;
+                "ruby")
+                    fnRuby 'outdated';
+                    fnRuby 'update';
+                    fnRuby 'upgrade';
+                    fnRuby 'check';
+                    ;;
+                "node")
+                    fnNodejs 'outdated';
+                    fnNodejs 'update';
+                    fnNodejs 'upgrade';
+                    fnNodejs 'check';
+                    ;;
+                "composer")
+                    fnComposer 'outdated';
+                    fnComposer 'update';
+                    fnComposer 'upgrade';
+                    fnComposer 'check';
+                    ;;
+                *)
+                    echo -e "${RED_UL}ERROR:${RESET} ${RED}Can't do all all.${RESET}"
                     ;;
             esac
             ;;
