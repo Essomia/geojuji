@@ -1,18 +1,18 @@
-## Environment check (on 2020-02-09)
+## Environment check (on 2020-02-15)
 
 
 ### Brew
 
 - **Path:**    /usr/local/bin/brew
 - **Version:** Homebrew 2.2.5
-Homebrew/homebrew-core (git revision 75276; last commit 2020-02-10)
-Homebrew/homebrew-cask (git revision 69f42; last commit 2020-02-10)
+Homebrew/homebrew-core (git revision 2ab6; last commit 2020-02-15)
+Homebrew/homebrew-cask (git revision bed04; last commit 2020-02-15)
 
 **Packages installed:**
 - in `/usr/local/Cellar/`, `/usr/local/opt/`
 
 ```
-bash 5.0.11
+bash 5.0.16
 gdbm 1.18.1
 gettext 0.20.1
 git 2.25.0_1
@@ -66,16 +66,10 @@ test-unit (2.0.0.0)
 
 ```
 /usr/local/lib
-+-- eslint@6.8.0
 +-- gulp-cli@2.2.0
 +-- npm@6.13.7
-+-- prettier@1.19.1
-+-- scss@0.2.4
-+-- stylelint@13.1.0
-+-- stylelint-order@4.0.0
-+-- stylelint-scss@3.14.2
-+-- webpack@4.41.5
-`-- webpack-cli@3.3.10
++-- webpack@4.41.6
+`-- webpack-cli@3.3.11
 ```
 
 

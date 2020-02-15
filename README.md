@@ -26,4 +26,6 @@ You can read the complete step-by-step guide to set and install all needed tools
 1. [Shell: Install and configure shell for development.](./docs/shell.md)
 2. [App: Configure applications and environment.](./docs/app.md)
 
+If you want to know my latest setup status, you can check the [envresume-status](./docs/envresume-status.md) file.
+
 :notebook: The following guide will refer to the current repository as `~/geojuji/`. Please adjust all commands as needed.
