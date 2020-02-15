@@ -286,9 +286,7 @@ For my recommended extensions for VSC, you can install them easily without find/
 
 ```bash
 vscode --install-extension Atishay-Jain.All-Autocomplete
-vscode --install-extension dbaeumer.vscode-eslint
 vscode --install-extension dsznajder.es7-react-js-snippets
-vscode --install-extension esbenp.prettier-vscode
 vscode --install-extension felixfbecker.php-intellisense
 vscode --install-extension HookyQR.JSDocTagComplete
 vscode --install-extension ionutvmi.path-autocomplete
@@ -298,10 +296,9 @@ vscode --install-extension naumovs.color-highlight
 vscode --install-extension neilbrayfield.php-docblocker
 vscode --install-extension sleistner.vscode-fileutils
 vscode --install-extension steoates.autoimport
-vscode --install-extension stylelint.vscode-stylelint
 vscode --install-extension xabikos.JavaScriptSnippets
 ```
 
-Please note that the `~/geojuji/app/visual-studio-code/settings.json` come with default configurations for linters (`eslint` and `stylelint` extensions). They have some default paths for `php5`, `node` and `prettier` executable. Please ensure that these path are correct for you.
+Please note that the `~/geojuji/app/visual-studio-code/settings.json` come with default configurations and have some default paths for `php5` executable. Please ensure that these path are correct for you.
 
 *PS:* If you need to share your own extension, run the followin command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
