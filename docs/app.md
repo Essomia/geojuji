@@ -290,6 +290,7 @@ vscode --install-extension bmewburn.vscode-intelephense-client
 vscode --install-extension dbaeumer.vscode-eslint
 vscode --install-extension dsznajder.es7-react-js-snippets
 vscode --install-extension EditorConfig.EditorConfig
+vscode --install-extension esbenp.prettier-vscode
 vscode --install-extension felixfbecker.php-intellisense
 vscode --install-extension HookyQR.JSDocTagComplete
 vscode --install-extension ionutvmi.path-autocomplete
@@ -306,4 +307,4 @@ vscode --install-extension xabikos.JavaScriptSnippets
 
 Please note that the `~/geojuji/app/visual-studio-code/settings.json` come with default configurations and have some default paths for `php5` executable. Please ensure that these path are correct for you.
 
-*PS:* If you need to share your own extension, run the followin command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
+_PS:_ If you need to share your own extension, run the followin command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
