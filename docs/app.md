@@ -286,6 +286,8 @@ For my recommended extensions for VSC, you can install them easily without find/
 
 ```bash
 vscode --install-extension Atishay-Jain.All-Autocomplete
+vscode --install-extension bmewburn.vscode-intelephense-client
+vscode --install-extension dbaeumer.vscode-eslint
 vscode --install-extension dsznajder.es7-react-js-snippets
 vscode --install-extension EditorConfig.EditorConfig
 vscode --install-extension felixfbecker.php-intellisense
@@ -293,10 +295,12 @@ vscode --install-extension HookyQR.JSDocTagComplete
 vscode --install-extension ionutvmi.path-autocomplete
 vscode --install-extension jeremyljackson.vs-docblock
 vscode --install-extension jerrylopez.magento2-snippets
+vscode --install-extension junstyle.php-cs-fixer
 vscode --install-extension naumovs.color-highlight
 vscode --install-extension neilbrayfield.php-docblocker
 vscode --install-extension sleistner.vscode-fileutils
 vscode --install-extension steoates.autoimport
+vscode --install-extension stylelint.vscode-stylelint
 vscode --install-extension xabikos.JavaScriptSnippets
 ```
 

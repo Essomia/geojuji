@@ -2,9 +2,6 @@
     // Text Editor
     "editor.autoClosingBrackets": "always",
     "editor.autoClosingQuotes": "always",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": false
-    },
     "editor.fontSize": 14,
     "editor.renderWhitespace": "boundary",
     "editor.tabCompletion": "on",
@@ -19,14 +16,12 @@
     },
     "editor.suggestFontSize": 12,
     "editor.suggest.maxVisibleSuggestions": 10,
-    "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 5000,
     "files.defaultLanguage": "${activeEditorLanguage}",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {
-        "**/bower_components/**": true,
-        "**/vendor/**": true
+        "**/node_modules/**": false
     },
     // Workbench
     "workbench.colorTheme": "Monokai",
@@ -34,8 +29,6 @@
     "workbench.startupEditor": "none",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.tabSizing": "shrink",
-    "workbench.settings.openDefaultKeybindings": true,
-    "workbench.settings.openDefaultSettings": true,
     "workbench.tree.indent": 10,
     "workbench.tree.renderIndentGuides": "always",
     "workbench.view.alwaysShowHeaderActions": true,
@@ -46,7 +39,9 @@
     // Features
     "search.enableSearchEditorPreview": true,
     "search.exclude": {
-        "**/.git": true
+        "**/.git": true,
+        "**/bower_components": false,
+        "**/node_modules": false
     },
     "search.showLineNumbers": true,
     "search.smartCase": true,
@@ -69,9 +64,6 @@
     "css.lint.universalSelector": "warning",
     "css.lint.unknownVendorSpecificProperties": "warning",
     "css.lint.zeroUnits": "warning",
-    "emmet.excludeLanguages": [
-        "markdown"
-    ],
     "emmet.triggerExpansionOnTab": true,
     "git.branchSortOrder": "alphabetically",
     "git.countBadge": "off",
@@ -94,6 +86,7 @@
     "less.lint.zeroUnits": "warning",
     "merge-conflict.autoNavigateNextConflict.enabled": true,
     "npm.enableRunFromFolder": true,
+    "npm.enableScriptExplorer": true,
     "php.validate.executablePath": "/usr/local/php5/bin/php",
     "scss.lint.argumentsInColorFunction": "warning",
     "scss.lint.boxModel": "warning",
@@ -109,16 +102,51 @@
     "scss.lint.zeroUnits": "warning",
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.quoteStyle": "single",
-    // Extensions (Installed)
+    // Extensions (Installed - Adjustement Default)
+    "css.validate": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": false,
+        "source.fixAll.stylelint": true,
+        "source.fixAll.eslint": true
+    },
+    "less.validate": false,
+    "php.suggest.basic": false,
+    "scss.validate": false,
+    // Extensions (Installed - Config)
     "AllAutocomplete.cycleOpenDocumentsOnLaunch": true,
     "AllAutocomplete.maxItemsInSingleList": 500,
     "AllAutocomplete.maxLines": 5000,
     "AllAutocomplete.updateOnlyOnSave": true,
-    "autoimport.filesToScan": "**/*.{ts,tsx,js,jsx}",
+    "autoimport.filesToScan": "./**/*.{ts,tsx,js,jsx}",
+    "autoimport.showNotifications": true,
     "color-highlight.matchWords": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
     "fileutils.delete.useTrash": true,
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/.svn/**",
+        "**/.hg/**",
+        "**/CVS/**",
+        "**/.DS_Store/**",
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/vendor/**/{Tests,tests,Test,test}/**"
+    ],
+    "intelephense.phpdoc.returnVoid": false,
+    "intelephense.rename.exclude": [
+        "**/vendor/**",
+        "**/node_modules/**"
+    ],
+    "intelephense.environment.phpVersion": "7.2.9",
     "path-autocomplete.extensionOnImport": true,
     "path-autocomplete.triggerOutsideStrings": true,
+    "php-cs-fixer.rules": "@PSR2",
+    "php-docblocker.qualifyClassNames": true,
+    "php-docblocker.returnGap": true,
+    "php-docblocker.returnVoid": false,
     "php-docblocker.useShortNames": true,
+    "php.validate.enable": false,
+    "stylelint.reportNeedlessDisables": true,
     "vs-docblockr.phpMixedUnionTypes": true
 }
