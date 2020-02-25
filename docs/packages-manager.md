@@ -6,7 +6,7 @@
 1. [Ruby](#2-ruby)
 1. [Node.Js](#3-node.js)
 1. [Composer](#4-composer)
-1. [Bonus: Envresume](#5-bonus:-envresume)
+1. [Bonus: Envresume](#5-bonus-envresume)
 
 ---
 

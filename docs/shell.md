@@ -6,7 +6,7 @@
 1. [XCode](#2-xcode)
 1. [Bash](#3-bash)
 1. [Git](#4-git)
-1. [Bonus: CMD](#5-bonus:-cmd)
+1. [Bonus: CMD](#5-bonus-cmd)
 
 ---
 

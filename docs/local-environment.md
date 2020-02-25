@@ -3,10 +3,10 @@
 **Table of content:**
 
 1. [Set a local PHP Environment](#1-set-a-local-php-environment)
-1. [VHosts: Default local host](#2-vhosts:-default-local-host)
-1. [VHosts: Custom local host](#3-vhosts:-custom-local-host)
-1. [SSL: Generate a certificate](#4-ssl:-generate-a-certificate)
-1. [SSL: Set Apache to use a certificate](#5-ssl:-set-apache-to-use-a-certificate)
+1. [VHosts: Default local host](#2-vhosts-default-local-host)
+1. [VHosts: Custom local host](#3-vhosts-custom-local-host)
+1. [SSL: Generate a certificate](#4-ssl-generate-a-certificate)
+1. [SSL: Set Apache to use a certificate](#5-ssl-set-apache-to-use-a-certificate)
 
 ---
 
