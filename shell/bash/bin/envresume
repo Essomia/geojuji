@@ -16,11 +16,11 @@ if [ $# -lt 1 ]; then
     echo -e "  $(basename "$0") ${BLUE}<command> [option:brew|ruby|node|composer]${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}check${RESET}     Check paths and current version of installed packages.";
-    echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
     echo -e "  ${GREEN}update${RESET}    Update main packages manager.";
     echo -e "  ${GREEN}upgrade${RESET}   Update global outdated packages.";
-    echo -e "  ${GREEN}all${RESET}       ATT: Do all the above in order: outdated -> update -> upgrade -> check";
+    echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
+    echo -e "  ${GREEN}checkup${RESET}   Check paths and current version of installed packages.";
+    echo -e "  ${GREEN}all${RESET}       [!] Do all the above in order for a specific manager: outdated -> update -> upgrade -> check";
     exit 1;
 fi
 
@@ -35,7 +35,7 @@ function fnComposer() {
         BIN_COMPOSER=$(/usr/bin/which composer);
 
         case $1 in
-            "check")
+            "checkup")
                 echo -e "${YELLOW}Path:${RESET}    $BIN_COMPOSER";
                 echo -e "${YELLOW}Version:${RESET} $($BIN_COMPOSER --version)";
                 ;;
@@ -65,7 +65,7 @@ function fnNodejs() {
         BIN_NODE=$(/usr/bin/which node);
 
         case $1 in
-            "check")
+            "checkup")
                 echo -e "${YELLOW}Path:${RESET}    $BIN_NODE";
                 echo -e "${YELLOW}Version:${RESET} $($BIN_NODE --version)";
                 echo -e "${YELLOW}Path:${RESET}    $BIN_NPM";
@@ -100,7 +100,7 @@ function fnRuby() {
         BIN_GEM=$(/usr/bin/which gem);
 
         case $1 in
-            "check")
+            "checkup")
                 echo -e "${YELLOW}Path:${RESET}    $BIN_RUBY";
                 echo -e "${YELLOW}Version:${RESET} $($BIN_RUBY --version)";
                 echo -e "${YELLOW}Path:${RESET}    $BIN_GEM";
@@ -135,7 +135,7 @@ function fnBrew() {
         BIN_BREW=$(/usr/bin/which brew);
 
         case $1 in
-            "check")
+            "checkup")
                 echo -e "${YELLOW}Path:${RESET}    $BIN_BREW";
                 echo -e "${YELLOW}Version:${RESET} $($BIN_BREW --version)";
                 echo -e "";
@@ -169,7 +169,7 @@ if [ -n "$1" ]; then
     styleTitle "Environment $1";
 
     case $1 in
-        "check"|"outdated"|"update"|"upgrade")
+        "checkup"|"outdated"|"update"|"upgrade")
             case $2 in
                 "brew")
                     fnBrew $1;
@@ -194,31 +194,31 @@ if [ -n "$1" ]; then
         "all")
             case $2 in
                 "brew")
-                    fnBrew 'outdated';
-                    fnBrew 'update';
-                    fnBrew 'upgrade';
-                    fnBrew 'check';
+                    fnBrew "outdated";
+                    fnBrew "update";
+                    fnBrew "upgrade";
+                    fnBrew "checkup";
                     ;;
                 "ruby")
-                    fnRuby 'outdated';
-                    fnRuby 'update';
-                    fnRuby 'upgrade';
-                    fnRuby 'check';
+                    fnRuby "outdated";
+                    fnRuby "update";
+                    fnRuby "upgrade";
+                    fnRuby "checkup";
                     ;;
                 "node")
-                    fnNodejs 'outdated';
-                    fnNodejs 'update';
-                    fnNodejs 'upgrade';
-                    fnNodejs 'check';
+                    fnNodejs "outdated";
+                    fnNodejs "update";
+                    fnNodejs "upgrade";
+                    fnNodejs "checkup";
                     ;;
                 "composer")
-                    fnComposer 'outdated';
-                    fnComposer 'update';
-                    fnComposer 'upgrade';
-                    fnComposer 'check';
+                    fnComposer "outdated";
+                    fnComposer "update";
+                    fnComposer "upgrade";
+                    fnComposer "checkup";
                     ;;
                 *)
-                    echo -e "${RED_UL}ERROR:${RESET} ${RED}Can't do all all.${RESET}"
+                    echo -e "${RED_UL}ERROR:${RESET} ${RED}Can't do all-all.${RESET}"
                     ;;
             esac
             ;;
