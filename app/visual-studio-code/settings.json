@@ -16,12 +16,13 @@
     },
     "editor.suggestFontSize": 12,
     "editor.suggest.maxVisibleSuggestions": 10,
-    "files.autoSaveDelay": 5000,
     "files.defaultLanguage": "${activeEditorLanguage}",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {
-        "**/node_modules/**": false
+        "**/bower_components/**": true,
+        "**/node_modules/**": true,
+        "**/vendor/**": true
     },
     // Workbench
     "workbench.colorTheme": "Monokai",
@@ -49,6 +50,7 @@
     "extensions.ignoreRecommendations": true,
     "problems.showCurrentInStatus": true,
     "comments.openPanel": "neverOpen",
+    "timeline.showView": true,
     // Applications
     "update.mode": "start",
     // Extensions (Default)
@@ -102,17 +104,22 @@
     "scss.lint.zeroUnits": "warning",
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.quoteStyle": "single",
-    // Extensions (Installed - Adjustement Default)
+    // Extensions (Installed - Adjust Base)
     "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "php.validate.enable": false,
+    "php.suggest.basic": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll": false,
         "source.fixAll.stylelint": true,
         "source.fixAll.eslint": true
     },
-    "less.validate": false,
-    "php.suggest.basic": false,
-    "scss.validate": false,
-    // Extensions (Installed - Config)
+    // Extensions (Installed)
     "AllAutocomplete.cycleOpenDocumentsOnLaunch": true,
     "AllAutocomplete.maxItemsInSingleList": 500,
     "AllAutocomplete.maxLines": 5000,
@@ -120,9 +127,8 @@
     "autoimport.filesToScan": "./**/*.{ts,tsx,js,jsx}",
     "autoimport.showNotifications": true,
     "color-highlight.matchWords": true,
-    "eslint.alwaysShowStatus": true,
-    "eslint.format.enable": true,
     "fileutils.delete.useTrash": true,
+    "intelephense.environment.phpVersion": "7.2.9",
     "intelephense.files.exclude": [
         "**/.git/**",
         "**/.svn/**",
@@ -134,24 +140,24 @@
         "**/vendor/**/{Tests,tests,Test,test}/**"
     ],
     "intelephense.phpdoc.returnVoid": false,
-    "intelephense.rename.exclude": [
-        "**/vendor/**",
-        "**/node_modules/**"
-    ],
-    "intelephense.environment.phpVersion": "7.2.9",
+    "intelephense.rename.exclude": ["**/vendor/**", "**/node_modules/**"],
     "path-autocomplete.extensionOnImport": true,
     "path-autocomplete.triggerOutsideStrings": true,
-    "php-cs-fixer.rules": "@PSR2",
+    "php.executablePath": "/usr/local/php5/bin/php",
+    "php-cs-fixer.rules": "@PSR1,@PSR2,@PSR12,@EcgM2",
     "php-docblocker.qualifyClassNames": true,
     "php-docblocker.returnGap": true,
     "php-docblocker.returnVoid": false,
     "php-docblocker.useShortNames": true,
-    "php.validate.enable": false,
+    //
+    "prettier.endOfLine": "lf",
     "prettier.jsxSingleQuote": true,
-    "prettier.printWidth": 100,
+    "prettier.printWidth": 120,
+    "prettier.requireConfig": true,
     "prettier.singleQuote": true,
     "prettier.tabWidth": 4,
     "prettier.vueIndentScriptAndStyle": true,
-    "stylelint.reportNeedlessDisables": true,
-    "vs-docblockr.phpMixedUnionTypes": true
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "stylelint.reportNeedlessDisables": true
 }
