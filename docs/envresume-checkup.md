@@ -7,26 +7,42 @@
 ## Brew
 
 -   **Path:** `/usr/local/bin/brew`
--   **Version:** Homebrew 2.2.5
-    -   Homebrew/homebrew-core (git revision 2ab6; last commit 2020-02-15)
-    -   Homebrew/homebrew-cask (git revision bed04; last commit 2020-02-15)
+-   **Version:** Homebrew 2.2.15
+    -   Homebrew/homebrew-core (git revision c45e2; last commit 2020-05-09)
+    -   Homebrew/homebrew-cask (git revision af37d; last commit 2020-05-09)
 
 ### Packages installed
 
 ```
+autoconf 2.69
+automake 1.16.2
 bash 5.0.16
+docker 19.03.8
+docker-compose 1.25.5
+docker-machine 0.16.2
 gdbm 1.18.1
 gettext 0.20.1
 git 2.25.0_1
+go 1.14.2_1
+go-md2man 2.0.0
 icu4c 64.2
+libtool 2.4.6_1
+libyaml 0.2.4
 node 13.8.0
-openssl@1.1 1.1.1d
+openssl@1.1 1.1.1d 1.1.1g
 pcre2 10.34
-pkg-config 0.29.2
+pkg-config 0.29.2 0.29.2_3
 python 3.7.6_1
-readline 8.0.1
+python@3.8 3.8.2
+readline 8.0.1 8.0.4
 sqlite 3.31.1
-xz 5.2.4
+xz 5.2.4 5.2.5
+```
+
+### Packages cask installed
+
+```
+virtualbox 6.1.6,137129
 ```
 
 ---
@@ -70,6 +86,7 @@ test-unit (2.0.0.0)
 
 ```
 /usr/local/lib
++-- gulp-cli@2.2.0
 +-- npm@6.13.7
 +-- webpack@4.41.6
 `-- webpack-cli@3.3.11
