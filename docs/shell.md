@@ -74,7 +74,7 @@ ln -sf ~/geojuji/shell/git/gitaliases  ~/.gitaliases
 
 ## 5. Bonus: CMD
 
-All the documentation written in his guide is MACOS-oriented.
+All the documentation written in his guide is MacOS oriented.
 
 However if you use Windows, you can find under `~/geojuji/shell/cmd/` folder a really basic configuration for `cmd.exe` to initialize some aliases inspired from linux shell:
 
