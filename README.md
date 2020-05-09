@@ -24,5 +24,6 @@ You can read the complete step-by-step guide to set and install all needed tools
 1. [Install needed packages managers](./docs/packages-manager.md)
 1. [Configure applications to work](./docs/applications.md)
 1. [Configure a local environment for projects](./docs/local-environment.md)
+1. [Setup a Docker environment](./docs/vm.md)
 
 :warning: The guide above will refer to the current repository as `~/geojuji/`. Please adjust all commands as needed.
