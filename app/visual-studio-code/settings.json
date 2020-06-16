@@ -2,7 +2,7 @@
     // Text Editor
     "editor.autoClosingBrackets": "always",
     "editor.autoClosingQuotes": "always",
-    "editor.fontSize": 14,
+    "editor.fontSize": 13,
     "editor.renderWhitespace": "boundary",
     "editor.tabCompletion": "on",
     "editor.wordWrap": "on",
@@ -37,8 +37,8 @@
     // Window
     "window.restoreWindows": "one",
     "window.title": "${rootName}${separator}${activeEditorShort}",
+    "window.nativeTabs": true,
     // Features
-    "search.enableSearchEditorPreview": true,
     "search.exclude": {
         "**/.git": true,
         "**/bower_components": false,
@@ -50,7 +50,6 @@
     "extensions.ignoreRecommendations": true,
     "problems.showCurrentInStatus": true,
     "comments.openPanel": "neverOpen",
-    "timeline.showView": true,
     // Applications
     "update.mode": "start",
     // Extensions (Default)
@@ -88,7 +87,6 @@
     "less.lint.zeroUnits": "warning",
     "merge-conflict.autoNavigateNextConflict.enabled": true,
     "npm.enableRunFromFolder": true,
-    "npm.enableScriptExplorer": true,
     "php.validate.executablePath": "/usr/local/php5/bin/php",
     "scss.lint.argumentsInColorFunction": "warning",
     "scss.lint.boxModel": "warning",
@@ -144,11 +142,7 @@
     "path-autocomplete.extensionOnImport": true,
     "path-autocomplete.triggerOutsideStrings": true,
     "php.executablePath": "/usr/local/php5/bin/php",
-    "php-cs-fixer.rules": "@PSR1,@PSR2,@PSR12,@EcgM2",
-    "php-docblocker.qualifyClassNames": true,
-    "php-docblocker.returnGap": true,
-    "php-docblocker.returnVoid": false,
-    "php-docblocker.useShortNames": true,
+    "php-cs-fixer.rules": "@PSR1, @PSR2, @Symfony",
     //
     "prettier.endOfLine": "lf",
     "prettier.jsxSingleQuote": true,
@@ -159,5 +153,9 @@
     "prettier.vueIndentScriptAndStyle": true,
     "eslint.alwaysShowStatus": true,
     "eslint.format.enable": true,
-    "stylelint.reportNeedlessDisables": true
+    "stylelint.reportNeedlessDisables": true,
+    "prettier.configPath": ".prettierrc",
+    "editor.formatOnSave": true,
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+    "todo-tree.tree.showScanModeButton": false
 }
