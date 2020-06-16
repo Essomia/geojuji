@@ -1,0 +1,11 @@
+{
+	"Console log": {
+		"scope": "javascript,typescript",
+		"prefix": "log",
+		"body": [
+			"console.log('MEL:', '$1');",
+			"$2"
+		],
+		"description": "Custom log to console"
+	}
+}
