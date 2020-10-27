@@ -108,25 +108,27 @@ ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /us
 
 Below, I share my recommended extensions for VSC. You can install them easily without find/install. For that, you need to run the following command with the `vscode` binary command we just created:
 
-```
-vscode --install-extension Atishay-Jain.All-Autocomplete
-vscode --install-extension bmewburn.vscode-intelephense-client
-vscode --install-extension dbaeumer.vscode-eslint
-vscode --install-extension dsznajder.es7-react-js-snippets
-vscode --install-extension EditorConfig.EditorConfig
-vscode --install-extension esbenp.prettier-vscode
-vscode --install-extension felixfbecker.php-intellisense
-vscode --install-extension HookyQR.JSDocTagComplete
-vscode --install-extension ionutvmi.path-autocomplete
-vscode --install-extension jeremyljackson.vs-docblock
-vscode --install-extension jerrylopez.magento2-snippets
-vscode --install-extension junstyle.php-cs-fixer
-vscode --install-extension naumovs.color-highlight
-vscode --install-extension neilbrayfield.php-docblocker
-vscode --install-extension sleistner.vscode-fileutils
-vscode --install-extension steoates.autoimport
-vscode --install-extension stylelint.vscode-stylelint
-vscode --install-extension xabikos.JavaScriptSnippets
+```bash
+vscode --install-extension Atishay-Jain.All-Autocomplete # All Autocomplete
+vscode --install-extension steoates.autoimport # Auto Import
+vscode --install-extension naumovs.color-highlight # Color Highlight
+vscode --install-extension HookyQR.JSDocTagComplete # Complete JSDoc Tags
+vscode --install-extension EditorConfig.EditorConfig # EditorConfig
+vscode --install-extension dsznajder.es7-react-js-snippets # ES7 React/Redux/GraphQL Snippets
+vscode --install-extension dbaeumer.vscode-eslint # ESLint
+vscode --install-extension sleistner.vscode-fileutils # File Utils
+vscode --install-extension GraphQL.vscode-graphql # GraphQL
+vscode --install-extension xabikos.JavaScriptSnippets # Javascript ES6 Code Snippets
+vscode --install-extension jerrylopez.magento2-snippets # Magento 2 Snippets
+vscode --install-extension ionutvmi.path-autocomplete # Path Autocomplete
+vscode --install-extension junstyle.php-cs-fixer # PHP CS Fixer
+vscode --install-extension bmewburn.vscode-intelephense-client # PHP Intelephense
+vscode --install-extension felixfbecker.php-intellisense # PHP IntelliSense
+vscode --install-extension esbenp.prettier-vscode # Prettier Code Formatter
+vscode --install-extension sainoba.px-to-rem # PX to REM
+vscode --install-extension stylelint.vscode-stylelint # Stylelint
+vscode --install-extension Gruntfuggly.todo-tree # Todo Tree
+vscode --install-extension jeremyljackson.vs-docblock # VS DocBlockr
 ```
 
 :warning: Please note that the `~/geojuji/app/visual-studio-code/settings.json` come with default configurations for these extensions. It's also have some default paths for executable. Please ensure that these path are correct for you.

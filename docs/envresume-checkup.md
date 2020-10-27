@@ -1,48 +1,60 @@
 # Environment checkup
 
-**Date of last checkup:** 2020-02-15
+**Date of last checkup:** 2020-10-27
 
 ---
 
 ## Brew
 
 -   **Path:** `/usr/local/bin/brew`
--   **Version:** Homebrew 2.2.15
-    -   Homebrew/homebrew-core (git revision c45e2; last commit 2020-05-09)
-    -   Homebrew/homebrew-cask (git revision af37d; last commit 2020-05-09)
+-   **Version:** Homebrew 2.5.7-14-ge1b9887
+    -   Homebrew/homebrew-core (git revision dec314; last commit 2020-10-27)
+    -   Homebrew/homebrew-cask (git revision d8ca0; last commit 2020-10-27)
 
 ### Packages installed
 
 ```
 autoconf 2.69
-automake 1.16.2
-bash 5.0.16
-docker 19.03.8
-docker-compose 1.25.5
+automake 1.16.2_1
+bash 5.0.18
+docker 19.03.13
+docker-compose 1.27.4_1
 docker-machine 0.16.2
-gdbm 1.18.1
-gettext 0.20.1
+gdbm 1.18.1 1.18.1_1
+gettext 0.21
 git 2.25.0_1
-go 1.14.2_1
+go 1.15.3
 go-md2man 2.0.0
 icu4c 64.2
-libtool 2.4.6_1
-libyaml 0.2.4
+libtool 2.4.6_2
+libyaml 0.2.5
 node 13.8.0
-openssl@1.1 1.1.1d 1.1.1g
-pcre2 10.34
+openssl@1.1 1.1.1h
+pcre2 10.35
 pkg-config 0.29.2 0.29.2_3
-python 3.7.6_1
-python@3.8 3.8.2
-readline 8.0.1 8.0.4
-sqlite 3.31.1
+python@3.8 3.8.6
+python@3.9 3.9.0
+readline 8.0.4
+sqlite 3.33.0
+wimlib 1.13.2
 xz 5.2.4 5.2.5
 ```
 
 ### Packages cask installed
 
 ```
-virtualbox 6.1.6,137129
+virtualbox 6.1.16,140961
+```
+
+### Packages pinned:
+
+```
+docker
+docker-compose
+docker-machine
+git
+icu4c
+node
 ```
 
 ---
@@ -80,16 +92,16 @@ test-unit (2.0.0.0)
 -   **Path:** `/usr/local/bin/node`
 -   **Version:** v13.8.0
 -   **Path:** `/usr/local/bin/npm`
--   **Version:** 6.13.7
+-   **Version:** 6.14.8
 
 ### Packages installed
 
 ```
 /usr/local/lib
-+-- gulp-cli@2.2.0
-+-- npm@6.13.7
-+-- webpack@4.41.6
-`-- webpack-cli@3.3.11
++-- gulp-cli@2.3.0
++-- npm@6.14.8
++-- webpack@4.44.2
+`-- webpack-cli@3.3.12
 ```
 
 ---
@@ -97,4 +109,4 @@ test-unit (2.0.0.0)
 ## Composer
 
 -   **Path:** `/usr/local/bin/composer`
--   **Version:** Composer version 1.9.3 2020-02-04 12:58:49
+-   **Version:** Composer version 2.0.2 2020-10-25 23:03:59
