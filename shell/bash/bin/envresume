@@ -143,7 +143,10 @@ function fnBrew() {
                 $BIN_BREW ls --versions;
                 echo -e "";
                 echo -e "${YELLOW}Packages cask installed:${RESET}";
-                $BIN_BREW cask list --versions;
+                $BIN_BREW list --cask --versions;
+                echo -e "";
+                echo -e "${YELLOW}Packages pinned:${RESET}";
+                $BIN_BREW list --pinned;
                 ;;
             "outdated")
                 $BIN_BREW outdated;
