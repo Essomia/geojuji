@@ -4,9 +4,7 @@
 * @link: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
 **/
 
-
 @import url('../localhost.css');
-
 
 .headline {
     font-size: 13px;
@@ -27,15 +25,29 @@
     line-height: 12px;
 }
 
-.flag.void         { background: #eeeeee }
-.flag.branch.root  { background: #b7b7b7; }
-.flag.branch.other { background: #e07a7a; }
-.flag.tag          { background: #ade07a; }
+.flag.void {
+    background: #eeeeee;
+}
+.flag.branch.root {
+    background: #b7b7b7;
+}
+.flag.branch.other {
+    background: #e07a7a;
+}
+.flag.tag {
+    background: #ade07a;
+}
 
-.flag.wip          { background: #eecc0b; }
-.flag.wp           { background: #21759a; }
-.flag.sf           { background: #db5252; }
+.flag.wip {
+    background: #eecc0b;
+}
+.flag.wp {
+    background: #21759a;
+}
+.flag.sf {
+    background: #db5252;
+}
 
 .is-abandoned {
-    opacity: .1;
+    opacity: 0.1;
 }

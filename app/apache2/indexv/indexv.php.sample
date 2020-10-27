@@ -1,11 +1,10 @@
 <?php
 /**
- * Special vhosts localhost index
+ * Special vhosts localhost index.
  **/
-
 include 'indexv.fn.php';
 
-$miscFolder = str_replace(dirname($_SERVER["SCRIPT_FILENAME"]), '', dirname(__FILE__));
+$miscFolder = str_replace(dirname($_SERVER['SCRIPT_FILENAME']), '', dirname(__FILE__));
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +14,7 @@ $miscFolder = str_replace(dirname($_SERVER["SCRIPT_FILENAME"]), '', dirname(__FI
     <title>Index of vhosts</title>
 
     <style>
-        @import url('<?= $miscFolder ?>/indexv.css');
+        @import url('<?= $miscFolder; ?>/indexv.css');
     </style>
 </head>
 <body>
@@ -25,10 +24,10 @@ $miscFolder = str_replace(dirname($_SERVER["SCRIPT_FILENAME"]), '', dirname(__FI
         <table id="indexlist" >
             <!--
                 will create link for project as:
-                - for `/Users/[username]/Sites/develop/client/project/`
+                - for `/Users/[username]/Sites/client/project/`
                 - to `http://project.client.dev.domain.com`
             -->
-            <?= createProjectTableList('develop', 'dev.domain.com'); ?>
+            <?= createProjectTableList('client', 'dev.domain.com'); ?>
         </table>
     </div>
 </body>

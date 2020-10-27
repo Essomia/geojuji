@@ -1,15 +1,15 @@
 <?php
 /**
- * Special vhosts localhost functions
+ * Special vhosts localhost functions.
  *
  * @use: `httpd-vhosts.conf` and `git
  **/
-
-function getProjectCurrentBranch($projectDirectory) {
+function getProjectCurrentBranch($projectDirectory)
+{
     $gitBranch = trim(exec('cd '.$projectDirectory.'; git rev-parse --abbrev-ref HEAD;'));
 
     if (!empty($gitBranch)) {
-        if (strpos($gitBranch, 'master') !== false) {
+        if (false !== strpos($gitBranch, 'master')) {
             $labelCurrentBranch = "<label class='flag branch root'>{$gitBranch}</label>";
         } else {
             $labelCurrentBranch = "<label class='flag branch other'>{$gitBranch}</label>";
@@ -21,7 +21,8 @@ function getProjectCurrentBranch($projectDirectory) {
     return $labelCurrentBranch;
 }
 
-function getProjectLatestTag($projectDirectory) {
+function getProjectLatestTag($projectDirectory)
+{
     $gitTag = trim(exec('cd '.$projectDirectory.'; git describe --abbrev=0 --tags;'));
 
     if (!empty($gitTag)) {
@@ -33,58 +34,60 @@ function getProjectLatestTag($projectDirectory) {
     return $labelLatestTag;
 }
 
-function isProjectAbandoned($projectDirectory) {
+function isProjectAbandoned($projectDirectory)
+{
     $lastCommitUnix = trim(exec('cd '.$projectDirectory.'; git log -1 --format=%ct;'));
-    $currentUnix    = time();
-    $oneMonthUnix   = 2629743;
-    $classAbandoned = "";
+    $currentUnix = time();
+    $oneMonthUnix = 2629743;
+    $classAbandoned = '';
 
-    if (($currentUnix - $oneMonthUnix) >= $lastCommitUnix) {
-        $classAbandoned = "is-abandoned";
+    if (($currentUnix - ($oneMonthUnix * 4)) >= $lastCommitUnix) {
+        $classAbandoned = 'is-abandoned';
     }
 
     return $classAbandoned;
 }
 
-function createProjectTableList($dirname, $extension) {
+function createProjectTableList($dirname, $extension)
+{
     // Get target folder of localhost
-    $rootLocalhost  = dirname($_SERVER["SCRIPT_FILENAME"]);
+    $rootLocalhost = dirname($_SERVER['SCRIPT_FILENAME']);
 
     // Define root value
-    $rootCompany    = $rootLocalhost.DIRECTORY_SEPARATOR.$dirname;
+    $rootCompany = $rootLocalhost.DIRECTORY_SEPARATOR.$dirname;
     $nbPathExploded = count(explode(DIRECTORY_SEPARATOR, $rootCompany));
 
     // Headlines
-    $projectRow  = "<tr class='indexhead'>";
+    $projectRow = "<tr class='indexhead'>";
     $projectRow .= "    <th class='indexcolname' colspan='5'>";
     $projectRow .= "        {$extension}";
-    $projectRow .= "    </th>";
-    $projectRow .= "</tr>";
+    $projectRow .= '    </th>';
+    $projectRow .= '</tr>';
     $projectRow .= "<tr class='row headline'>";
-    $projectRow .= "    <td>Project</td>";
+    $projectRow .= '    <td>Project</td>';
     $projectRow .= "    <td class='git' width='300'>Branch</td>";
     $projectRow .= "    <td class='git' width='80'>Tag</td>";
-    $projectRow .= "</tr>";
+    $projectRow .= '</tr>';
 
-    // Foreach project in {projects_namespace}/**/*
-    foreach (glob($rootCompany . '/**/*' , GLOB_ONLYDIR) as $projectPath) {
-        $projectPathData  = array_slice(explode(DIRECTORY_SEPARATOR, $projectPath), $nbPathExploded);
-        $projectDirectory = $rootCompany.DIRECTORY_SEPARATOR.$projectPathData[0].DIRECTORY_SEPARATOR.$projectPathData[1];
-        $isAbandoned      = isProjectAbandoned($projectDirectory);
+    // Foreach project in {projects_namespace}/**
+    foreach (glob($rootCompany.'/**', GLOB_ONLYDIR) as $projectPath) {
+        $projectPathData = array_slice(explode(DIRECTORY_SEPARATOR, $projectPath), $nbPathExploded);
+        $projectDirectory = $rootCompany.DIRECTORY_SEPARATOR.$projectPathData[0];
+        $isAbandoned = isProjectAbandoned($projectDirectory);
 
         $projectRow .= "<tr class='row {$isAbandoned}'>";
-        $projectRow .= "    <td>";
-        $projectRow .= "        <a href='http://{$projectPathData[1]}.{$projectPathData[0]}.{$extension}'>";
-        $projectRow .= "            {$projectPathData[0]} / {$projectPathData[1]}";
-        $projectRow .= "        </a>";
-        $projectRow .= "    </td>";
+        $projectRow .= '    <td>';
+        $projectRow .= "        <a href='http://{$projectPathData[0]}.{$dirname}.{$extension}'>";
+        $projectRow .= "            {$dirname} / {$projectPathData[0]}";
+        $projectRow .= '        </a>';
+        $projectRow .= '    </td>';
         $projectRow .= "    <td class='git' width='100'>";
-        $projectRow .=          getProjectCurrentBranch($projectDirectory);
-        $projectRow .= "    </td>";
+        $projectRow .= getProjectCurrentBranch($projectDirectory);
+        $projectRow .= '    </td>';
         $projectRow .= "    <td class='git' width='80'>";
-        $projectRow .=          getProjectLatestTag($projectDirectory);
-        $projectRow .= "    </td>";
-        $projectRow .= "</tr>";
+        $projectRow .= getProjectLatestTag($projectDirectory);
+        $projectRow .= '    </td>';
+        $projectRow .= '</tr>';
     }
 
     // Return

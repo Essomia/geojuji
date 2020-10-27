@@ -4,7 +4,7 @@
  * @doc: https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
  **/
 
- /*
+/*
   * Colors:
   * - text        : #444
   * - title       : #555
@@ -13,7 +13,8 @@
   * - border      : #ccc
   */
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     color: #444;
