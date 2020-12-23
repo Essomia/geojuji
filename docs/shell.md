@@ -51,6 +51,19 @@ ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
 
 :warning: The `~/geojuji/shell/bash/bin/` folder have been added by default in `$PATH` as directories to search for executable files. Please be aware that all bash scripts added to this folder need to have its permissions set as `755` to be to executable.
 
+Little note, it's possible that your terminal doesn't use `bash` as default shell. To verify which shell your terminal is currently using, run:
+
+```
+echo $SHELL
+```
+
+If you have anything like `/bin/zsh`, you can still change the default shell to use `bash` with the following command:
+
+```
+chsh -s /bin/bash
+```
+
+
 ## 4. [Git](https://git-scm.com/)
 
 First, rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`.
