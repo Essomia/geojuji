@@ -34,15 +34,16 @@ HISTSIZE=1000
 # Set shell language to english
 LANG=C
 
+# Disable message `The default interactive shell is now zsh.`
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 
 # ENVIRONMENTS
 # --------------------------------
 
 # Shell directories to search for executable files (Default OSX).
-# - defaut export give us "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+# - defaut export give us "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/usr/local/php5/bin:$PATH"
 
 # Get personal directory for executable and add to shell directories to search for executable files.
 export GEOJUJI_PATH=$(dirname $(readlink "${BASH_SOURCE[0]}"))/bin;
@@ -62,8 +63,10 @@ export GEOJUJI_BINARY="/usr/local"
 # --------------------------------
 
 # Brew
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [[ $(command -v brew) != '' ]]; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
 fi
 
 # Git
