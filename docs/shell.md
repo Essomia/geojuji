@@ -71,12 +71,3 @@ ln -sf ~/geojuji/shell/git/gitaliases  ~/.gitaliases
 ```
 
 :warning: Since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change the configuration in `~/geojuji/shell/git/gitconfig` accordingly.
-
-## 5. Bonus: CMD
-
-All the documentation written in his guide is MacOS oriented.
-
-However if you use Windows, you can find under `~/geojuji/shell/cmd/` folder a really basic configuration for `cmd.exe` to initialize some aliases inspired from linux shell:
-
--   First, install the `~/geojuji/shell/cmd/aliases.cmd` file under your folders name as `c:\[username]\aliases.cmd`.
--   Then, run the `~/geojuji/shell/cmd/register-aliases.reg` file to register theses aliases.
