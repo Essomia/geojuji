@@ -55,7 +55,6 @@ alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.
 alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
 alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitignore'
 alias conf_hosts='sudo edit /etc/hosts'
-alias conf_php="edit /usr/local/php5/lib/php.ini"
 
 # Apache
 alias apache_errlogs='less +F /var/log/apache2/dev_error_log'
