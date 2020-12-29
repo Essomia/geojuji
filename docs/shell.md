@@ -1,86 +1,86 @@
-# Set shell's configurations
-
-**Table of content:**
-
-1. [SSH Key](#1-ssh-key)
-1. [XCode](#2-xcode)
-1. [Bash](#3-bash)
-1. [Git](#4-git)
-1. [Bonus: CMD](#5-bonus-cmd)
-
----
+# Shell's configurations
 
 ## 1. [SSH Key](https://help.github.com/articles/connecting-to-github-with-ssh/)
 
-To create a new SSH key, run the following command and hit return a couple of times for no passphrase:
+You will need a public SSH key to be identified in some services like Github.
 
-```
-ssh-keygen
-```
+1. Create a new SSH key, run the following command:
 
-Then, copy the new public SSH key from `~/.ssh/id_rsa.pub` to add the key to any service account you use.
+    ```
+    ssh-keygen
+    ```
+
+1. Hit return a couple of times for no passphrase.
+1. Copy the new public SSH key from `~/.ssh/id_rsa.pub`.
 
 ## 2. XCode
 
-When you develop with MacOS, you will need the basic command line tools already available on MacOS.
+When you develop on macOS, you will need some basic command-line tools.
 
-1. Run the command to install tools:
+1. Run the command to install:
 
     ```
     xcode-select --install
     ```
 
-1. If not aleady installed, a software update pop-up window will appear that asks:
+1. A software pop-up window will appear. Click the `Accept` or `Install` button.
+1. Agree to the Terms of Service when requested.
+1. Once complete, the installer will go away.
 
-    > The xcode-select command requires the command line developer tools. Would you like to install the tools now?.
-
-1. Click the `Install` button, then agree to the Terms of Service when requested.
-
-Once complete, the installer will go away and you should have `git`, `svn`, `make` and more command available in `/Library/Developer/CommandLineTools/usr/bin/`.
+:memo: You should have `git`, `svn`, `make` and more commands available in `/Library/Developer/CommandLineTools/usr/bin/` at the end of the installation.
 
 ## 3. [Bash](https://www.gnu.org/software/bash/)
 
-Since MacOS use by default `bash` as command-line interface, we will symlink our own configuration to be sourced when a new shell is started.
+For developers, the terminal is used on a daily basis. For a better experience, you would probably like to improve it according to your needs.
 
-```bash
-# Common login configuration
-ln -sf ~/geojuji/shell/bash/bash_profile  ~/.bash_profile
-# Contains needed aliases
-ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
-```
+1. Since macOS set your terminal to use `bash` or `zsh` by default, check which shell your terminal is currently using:
 
-:warning: The `~/geojuji/shell/bash/bin/` folder have been added by default in `$PATH` as directories to search for executable files. Please be aware that all bash scripts added to this folder need to have its permissions set as `755` to be to executable.
+    ```
+    echo $SHELL
+    ```
 
-Little note, it's possible that your terminal doesn't use `bash` as default shell. To verify which shell your terminal is currently using, run:
+1. If you have `/bin/zsh` and you want to use `/bin/bash` instead, change with the following command:
 
-```
-echo $SHELL
-```
+    ```
+    chsh -s /bin/bash
+    ```
 
-If you have anything like `/bin/zsh`, you can still change the default shell to use `bash` with the following command:
+1. If you choose to use `bash` as default, you can symlink the custom configuration to be sourced when a new shell is started:
 
-```
-chsh -s /bin/bash
-```
+    ```bash
+    # Common login configuration
+    ln -sf ~/geojuji/shell/bash/bash_profile  ~/.bash_profile
+    # Contains needed aliases
+    ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
+    ```
 
+:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. You can add new binaries to that folder.
+
+:no_entry: Please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set as `755` to be to executable.
 
 ## 4. [Git](https://git-scm.com/)
 
-First, rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`.
+If you use `git` as version control, you would probably add you own configuration.
 
-In this file, update the `name`, `username` and `email` to let Git use your information when you will commit your changes. Also, note that this repository ignore the `~/geojuji/shell/git/gituser` file to preserve privacy.
+1. Rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`. Think to update the `name`, `username` and `email` with the correct informations.
 
-Then, since we use `git` as versioning tool, we need to symlink the configuration files to be use when we run related command line.
+1. Symlink the `git` configuration files:
 
-```bash
-# Your personal configuration
-ln -sf ~/geojuji/shell/git/gituser     ~/.gituser
-# The common configuration
-ln -sf ~/geojuji/shell/git/gitconfig   ~/.gitconfig
-# List global files to be ignored
-ln -sf ~/geojuji/shell/git/gitignore   ~/.gitignore
-# All needed aliases
-ln -sf ~/geojuji/shell/git/gitaliases  ~/.gitaliases
+    ```bash
+    # Your personal configuration
+    ln -sf ~/geojuji/shell/git/gituser     ~/.gituser
+    # The common configuration
+    ln -sf ~/geojuji/shell/git/gitconfig   ~/.gitconfig
+    # List global files to be ignored
+    ln -sf ~/geojuji/shell/git/gitignore   ~/.gitignore
+    # All needed aliases
+    ln -sf ~/geojuji/shell/git/gitaliases  ~/.gitaliases
+    ```
+
+:warning: Since merge and rebase with `git` can be difficult with only the terminal, you can use third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change the configuration in `~/geojuji/shell/git/gitconfig` accordingly.
+
+:memo: Also, if you work a lot with `git`, you may want to add autocompletion for command lines:
+
 ```
-
-:warning: Since merging and rebasing with `git` can be difficult, you can use a third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change the configuration in `~/geojuji/shell/git/gitconfig` accordingly.
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+```
