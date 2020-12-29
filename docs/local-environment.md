@@ -2,32 +2,48 @@
 
 ## 1. Set a local PHP Environment
 
-To develop PHP projects, you will need the following to be installed and set:
+To develop PHP projects, you will need the following binaries to be installed and setted:
 
--   [PHP](http://php.net/): Should be already installed on your machine.
+-   [PHP](http://php.net/): To compile PHP projects.
 -   [Apache Server](https://httpd.apache.org/): To serve project on your local machine.
--   [MySQL](https://www.mysql.com/): To get the right one for your OS, [check the MYSQL archives](https://downloads.mysql.com/archives/community/).
--   [Sequel Pro](https://www.sequelpro.com/): To help you manage your local database
+-   [MySQL](https://www.mysql.com/): To save informations in a local database. To get the right one for your OS, [check the MYSQL archives](https://downloads.mysql.com/archives/community/).
+
+Sometime, your OS could come with some version already installed. You can try the following command to know if they are already installed:
+
+```bash
+which php
+which mysql
+which apachectl ; which httpd
+```
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in details and let you use Google to find the correct way to install them.
 
-:memo: I strongly recommand to use some virtual machine configuration for a long term project.
+:memo: Please note that this local setup is very basic and it is oriented for HTML, CSS and basic javascripts.
+
+:warning: Nowadays, each project, whether it be done in php, javascript, .net or others, often requires a complex and particular setup. For better maintenance over time, I strongly recommend that you look at virtual machines (like docker or kubernetes) to create easily maintainable setups.
 
 ## 2. VHosts: Default localhost
 
 Since we develop multiple websites, we need to configure our local hosts to works properly.
 
-1. Edit `/etc/apache2/httpd.conf` and uncommented `Include /etc/apache2/extra/httpd-vhosts.conf`.
+1. Edit `/etc/apache2/httpd.conf`:
+
+    - Uncommented `Include /etc/apache2/extra/httpd-vhosts.conf`.
+    - Uncommented and modify to have `ServerName userhost:80`.
+
 1. Edit `/etc/apache2/extra/httpd-vhosts.conf` to add a basic localhost config:
 
     ```apache
     #
     # Configuration LOCALHOST
     #
+    <Directory /Users/[username]/Sites/>  # <-- To adjust [DocumentRoot]
+        Require all granted
+    </Directory>
 
     <VirtualHost *:80>
         ServerName localhost
-        DocumentRoot /Users/[username]/Sites/  # <-- To adjust
+        DocumentRoot /Users/[username]/Sites/  # <-- To adjust [DocumentRoot]
 
         <IfModule mod_autoindex.c>
             Options Indexes FollowSymLinks
@@ -44,7 +60,7 @@ Since we develop multiple websites, we need to configure our local hosts to work
             IndexOptions SuppressHTMLPreamble
             IndexOptions SuppressDescription
             IndexOrderDefault Ascending Name
-            IndexStyleSheet "localhost.css"  # <-- To adjust
+            IndexStyleSheet "localhost.css"  # <-- To adjust [IndexStyleSheet]
         </ifModule>
 
         ServerAdmin admin@localhost.com
@@ -53,32 +69,43 @@ Since we develop multiple websites, we need to configure our local hosts to work
     </VirtualHost>
     ```
 
-    `DocumentRoot` is where you will have all your local websites on your machine.
+    `[DocumentRoot]` is where you will have all your local websites on your machine.
 
-    `IndexStyleSheet` is a path to your stylesheet for localhost display. If you use a custom stylesheet, the stylesheet file should be under your `[DocumentRoot]` folder to work. Since we can add a custom stylesheet, you can use our example `~/geojuji/app/apache2/localhost.css` or comment that line.
+    `[IndexStyleSheet]` is a path to your stylesheet for localhost display. If you use a custom stylesheet, the stylesheet file should be under your `[DocumentRoot]` folder to work. Since we can add a custom stylesheet, you can use our example `~/geojuji/app/apache2/localhost.css` or comment that line.
 
-Now, `http://localhost/` should display your folders and files under your `[DocumentRoot]` folder.
+1. Restart Apache and test config to be sure everything works:
 
-## 3. VHosts: Custom localhost
+    ```bash
+    sudo apachectl restart
+    sudo apachectl configtest # This command should return a 'Syntax OK'
+    ```
+
+:memo: Now, `http://localhost/` should display your folders and files under your `[DocumentRoot]` folder.
+
+## 3. VHosts: Custom localhost domain
 
 Since we have now a default localhost, let's set a custom hosts for projects.
 
-1. Edit `/etc/apache2/extra/httpd-vhosts.conf` and add your custom host configuration.
+1. Edit `/etc/apache2/httpd.conf`:
+
+    - Uncommented `LoadModule vhost_alias_module libexec/apache2/mod_vhost_alias.so`.
+
+1. Edit `/etc/apache2/extra/httpd-vhosts.conf` and add your custom host configuration or adjust the one bellow:
 
     ```apache
     # How it works:
-    # - http://project.client.folder.domain.ext/
+    # - http://name4.name3.name2.name1.ext/
     # - http://%-5.%-4.%-3.%-2.%-1/  # We start replace from the end
 
     #
-    # Configuration *.*.DEV.DOMAIN.com
+    # Configuration custom
     #
 
     <VirtualHost *:80>
-        ServerName list.dev.domain.com
-        ServerAlias *.*.dev.domain.com
-        ServerAlias www.*.*.dev.domain.com
-        VirtualDocumentRoot /Users/[username]/Sites/develop/%-4/%-5/ # <--To adjust
+        ServerName list.domain.local
+        ServerAlias *.domain.local
+        ServerAlias www.*.domain.local
+        VirtualDocumentRoot /Users/[username]/Sites/develop/%-3/
 
         ServerAdmin admin@localhost.com
         ErrorLog "/var/log/apache2/dev_error_log"
@@ -93,75 +120,14 @@ Since we have now a default localhost, let's set a custom hosts for projects.
     # VIRTUAL HOSTS
     #
 
-    127.0.0.1   project1.client.dev.domain.com
-    ```
-
-Now, when you go to `http://project1.client.dev.domain.com`, you can see the sources of your website that you develop under `[DocumentRoot]/develop/client/project1/` folder.
-
-## 4. SSL: Generate a certificate
-
-Sometime we want to get a certificate for our localhost website, either to use in local development or for distribution with a native application.
-
-1. Generate a key for the server with no passphrase:
-
-    ```
-    mkdir ~/.ssh/ssl/
-    cd ~/.ssh/ssl/
-    sudo ssh-keygen -f php-server.key
-    ```
-
-1. Create the certificate request file with information that will be used in the SSL certificate:
-
-    ```
-    sudo openssl req -new -key php-server.key -out php-request.csr
-    ```
-
-1. Create the self-signed certificate:
-
-    ```
-    sudo openssl x509 -req -days 365 -in php-request.csr -signkey php-server.key -out php-server.crt
-    ```
-
-## 5. SSL: Set Apache to use a certificate
-
-Once the certificate generated, you need to configure Apache to use the certificate created.
-
-1. In `/etc/apache2/httpd.conf`, you need to enable `ssl_module` and uncommented `/etc/apache2/extra/httpd-ssl.conf`.
-1. Edit `/etc/apache2/extra/httpd-ssl.conf`:
-
-    Add the following/uncommented lines
-
-    ```
-    SSLCertificateFile "~/.ssh/ssl/php-server.crt"
-    SSLCertificateKeyFile "~/.ssh/ssl/php-server.key"
-    ```
-
-    And then remove/comment the following one:
-
-    ```
-    SSLCACertificatePath
-    SSLCARevocationPath
-    ```
-
-1. Go to `/etc/apache2/extra/httpd-vhosts.conf` and adjust our virtual host to use SSL:
-
-    ```apache
-    <VirtualHost *:443>
-        ServerName list.local
-        ServerAlias *.*.local # <--To adjust
-        ServerAlias www.*.*.local # <--To adjust
-        VirtualDocumentRoot /Users/[username]/Sites/develop/%-4/%-5/ # <--To adjust
-
-        SSLEngine on
-        SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
-        SSLCertificateFile /Users/[username]/.ssh/ssl/php-server.crt # <--To adjust
-        SSLCertificateKeyFile /Users/[username]/.ssh/ssl/php-server.key # <--To adjust
-    </VirtualHost>
+    127.0.0.1   project1.domain.local
     ```
 
 1. Restart Apache and test config to be sure everything works:
 
-    ```
+    ```bash
     sudo apachectl restart
-    sudo apachectl configtest
+    sudo apachectl configtest # This command should return a 'Syntax OK'
     ```
+
+:memo: Now, when you go to `http://project1.domain.local`, you can see the sources of your website that you develop under `[DocumentRoot]/develop/project1/` folder.
