@@ -1,14 +1,4 @@
-# Configure a local environment for projects
-
-**Table of content:**
-
-1. [Set a local PHP Environment](#1-set-a-local-php-environment)
-1. [VHosts: Default local host](#2-vhosts-default-local-host)
-1. [VHosts: Custom local host](#3-vhosts-custom-local-host)
-1. [SSL: Generate a certificate](#4-ssl-generate-a-certificate)
-1. [SSL: Set Apache to use a certificate](#5-ssl-set-apache-to-use-a-certificate)
-
----
+# Configure local environment
 
 ## 1. Set a local PHP Environment
 
@@ -21,7 +11,9 @@ To develop PHP projects, you will need the following to be installed and set:
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in details and let you use Google to find the correct way to install them.
 
-## 2. VHosts: Default local host
+:memo: I strongly recommand to use some virtual machine configuration for a long term project.
+
+## 2. VHosts: Default localhost
 
 Since we develop multiple websites, we need to configure our local hosts to works properly.
 
@@ -67,7 +59,7 @@ Since we develop multiple websites, we need to configure our local hosts to work
 
 Now, `http://localhost/` should display your folders and files under your `[DocumentRoot]` folder.
 
-## 3. VHosts: Custom local host
+## 3. VHosts: Custom localhost
 
 Since we have now a default localhost, let's set a custom hosts for projects.
 

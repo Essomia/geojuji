@@ -1,36 +1,26 @@
-# Configure applications to work
-
-**Table of content:**
-
-1. [Terminal](#1-terminal)
-1. [iTerm2](#2-iterm2)
-1. [Sublime Text 3, with Package Control](#3-sublime-text-3-with-package-control)
-1. [Visual Studio Code](#4-visual-studio-code)
-
----
+# Configure applications
 
 ## 1. Terminal
 
-If you use `Terminal` application as a daily tools, you can create a theme to have a friendly shell.
-
-To use the theme `geojuji.terminal`:
+If you use `Terminal` application as a daily tool, you can create a theme to have a friendly shell.
 
 1. Go to `Terminal -> Preferences`.
 1. Under the `Profiles` tab, click the settings gear near the bottom and click `Import`.
-1. Select the theme (`*.terminal` file) under `~/geojuji/app/terminal/` folder.
+1. Select the theme (`geojuji.terminal` file) under `~/geojuji/app/terminal/` folder.
+1. One imported, select the new theme in the list and set it as default.
 
 ## 2. [iTerm2](http://www.iterm2.com/index.html)
 
-You can also use the `iTerm` which offer a lot of great feature.
-
-To use the theme `geojuji.itermcolors` from this repository:
+As an alternative terminal, you can also use the `iTerm` which offer a lot of great features.
 
 1. Go to `iTerm2 -> Preferences`.
 1. Under the `Profiles` tab, click the plus icon near the bottom.
 1. Give a name to your profile, and then, go to `Colors` section on the right.
 1. In the `Color presets` dropdown, select `Import`.
-1. Select the theme (`*.itermcolors` file) under `~/geojuji/app/iterm/` folder.
+1. Select the theme (`geojuji.itermcolors` file) under `~/geojuji/app/iterm/` folder.
 1. The theme imported, re-select `geojuji` preset profile in the dropdown choice.
+
+:memo: You can also configure `iTerm` to save you preferences into a specific folder under the `General > Preferences` tab.
 
 ## 3. [Sublime Text 3](https://www.sublimetext.com/), with [Package Control](https://packagecontrol.io/)
 
@@ -109,28 +99,24 @@ ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /us
 Below, I share my recommended extensions for VSC. You can install them easily without find/install. For that, you need to run the following command with the `vscode` binary command we just created:
 
 ```bash
-vscode --install-extension Atishay-Jain.All-Autocomplete # All Autocomplete
-vscode --install-extension steoates.autoimport # Auto Import
-vscode --install-extension naumovs.color-highlight # Color Highlight
-vscode --install-extension HookyQR.JSDocTagComplete # Complete JSDoc Tags
-vscode --install-extension EditorConfig.EditorConfig # EditorConfig
-vscode --install-extension dsznajder.es7-react-js-snippets # ES7 React/Redux/GraphQL Snippets
-vscode --install-extension dbaeumer.vscode-eslint # ESLint
-vscode --install-extension sleistner.vscode-fileutils # File Utils
-vscode --install-extension GraphQL.vscode-graphql # GraphQL
-vscode --install-extension xabikos.JavaScriptSnippets # Javascript ES6 Code Snippets
-vscode --install-extension jerrylopez.magento2-snippets # Magento 2 Snippets
-vscode --install-extension ionutvmi.path-autocomplete # Path Autocomplete
-vscode --install-extension junstyle.php-cs-fixer # PHP CS Fixer
-vscode --install-extension bmewburn.vscode-intelephense-client # PHP Intelephense
-vscode --install-extension felixfbecker.php-intellisense # PHP IntelliSense
-vscode --install-extension esbenp.prettier-vscode # Prettier Code Formatter
-vscode --install-extension sainoba.px-to-rem # PX to REM
-vscode --install-extension stylelint.vscode-stylelint # Stylelint
-vscode --install-extension Gruntfuggly.todo-tree # Todo Tree
-vscode --install-extension jeremyljackson.vs-docblock # VS DocBlockr
+vscode --install-extension Atishay-Jain.All-Autocomplete    # All Autocomplete
+vscode --install-extension steoates.autoimport              # Auto Import
+vscode --install-extension naumovs.color-highlight          # Color Highlight
+vscode --install-extension HookyQR.JSDocTagComplete         # Complete JSDoc Tags
+vscode --install-extension EditorConfig.EditorConfig        # EditorConfig
+vscode --install-extension dsznajder.es7-react-js-snippets  # ES7 React/Redux/GraphQL Snippets
+vscode --install-extension dbaeumer.vscode-eslint           # ESLint
+vscode --install-extension sleistner.vscode-fileutils       # File Utils
+vscode --install-extension GraphQL.vscode-graphql           # GraphQL
+vscode --install-extension xabikos.JavaScriptSnippets       # Javascript ES6 Code Snippets
+vscode --install-extension ionutvmi.path-autocomplete       # Path Autocomplete
+vscode --install-extension esbenp.prettier-vscode           # Prettier Code Formatter
+vscode --install-extension sainoba.px-to-rem                # PX to REM
+vscode --install-extension stylelint.vscode-stylelint       # Stylelint
+vscode --install-extension Gruntfuggly.todo-tree            # Todo Tree
+vscode --install-extension jeremyljackson.vs-docblock       # VS DocBlockr
 ```
 
-:warning: Please note that the `~/geojuji/app/visual-studio-code/settings.json` come with default configurations for these extensions. It's also have some default paths for executable. Please ensure that these path are correct for you.
+:warning: The `~/geojuji/app/visual-studio-code/settings.json` file come with default configurations for these extensions. Please ensure that these settings are correct for you.
 
-If you need to share your own extension, run the followin command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
+:memo: If you need to share your own extension, run the following command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
