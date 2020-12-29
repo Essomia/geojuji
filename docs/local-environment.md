@@ -38,6 +38,7 @@ Since we develop multiple websites, we need to configure our local hosts to work
     # Configuration LOCALHOST
     #
     <Directory /Users/[username]/Sites/>  # <-- To adjust [DocumentRoot]
+        Options FollowSymLinks Multiviews Indexes
         Require all granted
     </Directory>
 
