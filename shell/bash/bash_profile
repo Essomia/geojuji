@@ -70,8 +70,8 @@ if [[ $(command -v brew) != '' ]]; then
 fi
 
 # Git
-if [ -f ~/.gitcompletion.bash ]; then
-    . ~/.gitcompletion.bash
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
 fi
 
 
