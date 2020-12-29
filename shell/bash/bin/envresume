@@ -13,14 +13,21 @@ source util-titles.sh
 
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${BLUE}<command> [option:brew|ruby|node|composer]${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}<command> <package>${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
+    echo -e "  ${GREEN}all${RESET}       [!] Do all command in order: outdated -> update -> upgrade -> checkup";
+    echo -e "  ${GREEN}checkup${RESET}   Check paths and current version of installed packages.";
+    echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
     echo -e "  ${GREEN}update${RESET}    Update main packages manager.";
     echo -e "  ${GREEN}upgrade${RESET}   Update global outdated packages.";
-    echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
-    echo -e "  ${GREEN}checkup${RESET}   Check paths and current version of installed packages.";
-    echo -e "  ${GREEN}all${RESET}       [!] Do all the above in order for a specific manager: outdated -> update -> upgrade -> check";
+    echo "";
+    echo -e "${YELLOW_UL}Packages:${RESET}";
+    echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node -> composer";
+    echo -e "  ${GREEN}brew${RESET}      Homebrew";
+    echo -e "  ${GREEN}composer${RESET}  Composer PHP";
+    echo -e "  ${GREEN}node${RESET}      NodeJS";
+    echo -e "  ${GREEN}ruby${RESET}      Ruby";
     exit 1;
 fi
 
@@ -29,7 +36,7 @@ fi
 # --------------------------------
 
 function fnComposer() {
-    styleSubtitle "Composer";
+    styleSubtitle "Composer {$1}";
 
     if [[ -n $(/usr/bin/which composer) ]]; then
         BIN_COMPOSER=$(/usr/bin/which composer);
@@ -40,13 +47,13 @@ function fnComposer() {
                 echo -e "${YELLOW}Version:${RESET} $($BIN_COMPOSER --version)";
                 ;;
             "outdated")
-                echo -e "Composer don't have any global packages.";
+                echo -e "${PINK_UL}Note:${RESET} Composer don't have any global packages.";
                 ;;
             "update")
                 $BIN_COMPOSER self-update;
                 ;;
             "upgrade")
-                echo -e "Composer don't have any global packages.";
+                echo -e "${PINK_UL}Note:${RESET} Composer don't have any global packages.";
                 ;;
             *)
                 echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
@@ -58,7 +65,7 @@ function fnComposer() {
 }
 
 function fnNodejs() {
-    styleSubtitle "Node JS";
+    styleSubtitle "Node JS {$1}";
 
     if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
         BIN_NPM=$(/usr/bin/which npm);
@@ -72,6 +79,7 @@ function fnNodejs() {
                 echo -e "${YELLOW}Version:${RESET} $($BIN_NPM --version)";
                 echo -e "";
                 echo -e "${YELLOW}Packages installed:${RESET}";
+
                 $BIN_NPM list -g --depth=0;
                 ;;
             "outdated")
@@ -93,7 +101,7 @@ function fnNodejs() {
 }
 
 function fnRuby() {
-    styleSubtitle "Ruby";
+    styleSubtitle "Ruby {$1}";
 
     if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
         BIN_RUBY=$(/usr/bin/which ruby);
@@ -107,17 +115,21 @@ function fnRuby() {
                 echo -e "${YELLOW}Version:${RESET} $($BIN_GEM --version)";
                 echo -e "";
                 echo -e "${YELLOW}Packages installed:${RESET}";
+
                 $BIN_GEM list --local;
                 ;;
             "outdated")
-                $BIN_GEM outdated;
+                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
+                # $BIN_GEM outdated;
                 ;;
             "update")
-                $BIN_GEM update --system;
+                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
+                # $BIN_GEM update --system;
                 ;;
             "upgrade")
-                $BIN_GEM update;
-                $BIN_GEM cleanup;
+                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
+                # $BIN_GEM update;
+                # $BIN_GEM cleanup;
                 ;;
             *)
                 echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
@@ -129,7 +141,7 @@ function fnRuby() {
 }
 
 function fnBrew() {
-    styleSubtitle "Brew";
+    styleSubtitle "Brew {$1}";
 
     if [[ -n $(/usr/bin/which brew) ]]; then
         BIN_BREW=$(/usr/bin/which brew);
@@ -140,23 +152,42 @@ function fnBrew() {
                 echo -e "${YELLOW}Version:${RESET} $($BIN_BREW --version)";
                 echo -e "";
                 echo -e "${YELLOW}Packages installed:${RESET}";
+
                 $BIN_BREW ls --versions;
+
                 echo -e "";
                 echo -e "${YELLOW}Packages cask installed:${RESET}";
+
                 $BIN_BREW list --cask --versions;
+
                 echo -e "";
                 echo -e "${YELLOW}Packages pinned:${RESET}";
+
                 $BIN_BREW list --pinned;
                 ;;
             "outdated")
                 $BIN_BREW outdated;
                 ;;
             "update")
-                $BIN_BREW update;
+                echo -e "${PINK_UL}Note:${RESET} Main brew package in '/usr/local/Homebrew/' has modification and will been stashed on update. (See '/usr/local/Homebrew/Library/Homebrew/extend/os/mac/hardware.rb')";
+                echo -e "";
+
+                $BIN_BREW update --verbose;
+                (cd /usr/local/Homebrew/ && git stash pop);
+
+                echo -e "";
+                echo -e "${PINK_UL}Note:${RESET} Modifications has been unstash-ed";
                 ;;
             "upgrade")
-                $BIN_BREW upgrade -v;
-                $BIN_BREW cleanup -s;
+                echo -e "${PINK_UL}Note:${RESET} Main brew package in '/usr/local/Homebrew/' has modification and will been stashed on update. (See '/usr/local/Homebrew/Library/Homebrew/extend/os/mac/hardware.rb')";
+                echo -e "";
+
+                $BIN_BREW upgrade --build-from-source --verbose;
+                $BIN_BREW cleanup -s --verbose;
+                (cd /usr/local/Homebrew/ && git stash pop);
+
+                echo -e "";
+                echo -e "${PINK_UL}Note:${RESET} Modifications has been unstash-ed";
                 ;;
             *)
                 echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
