@@ -18,7 +18,7 @@ which apachectl ; which httpd
 
 :no_entry: Since each OS has its own way to install this differents compoments, I will not go in details and let you use Google to find the correct way to install them.
 
-:memo: Please note that this local setup is very basic and it is oriented for HTML, CSS and basic javascripts.
+:memo: Please note that this local setup is very basic and it is oriented for HTML, CSS, JS and basic PHP.
 
 :warning: Nowadays, each project, whether it be done in php, javascript, .net or others, often requires a complex and particular setup. For better maintenance over time, I strongly recommend that you look at virtual machines (like docker or kubernetes) to create easily maintainable setups.
 
@@ -131,3 +131,18 @@ Since we have now a default localhost, let's set a custom hosts for projects.
     ```
 
 :memo: Now, when you go to `http://project1.domain.local`, you can see the sources of your website that you develop under `[DocumentRoot]/develop/project1/` folder.
+
+## 4. VHosts: Allow PHP on localhost project
+
+Now we do have our project showing and displaying, but PHP script doesn't works. We need to load the related module on our Apache configuration.
+
+1. Edit `/etc/apache2/httpd.conf`:
+
+    - Uncommented `LoadModule php7_module libexec/apache2/libphp7.so`.
+
+1. Restart Apache and test config to be sure everything works:
+
+    ```bash
+    sudo apachectl restart
+    sudo apachectl configtest # This command should return a 'Syntax OK'
+    ```
