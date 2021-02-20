@@ -1,15 +1,15 @@
 # Environment checkup
 
-**Date of latest checkup:** 2020-12-29
+**Date of latest checkup:** 2021-02-19
 
 ---
 
 ## Brew
 
 -   **Path:** `/usr/local/bin/brew`
--   **Version:** Homebrew 2.7.1-dirty
-    -   Homebrew/homebrew-core (git revision b84a8; last commit 2020-12-29)
-    -   Homebrew/homebrew-cask (git revision d6f31; last commit 2020-12-29)
+-   **Version:** Homebrew 3.0.1-dirty
+    -   Homebrew/homebrew-core (git revision 7da1f; last commit 2021-02-19)
+    -   Homebrew/homebrew-cask (git revision f0a1a; last commit 2021-02-20)
 
 ### Packages installed
 
@@ -23,11 +23,12 @@ jq 1.6
 libtool 2.4.6_2
 node 15.5.0
 oniguruma 6.9.6
-openssl@1.1 1.1.1i
+openssl@1.1 1.1.1j
 pkg-config 0.29.2_3
-python@3.9 3.9.1_3
+python@3.9 3.9.1_8
 readline 8.1
 sqlite 3.34.0
+tcl-tk 8.6.11_1
 xz 5.2.5
 ```
 
@@ -129,4 +130,4 @@ zlib (default: 1.0.0)
 ## Composer
 
 -   **Path:** `/usr/local/bin/composer`
--   **Version:** Composer version 2.0.8 2020-12-03 17:20:38
+-   **Version:** Composer version 2.0.9 2021-01-27 16:09:27
