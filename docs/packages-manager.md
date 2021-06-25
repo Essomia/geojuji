@@ -2,16 +2,12 @@
 
 ## 1. [Homebrew](http://brew.sh/)
 
-Install Homebrew with the following command line:
-
-```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
+Install Homebrew with the command line given here: https://brew.sh/
 
 Once Homebrew is installed, you can install the formulas you need, with the following command line:
 
 ```
-brew install <package-name> --build-from-source
+brew install <package-name>
 ```
 
 :no_entry: If your version of macOS is installed on an initially unsupported Mac, you may receive an `illegal instruction: 4` when using certain packages. This is due to the implementation of the pre-build packages in Homebrew (`nehalem`). As a workaround the problem, you can adjust Homebrew to revert to the old version (mostly `core2`):
@@ -31,13 +27,15 @@ gem environment
 
 ## 3. [Node.Js](http://nodejs.org/)
 
-We install `node` within the Homebrew formulas:
+We install `node` with the package installer available here: https://nodejs.org/en/download/current/
+
+Once installed, please adjust right for the packages folder with :
 
 ```
-brew install node --build-from-source --verbose`
+sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
-So, once `node` is installed, you can install needed packages globally with the following command line:
+Once done, you can install needed packages globally with the following command line:
 
 ```
 npm install -g <package-name>

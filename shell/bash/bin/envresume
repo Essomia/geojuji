@@ -169,25 +169,11 @@ function fnBrew() {
                 $BIN_BREW outdated;
                 ;;
             "update")
-                echo -e "${PINK_UL}Note:${RESET} Main brew package in '/usr/local/Homebrew/' has modification and will been stashed on update. (See '/usr/local/Homebrew/Library/Homebrew/extend/os/mac/hardware.rb')";
-                echo -e "";
-
                 $BIN_BREW update --verbose;
-                (cd /usr/local/Homebrew/ && git stash pop);
-
-                echo -e "";
-                echo -e "${PINK_UL}Note:${RESET} Modifications has been unstash-ed";
                 ;;
             "upgrade")
-                echo -e "${PINK_UL}Note:${RESET} Main brew package in '/usr/local/Homebrew/' has modification and will been stashed on update. (See '/usr/local/Homebrew/Library/Homebrew/extend/os/mac/hardware.rb')";
-                echo -e "";
-
-                $BIN_BREW upgrade --build-from-source --verbose;
+                $BIN_BREW upgrade --verbose;
                 $BIN_BREW cleanup -s --verbose;
-                (cd /usr/local/Homebrew/ && git stash pop);
-
-                echo -e "";
-                echo -e "${PINK_UL}Note:${RESET} Modifications has been unstash-ed";
                 ;;
             *)
                 echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
