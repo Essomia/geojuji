@@ -16,7 +16,7 @@
     co     = checkout
     cp     = cherry-pick
     df     = diff
-    dfc    = diff --cached
+    dc     = diff --cached
     dft    = difftool
     fc     = fetch
     mg     = merge

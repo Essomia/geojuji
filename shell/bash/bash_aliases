@@ -27,16 +27,8 @@ alias reload='exec bash -l'
 # FILE/FOLDER MANAGEMENT
 # --------------------------------
 
-# Show/Hide hidden files
-alias finder_showhidden='defaults write com.apple.finder ShowAllFiles TRUE'
-alias finder_hidehidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
-# Recursively delete .DS_Store files
-alias finder_cleanupds='find . -type f -name "*.DS_Store" -ls -delete'
-
-# Remind some helpers aliases
-alias remind_chmod_set='# chmod 644 "filename" / chmod 755 "folder"'
 alias remind_chmod_get='# stat -f "%OLp" "filename"'
+alias remind_chmod_set='# chmod 644 "filename" / chmod 755 "folder"'
 alias remind_find='# find . -type f -name "filename"'
 alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}"; done'
 
