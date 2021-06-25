@@ -1,34 +1,26 @@
 # Environment checkup
 
-**Date of latest checkup:** 2021-02-19
+**Date of latest checkup:** 2021-06-24
 
 ---
 
 ## Brew
 
 -   **Path:** `/usr/local/bin/brew`
--   **Version:** Homebrew 3.0.1-dirty
-    -   Homebrew/homebrew-core (git revision 7da1f; last commit 2021-02-19)
-    -   Homebrew/homebrew-cask (git revision f0a1a; last commit 2021-02-20)
+-   **Version:** Homebrew 3.2.0-47-gdc2c0ec
+    -   Homebrew/homebrew-core (git revision 6f22596fe4; last commit 2021-06-24)
+    -   Homebrew/homebrew-cask (git revision 2d93e4e9e5; last commit 2021-06-25)
 
 ### Packages installed
 
 ```
-autoconf 2.69
-automake 1.16.3
 bash-completion 1.3_3
-gdbm 1.18.1_1
-icu4c 67.1
-jq 1.6
-libtool 2.4.6_2
-node 15.5.0
-oniguruma 6.9.6
-openssl@1.1 1.1.1j
-pkg-config 0.29.2_3
-python@3.9 3.9.1_8
+gdbm 1.20
+mpdecimal 2.5.1
+openssl@1.1 1.1.1k
+python@3.9 3.9.5
 readline 8.1
-sqlite 3.34.0
-tcl-tk 8.6.11_1
+sqlite 3.36.0
 xz 5.2.5
 ```
 
@@ -41,8 +33,7 @@ xz 5.2.5
 ### Packages pinned:
 
 ```
-icu4c
-node
+-
 ```
 
 ---
@@ -114,15 +105,15 @@ zlib (default: 1.0.0)
 ## Node JS
 
 -   **Path:** `/usr/local/bin/node`
--   **Version:** v15.5.0
+-   **Version:** v16.4.0
 -   **Path:** `/usr/local/bin/npm`
--   **Version:** 7.3.0
+-   **Version:** 7.19.0
 
 ### Packages installed
 
 ```
 /usr/local/lib
-`-- npm@7.3.0
+`-- npm@7.19.0
 ```
 
 ---
@@ -130,4 +121,4 @@ zlib (default: 1.0.0)
 ## Composer
 
 -   **Path:** `/usr/local/bin/composer`
--   **Version:** Composer version 2.0.9 2021-01-27 16:09:27
+-   **Version:** Composer version 2.1.3 2021-06-09 16:31:20
