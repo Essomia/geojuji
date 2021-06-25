@@ -40,6 +40,7 @@
     "window.nativeTabs": true,
     "window.restoreWindows": "one",
     "window.title": "${rootName}${separator}${activeEditorShort}",
+    "window.zoomLevel": -1,
     // Features
     "search.exclude": {
         "**/.git": true,
@@ -115,5 +116,5 @@
     "scss.lint.unknownVendorSpecificProperties": "warning",
     "scss.lint.zeroUnits": "warning",
     "scss.validate": false,
-    "typescript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single"
 }
