@@ -7,7 +7,6 @@
 # --------------------------------
 
 # Mac osx
-._*
 .DS_Store
 .DS_Store?
 .Spotlight-V100
@@ -16,7 +15,6 @@
 # Windows
 Desktop.ini
 ehthumbs.db
-Icon?
 Thumbs.db
 
 
@@ -55,22 +53,6 @@ Thumbs.db
 *.cache
 *.user
 
-# Logs and databases
-*.log
-*.sql
-
 # Languages
 *.pot
 *.po
-
-# Map
-*.css.map
-*.js.map
-
-
-# DIRECTORIES / FILES
-# --------------------------------
-
-/bower_components/
-/node_modules/
-/vendor/
