@@ -1,15 +1,15 @@
 # Environment checkup
 
-**Date of latest checkup:** 2021-06-24
+**Date of latest checkup:** 2021-08-30
 
 ---
 
 ## Brew
 
 -   **Path:** `/usr/local/bin/brew`
--   **Version:** Homebrew 3.2.0-47-gdc2c0ec
-    -   Homebrew/homebrew-core (git revision 6f22596fe4; last commit 2021-06-24)
-    -   Homebrew/homebrew-cask (git revision 2d93e4e9e5; last commit 2021-06-25)
+-   **Version:** Homebrew 3.2.10-18-g7d56615
+    -   Homebrew/homebrew-core (git revision 17ef6008235; last commit 2021-08-31)
+    -   Homebrew/homebrew-cask (git revision 1f7f47a16e; last commit 2021-08-31)
 
 ### Packages installed
 
@@ -17,8 +17,8 @@
 bash-completion 1.3_3
 gdbm 1.20
 mpdecimal 2.5.1
-openssl@1.1 1.1.1k
-python@3.9 3.9.5
+openssl@1.1 1.1.1l
+python@3.9 3.9.6
 readline 8.1
 sqlite 3.36.0
 xz 5.2.5
@@ -107,13 +107,13 @@ zlib (default: 1.0.0)
 -   **Path:** `/usr/local/bin/node`
 -   **Version:** v16.4.0
 -   **Path:** `/usr/local/bin/npm`
--   **Version:** 7.19.0
+-   **Version:** 7.21.1
 
 ### Packages installed
 
 ```
 /usr/local/lib
-`-- npm@7.19.0
+`-- npm@7.21.1
 ```
 
 ---
@@ -121,4 +121,4 @@ zlib (default: 1.0.0)
 ## Composer
 
 -   **Path:** `/usr/local/bin/composer`
--   **Version:** Composer version 2.1.3 2021-06-09 16:31:20
+-   **Version:** Composer version 2.1.6 2021-08-19 17:11:08

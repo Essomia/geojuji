@@ -63,7 +63,7 @@ envresume update
 # Update global outdated packages
 envresume upgrade
 # Check paths and current version of installed packages
-envresume check
+envresume doctor
 ```
 
 Or do all the above in correct order for a specific manager:
