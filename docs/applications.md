@@ -108,6 +108,7 @@ vscode --install-extension dsznajder.es7-react-js-snippets  # ES7 React/Redux/Gr
 vscode --install-extension dbaeumer.vscode-eslint           # ESLint
 vscode --install-extension sleistner.vscode-fileutils       # File Utils
 vscode --install-extension GraphQL.vscode-graphql           # GraphQL
+vscode --install-extension ecmel.vscode-html-css            # HTML CSS Support
 vscode --install-extension xabikos.JavaScriptSnippets       # Javascript ES6 Code Snippets
 vscode --install-extension ionutvmi.path-autocomplete       # Path Autocomplete
 vscode --install-extension esbenp.prettier-vscode           # Prettier Code Formatter
