@@ -1,55 +1,60 @@
-# Environment checkup
+# Environment Resume
 
-**Date of latest checkup:** 2021-08-30
-
----
+**Date of latest checkup:** 2021-10-30
 
 ## Brew
 
--   **Path:** `/usr/local/bin/brew`
--   **Version:** Homebrew 3.2.10-18-g7d56615
-    -   Homebrew/homebrew-core (git revision 17ef6008235; last commit 2021-08-31)
-    -   Homebrew/homebrew-cask (git revision 1f7f47a16e; last commit 2021-08-31)
+**Path:**
+/usr/local/bin/brew
 
-### Packages installed
+**Version:**
+Homebrew 3.3.1-47-gdae9a34
+Homebrew/homebrew-core (git revision 68c13f16be4; last commit 2021-10-30)
+Homebrew/homebrew-cask (git revision 66bab33b26; last commit 2021-10-30)
+
+**Packages installed:**
 
 ```
 bash-completion 1.3_3
-gdbm 1.20
+ca-certificates 2021-10-26
+gdbm 1.21_1
 mpdecimal 2.5.1
-openssl@1.1 1.1.1l
-python@3.9 3.9.6
-readline 8.1
+openssl@1.1 1.1.1l_1
+python@3.9 3.9.7_1
+readline 8.1.1
 sqlite 3.36.0
 xz 5.2.5
 ```
 
-### Packages cask installed
+**Packages cask installed:**
 
 ```
--
-```
-
-### Packages pinned:
 
 ```
--
+
+**Packages pinned:**
+
 ```
 
----
+```
 
 ## Ruby
 
--   **Path:** `/usr/bin/ruby`
--   **Version:** ruby 2.6.3p62 (2019-04-16 revision 67580) [universal.x86_64-darwin19]
--   **Path:** `/usr/bin/gem`
--   **Version:** 3.0.3
+**Path:**
+/usr/bin/ruby
 
-### Packages installed
+**Version:**
+ruby 2.6.3p62 (2019-04-16 revision 67580) [universal.x86_64-darwin19]
+
+**Path:**
+/usr/bin/gem
+
+**Version:**
+3.0.3
+
+**Packages installed:**
 
 ```
-*** LOCAL GEMS ***
-
 bigdecimal (default: 1.4.1)
 bundler (default: 1.17.2)
 CFPropertyList (2.3.6)
@@ -100,25 +105,32 @@ xmlrpc (0.3.0)
 zlib (default: 1.0.0)
 ```
 
----
+## NodeJS
 
-## Node JS
+**Path:**
+/usr/local/bin/node
 
--   **Path:** `/usr/local/bin/node`
--   **Version:** v16.4.0
--   **Path:** `/usr/local/bin/npm`
--   **Version:** 7.21.1
+**Version:**
+v16.4.0
 
-### Packages installed
+**Path:**
+/usr/local/bin/npm
+
+**Version:**
+8.1.2
+
+**Packages installed:**
 
 ```
 /usr/local/lib
-`-- npm@7.21.1
-```
+`-- npm@8.1.2
 
----
+```
 
 ## Composer
 
--   **Path:** `/usr/local/bin/composer`
--   **Version:** Composer version 2.1.6 2021-08-19 17:11:08
+**Path:**
+/usr/local/bin/composer
+
+**Version:**
+Composer version 2.1.10 2021-10-29 22:34:57
