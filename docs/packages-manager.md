@@ -66,12 +66,6 @@ envresume upgrade
 envresume doctor
 ```
 
-Or do all the above in correct order for a specific manager:
-
-```
-envresume all [brew|ruby|node|composer]
-```
-
-:memo: For more detail, you check the [envresume](../shell/bash/bin/envresume) script file.
+:memo: For more detail, you check the [envresume](../shell/bash/bin/envresume) script file that I print with `envresume doctor -- print > docs/envresume-checkup.md `.
 
 :bulb: If you are interested, you can consult my lastest [environment checkup](../docs/envresume-checkup.md).

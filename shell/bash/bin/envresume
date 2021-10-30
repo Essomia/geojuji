@@ -16,7 +16,6 @@ if [ $# -lt 1 ]; then
     echo -e "  $(basename "$0") ${BLUE}<command> <package>${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}all${RESET}       [!] Do all command in order: outdated -> update -> upgrade -> doctor";
     echo -e "  ${GREEN}doctor${RESET}    Check paths and current version of installed packages.";
     echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
     echo -e "  ${GREEN}update${RESET}    Update main packages manager.";
@@ -36,7 +35,17 @@ fi
 # --------------------------------
 
 function fnComposer() {
-    styleSubtitle "Composer {$1}";
+    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
+        echo -e "";
+        echo "## Composer"
+        echo -e "";
+
+        YELLOW='\n**';
+        RESET='**\n';
+        CODE='```';
+    else
+        styleSubtitle "Composer {$1}";
+    fi
 
     if [[ -n $(/usr/bin/which composer) ]]; then
         BIN_COMPOSER=$(/usr/bin/which composer);
@@ -65,7 +74,17 @@ function fnComposer() {
 }
 
 function fnNodejs() {
-    styleSubtitle "Node JS {$1}";
+    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
+        echo -e "";
+        echo "## NodeJS"
+        echo -e "";
+
+        YELLOW='\n**';
+        RESET='**\n';
+        CODE='```';
+    else
+        styleSubtitle "NodeJS {$1}";
+    fi
 
     if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
         BIN_NPM=$(/usr/bin/which npm);
@@ -80,7 +99,9 @@ function fnNodejs() {
                 echo -e "";
                 echo -e "${YELLOW}Packages installed:${RESET}";
 
+                echo -e $CODE;
                 $BIN_NPM list -g --depth=0;
+                echo -e $CODE;
                 ;;
             "outdated")
                 $BIN_NPM outdated -g;
@@ -101,14 +122,21 @@ function fnNodejs() {
 }
 
 function fnRuby() {
-    styleSubtitle "Ruby {$1}";
+    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
+        echo -e "";
+        echo "## Ruby"
+        echo -e "";
+
+        YELLOW='\n**';
+        RESET='**\n';
+        CODE='```';
+    else
+        styleSubtitle "Ruby {$1}";
+    fi
 
     if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
         BIN_RUBY=$(/usr/bin/which ruby);
         BIN_GEM=$(/usr/bin/which gem);
-
-        echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-        echo -e "";
 
         case $1 in
             "doctor")
@@ -119,15 +147,20 @@ function fnRuby() {
                 echo -e "";
                 echo -e "${YELLOW}Packages installed:${RESET}";
 
+                echo -e $CODE;
                 $BIN_GEM list --local;
+                echo -e $CODE;
                 ;;
             "outdated")
+                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
                 # $BIN_GEM outdated;
                 ;;
             "update")
+                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
                 # $BIN_GEM update --system;
                 ;;
             "upgrade")
+                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
                 # $BIN_GEM update;
                 # $BIN_GEM cleanup;
                 ;;
@@ -141,7 +174,17 @@ function fnRuby() {
 }
 
 function fnBrew() {
-    styleSubtitle "Brew {$1}";
+    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
+        echo -e "";
+        echo "## Brew"
+        echo -e "";
+
+        YELLOW='\n**';
+        RESET='**\n';
+        CODE='```';
+    else
+        styleSubtitle "Brew {$1}";
+    fi
 
     if [[ -n $(/usr/bin/which brew) ]]; then
         BIN_BREW=$(/usr/bin/which brew);
@@ -153,17 +196,23 @@ function fnBrew() {
                 echo -e "";
                 echo -e "${YELLOW}Packages installed:${RESET}";
 
+                echo -e $CODE;
                 $BIN_BREW ls --versions;
+                echo -e $CODE;
 
                 echo -e "";
                 echo -e "${YELLOW}Packages cask installed:${RESET}";
 
+                echo -e $CODE;
                 $BIN_BREW list --cask --versions;
+                echo -e $CODE;
 
                 echo -e "";
                 echo -e "${YELLOW}Packages pinned:${RESET}";
 
+                echo -e $CODE;
                 $BIN_BREW list --pinned;
+                echo -e $CODE;
                 ;;
             "outdated")
                 $BIN_BREW outdated;
@@ -188,67 +237,39 @@ function fnBrew() {
 # SWITCHER
 # --------------------------------
 
-if [ -n "$1" ]; then
-    styleTitle "Environment $1";
+case $1 in
+    "doctor"|"outdated"|"update"|"upgrade")
+        if [ "$3" == "print" ] && [ "$1" == "doctor" ]; then
+            echo "# Environment Resume"
+            echo -e "";
+            echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')";
+            echo -e "";
+        else
+            styleTitle "Environment Resume";
+        fi
 
-    case $1 in
-        "doctor"|"outdated"|"update"|"upgrade")
-            case $2 in
-                "brew")
-                    fnBrew $1;
-                    ;;
-                "ruby")
-                    fnRuby $1;
-                    ;;
-                "node")
-                    fnNodejs $1;
-                    ;;
-                "composer")
-                    fnComposer $1;
-                    ;;
-                *)
-                    fnBrew $1;
-                    fnRuby $1;
-                    fnNodejs $1;
-                    fnComposer $1;
-                    ;;
-            esac
-            ;;
-        "all")
-            case $2 in
-                "brew")
-                    fnBrew "outdated";
-                    fnBrew "update";
-                    fnBrew "upgrade";
-                    fnBrew "doctor";
-                    ;;
-                "ruby")
-                    fnRuby "outdated";
-                    fnRuby "update";
-                    fnRuby "upgrade";
-                    fnRuby "doctor";
-                    ;;
-                "node")
-                    fnNodejs "outdated";
-                    fnNodejs "update";
-                    fnNodejs "upgrade";
-                    fnNodejs "doctor";
-                    ;;
-                "composer")
-                    fnComposer "outdated";
-                    fnComposer "update";
-                    fnComposer "upgrade";
-                    fnComposer "doctor";
-                    ;;
-                *)
-                    echo -e "${RED_UL}ERROR:${RESET} ${RED}Can't do all-all.${RESET}"
-                    ;;
-            esac
-            ;;
-        *)
-            echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}"
-            ;;
-    esac
-else
-    echo -e "${RED_UL}ERROR:${RESET} ${RED}You need to give a valid command.${RESET}";
-fi
+        case $2 in
+            "brew")
+                fnBrew $1 $3;
+                ;;
+            "ruby")
+                fnRuby $1 $3;
+                ;;
+            "node")
+                fnNodejs $1 $3;
+                ;;
+            "composer")
+                fnComposer $1 $3;
+                ;;
+            *)
+                fnBrew $1 $3;
+                fnRuby $1 $3;
+                fnNodejs $1 $3;
+                fnComposer $1 $3;
+                ;;
+        esac
+        ;;
+    *)
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}"
+        ;;
+esac
