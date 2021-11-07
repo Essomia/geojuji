@@ -1,0 +1,10 @@
+{
+	"php-tag": {
+		"prefix": "php",
+		"scope": "php",
+		"body": [
+			"<?php $1 ?>"
+		],
+		"description": "Create a new php tag."
+	}
+}

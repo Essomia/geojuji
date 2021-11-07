@@ -90,5 +90,6 @@
   // ---------------
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "update.mode": "manual"
 }
