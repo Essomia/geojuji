@@ -66,6 +66,6 @@ envresume upgrade
 envresume doctor
 ```
 
-:memo: For more detail, you check the [envresume](../shell/bash/bin/envresume) script file that I print with `envresume doctor -- print > docs/envresume-checkup.md `.
+:memo: For more detail, you check the [envresume](../shell/bash/bin/envresume) script file.
 
-:bulb: If you are interested, you can consult my lastest [environment checkup](../docs/envresume-checkup.md).
+:bulb: If you are interested, you can consult my lastest [environment checkup](../docs/envresume-checkup.md). I generate it with: `envresume doctor -- print > docs/envresume-checkup.md`.
