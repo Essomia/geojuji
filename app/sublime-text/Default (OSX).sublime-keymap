@@ -1,8 +1,0 @@
-[
-    // Reindent
-    { "keys": ["ctrl+shift+r"], "command": "reindent" },
-    // Find all under.
-    { "keys": ["ctrl+shift+g"], "command": "find_all_under" },
-    // Comment line
-    { "keys": ["ctrl+shift+c"], "command": "toggle_comment", "args": { "block": true } }
-]

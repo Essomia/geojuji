@@ -22,43 +22,7 @@ As an alternative terminal, you can also use the `iTerm` which offer a lot of gr
 
 :memo: You can also configure `iTerm` to save you preferences into a specific folder under the `General > Preferences` tab.
 
-## 3. [Sublime Text 3](https://www.sublimetext.com/), with [Package Control](https://packagecontrol.io/)
-
-If you use `Sublime Text` as your primary IDE, you probably already accustomed to use `Package Control` to enhance your coding experience.
-
-### Configuration
-
-To ensure to have the same configurations installed between working stations, we will link Sublime Text's configuration files into this repository and symlink the folder to let Sublime Text use them again.
-
-1. Copy all current configurations you could have to the repository:
-
-    ```
-    cp -Riv ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ ~/geojuji/app/sublime-text
-    ```
-
-1. Delete the current `User` folder:
-
-    ```
-    rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
-    ```
-
-1. Create a symlink to link the configuration again:
-
-    ```
-    ln -s ~/geojuji/app/sublime-text ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-    ```
-
-Now, all Sublime Text's configurations can be found under `~/geojuji/app/sublime-text/` folder.
-
-### Binary
-
-To add `subl` command, create a symlink with the following command:
-
-```
-ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-```
-
-## 4. [Visual Studio Code](https://code.visualstudio.com/)
+## 3. [Visual Studio Code](https://code.visualstudio.com/)
 
 If you use `Visual Studio Code` (VSC) as you primary IDE, you have bellow my current configuration setup.
 
