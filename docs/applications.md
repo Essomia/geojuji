@@ -28,7 +28,7 @@ If you use `Visual Studio Code` (VSC) as you primary IDE, you have bellow my cur
 
 ### Configuration
 
-To ensure to have the same configurations installed between working stations, we will link Visual Studio Code's configuration files into this repository and symlink the folder to let VSC use them again.
+To ensure to have the same configurations installed between working stations in case you can't sync your configuration, we will link Visual Studio Code's configuration files into this repository and symlink the folder to let VSC use them again.
 
 1. Copy all current configurations you could have to the repository:
 
@@ -50,7 +50,7 @@ To ensure to have the same configurations installed between working stations, we
 
 Now, all VSC's configurations can be found under `~/geojuji/app/visual-studio-code/` folder.
 
-Also note that you can sync your configuration via vscode directly with the "Settings Sync" option.
+:warning: If you use vscode on multiple computer, I recommended you to synchronize your configuration with the option: `Code > Preferences > Settings Sync`.
 
 ### Binary
 
@@ -66,32 +66,22 @@ Below, I share my recommended extensions for VSC. You can install them easily wi
 
 ```bash
 vscode --install-extension Atishay-Jain.All-Autocomplete
-vscode --install-extension bmewburn.vscode-intelephense-client
 vscode --install-extension dbaeumer.vscode-eslint
 vscode --install-extension dsznajder.es7-react-js-snippets
 vscode --install-extension ecmel.vscode-html-css
-vscode --install-extension EditorConfig.EditorConfig
 vscode --install-extension esbenp.prettier-vscode
 vscode --install-extension formulahendry.auto-rename-tag
 vscode --install-extension GraphQL.vscode-graphql
 vscode --install-extension Gruntfuggly.todo-tree
-vscode --install-extension HookyQR.JSDocTagComplete
 vscode --install-extension ionutvmi.path-autocomplete
-vscode --install-extension IronGeek.vscode-env
-vscode --install-extension jeremyljackson.vs-docblock
 vscode --install-extension jerrylopez.magento2-snippets
-vscode --install-extension jpoissonnier.vscode-styled-components
-vscode --install-extension larsroettig.vscode-pwa-studio
 vscode --install-extension mgmcdermott.vscode-language-babel
-vscode --install-extension mhutchie.git-graph
-vscode --install-extension moshfeu.compare-folders
-vscode --install-extension ms-vscode.vscode-typescript-tslint-plugin
+vscode --install-extension ms-vscode.vscode-typescript-next
 vscode --install-extension naumovs.color-highlight
 vscode --install-extension sainoba.px-to-rem
 vscode --install-extension sleistner.vscode-fileutils
 vscode --install-extension steoates.autoimport
 vscode --install-extension stylelint.vscode-stylelint
-vscode --install-extension team-sapling.sapling
 vscode --install-extension VisualStudioExptTeam.vscodeintellicode
 vscode --install-extension xabikos.JavaScriptSnippets
 ```
