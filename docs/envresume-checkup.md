@@ -1,6 +1,6 @@
 # Environment Resume
 
-**Date of latest checkup:** 2021-12-30
+**Date of latest checkup:** 2022-02-19
 
 ## Brew
 
@@ -8,28 +8,28 @@
 /usr/local/bin/brew
 
 **Version:**
-Homebrew 3.3.9-83-g0b14b6d
-Homebrew/homebrew-core (git revision 07733409517; last commit 2021-12-30)
-Homebrew/homebrew-cask (git revision fd69565ff0; last commit 2021-12-31)
+Homebrew 3.3.15-71-g374adf7
+Homebrew/homebrew-core (git revision 5197eb419eb; last commit 2022-02-19)
+Homebrew/homebrew-cask (git revision bf5c017eff; last commit 2022-02-20)
 
 **Packages installed:**
 
 ```
 bash-completion 1.3_3
-ca-certificates 2021-10-26
-gdbm 1.22
+ca-certificates 2022-02-01
+gdbm 1.23
 mpdecimal 2.5.1
 openssl@1.1 1.1.1m
-python@3.9 3.9.9
-readline 8.1.1
-sqlite 3.37.0
+python@3.9 3.9.10
+readline 8.1.2
+sqlite 3.37.2
 xz 5.2.5
 ```
 
 **Packages cask installed:**
 
 ```
-stats 2.6.17
+stats 2.7.5
 ```
 
 **Packages pinned:**
@@ -117,17 +117,17 @@ v16.13.0
 /usr/local/bin/npm
 
 **Version:**
-8.3.0
+8.5.1
 
 **Packages installed:**
 
 ```
 /usr/local/lib
 +-- corepack@0.10.0
-+-- eslint@8.5.0
-+-- npm@8.3.0
++-- eslint@8.9.0
++-- npm@8.5.1
 +-- prettier@2.5.1
-`-- stylelint@14.2.0
+`-- stylelint@14.5.1
 
 ```
 
@@ -137,4 +137,4 @@ v16.13.0
 /usr/local/bin/composer
 
 **Version:**
-Composer version 2.2.2 2021-12-29 14:15:27
+Composer version 2.2.6 2022-02-04 17:00:38
