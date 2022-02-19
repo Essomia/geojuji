@@ -78,11 +78,13 @@ vscode --install-extension jerrylopez.magento2-snippets
 vscode --install-extension mgmcdermott.vscode-language-babel
 vscode --install-extension ms-vscode.vscode-typescript-next
 vscode --install-extension naumovs.color-highlight
+vscode --install-extension pflannery.vscode-versionlens
 vscode --install-extension sainoba.px-to-rem
 vscode --install-extension sleistner.vscode-fileutils
 vscode --install-extension steoates.autoimport
 vscode --install-extension stylelint.vscode-stylelint
 vscode --install-extension VisualStudioExptTeam.vscodeintellicode
+vscode --install-extension wix.vscode-import-cost
 vscode --install-extension xabikos.JavaScriptSnippets
 ```
 
