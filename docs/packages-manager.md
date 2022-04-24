@@ -49,23 +49,24 @@ As `composer` became a usefull tools to manage dependencies for PHP projects, yo
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-## 5. Bonus: Envresume
+## 5. Bonus: `resume-env`
 
-Once the packages managers listed above are installed, you can use the custom made script called `envresume`, located in `~/geojuji/shell/bash/bin/`, to keep all the managers and packages up-to-date.
+Once the packages managers listed above are installed, you can use the custom made script called `resume-env`, located in `~/geojuji/shell/bash/bin/`, to keep all the managers and packages up-to-date.
 
 You can run the following command for all managers (or for a specific one):
 
 ```bash
 # Get list of outdated packages
-envresume outdated
+resume-env outdated
 # Update main packages manager
-envresume update
+resume-env update
 # Update global outdated packages
-envresume upgrade
+resume-env upgrade
 # Check paths and current version of installed packages
-envresume doctor
+resume-env doctor
 ```
 
-:memo: For more detail, you check the [envresume](../shell/bash/bin/envresume) script file.
+:memo: For more detail, you check the [resume-env](../shell/bash/bin/resume-env) script file.
 
-:bulb: If you are interested, you can consult my lastest [environment checkup](../docs/envresume-checkup.md). I generate it with: `envresume doctor -- print > docs/envresume-checkup.md`.
+:bulb: If you are interested, you can consult my lastest [environment checkup](../docs/_checkup-env.md).
+I generate it with: `resume-env doctor -- print > docs/_checkup-env.md`.
