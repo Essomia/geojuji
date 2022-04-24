@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# Fix issue on launching Chrome on old MacOS
+#
+
+sudo xattr -lr /Applications/Google\ Chrome.app/
+sudo xattr -cr /Applications/Google\ Chrome.app/
+sudo codesign -f -s - /Applications/Google\ Chrome.app/
+
+echo -e "Chrome has been fixed!"
