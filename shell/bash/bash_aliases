@@ -37,7 +37,7 @@ alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}";
 # --------------------------------
 
 # Packages managers
-alias ls_brew='brew ls --versions'
+alias ls_brew='brew ls --versions $(brew leaves)'
 alias ls_gem='gem list --local'
 alias ls_npm='npm list --depth=0'
 alias ls_bin='ls $GEOJUJI_PATH'
