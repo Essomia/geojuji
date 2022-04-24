@@ -16,8 +16,9 @@ app/apache2/indexv/*
 
 # /app/visual-studio-code
 app/visual-studio-code/globalStorage/*
-app/visual-studio-code/workspaceStorage/*
+app/visual-studio-code/History/*
 app/visual-studio-code/sync/*
+app/visual-studio-code/workspaceStorage/*
 
 # /shell/git
 shell/git/gituser

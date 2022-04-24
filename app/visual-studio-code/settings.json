@@ -66,5 +66,6 @@
   //
   "update.mode": "start",
   "window.nativeTabs": true,
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "security.workspace.trust.banner": "never"
 }
