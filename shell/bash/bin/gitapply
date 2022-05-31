@@ -1,0 +1,62 @@
+#!/bin/bash
+
+source util-colors.sh
+source util-titles.sh
+
+###########
+# Git Apply
+# A helper to apply a git CMD for a folder and its subfolder.
+###########
+
+# USAGE
+# --------------------------------
+
+if [ $# -lt 1 ]; then
+    echo -e "${YELLOW_UL}Usage:${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}<folder> <max-depth[1]> \"<command>\"${RESET}";
+    echo "";
+    echo -e "${YELLOW_UL}Examples:${RESET}";
+    echo -e "  $(basename "$0") ${PINK}sub-folder/ 2 \"git status\"${RESET}";
+    echo -e "  $(basename "$0") ${PINK}../folder 3 \"git remote -vv\"${RESET}";
+    exit 1;
+fi
+
+
+# FUNCTIONS
+# --------------------------------
+
+BIN_GIT=$(/usr/bin/which git);
+
+function fnApply() {
+    # actual absolute folder
+    FOLDER_ROOT=$(pwd);
+    # relative path to explore
+    ARGS_FOLDER=${1%/};
+    # max depth sub-folder to check
+    ARGS_MAXDEPTH=$([[ -z $2 ]] && echo '1' || echo $2);
+    # args command to execute
+    ARGS_CMDTOEXD="${@:3}"
+
+    # Loop in all git repositories found with given arguments
+    find $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
+        cd $FOLDER_ROOT/${DIR%.git};
+
+        styleSubtitle ${DIR%.git};
+
+        $ARGS_CMDTOEXD
+    done
+
+    cd $FOLDER_ROOT;
+}
+
+
+# SWITCHER
+# --------------------------------
+
+if [ -d "$1" ]; then
+    styleTitle "Git Apply";
+
+    fnApply "${@:1}"
+else
+    echo -e "${RED_UL}ERROR:${RESET} ${RED}'$1' is not a folder.${RESET}";
+fi
