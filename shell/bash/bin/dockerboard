@@ -1,0 +1,67 @@
+#!/bin/bash
+
+source util-colors.sh
+source util-titles.sh
+
+###########
+# Dockerboard
+# A helper to see docker status.
+###########
+
+# USAGE
+# --------------------------------
+
+if [ $# -lt 1 ]; then
+    echo -e "${YELLOW_UL}Usage:${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}<command>${RESET}";
+    exit 1;
+fi
+
+
+# FUNCTIONS
+# --------------------------------
+
+function fnDockerStats() {
+    if [[ -n $(which docker) ]]; then
+        styleSubtitle "Docker networks";
+
+        docker network list
+
+        styleSubtitle "Docker images";
+
+        docker images -a
+
+        styleSubtitle "Docker containers";
+
+        docker ps -a
+
+        styleSubtitle "Docker volumes";
+
+        docker volume ls
+
+    else
+        echo "${RED_UL}ERROR:${RESET}${RED} You need to have docker installed.${RESET}"
+    fi
+}
+
+function fnDockerHelp() {
+    styleSubtitle "Docker help";
+
+    echo -e "${BLUE}- Delete containers:${RESET} docker ps --filter name=testinit-* -aq | xargs docker stop | xargs docker rm -v";
+    echo -e "${BLUE}- Cleanup volumes:${RESET}   docker volume prune";
+}
+
+
+# SWITCHER
+# --------------------------------
+
+case $1 in
+    "help")
+        styleTitle "Dockerboard";
+        fnDockerHelp
+        ;;
+    *)
+        styleTitle "Dockerboard";
+        fnDockerStats
+        ;;
+esac
