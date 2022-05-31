@@ -14,6 +14,10 @@ source util-titles.sh
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
     echo -e "  $(basename "$0") ${BLUE}<command>${RESET}";
+    echo "";
+    echo -e "${YELLOW_UL}Commands:${RESET}";
+    echo -e "  ${GREEN}status${RESET}    Check dockerboard.";
+    echo -e "  ${GREEN}help${RESET}      Get list of docker tips.";
     exit 1;
 fi
 
