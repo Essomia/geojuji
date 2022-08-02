@@ -36,6 +36,7 @@
     author = shortlog -sn --email
     rank   = shortlog -sn --no-merges
     who    = shortlog -sn --merges
+    brd    = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
 
     ########## LOG
 
