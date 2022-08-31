@@ -38,7 +38,7 @@ function fnApply() {
     ARGS_CMDTOEXD="${@:3}"
 
     # Loop in all git repositories found with given arguments
-    find $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
+    find -s $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
         cd $FOLDER_ROOT/${DIR%.git};
 
         styleSubtitle ${DIR%.git};

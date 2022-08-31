@@ -81,7 +81,7 @@ if [ -d "$1" ]; then
     ARGS_MAXDEPTH=$([[ -z $2 ]] && echo '1' || echo $2);
 
     # Loop in all git repository found with given arguments
-    find $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
+    find -s $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
         cd $FOLDER_ROOT/${DIR%.git};
 
         styleTitle ${DIR%.git};
