@@ -5,20 +5,5 @@
 app/apache2/indexv/*
 !app/apache2/indexv/*.sample
 
-# /app/sublime-text
-*-ca-bundle
-*.cache
-*.chback
-*.crt
-*.last-run
-*.sublime-color-scheme
-*.tmTheme
-
-# /app/visual-studio-code
-app/visual-studio-code/globalStorage/*
-app/visual-studio-code/History/*
-app/visual-studio-code/sync/*
-app/visual-studio-code/workspaceStorage/*
-
 # /shell/git
 shell/git/gituser
