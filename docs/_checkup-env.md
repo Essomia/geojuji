@@ -1,36 +1,33 @@
 # Environment Resume
 
-**Date of latest checkup:** 2022-04-24
+**Date of latest checkup:** 2023-01-09
 
 ## Brew
 
 **Path:**
-/usr/local/bin/brew
+/opt/homebrew/bin/brew
 
 **Version:**
-Homebrew 3.4.7-38-gc2eaeed
-Homebrew/homebrew-core (git revision 591e0569975; last commit 2022-04-24)
-Homebrew/homebrew-cask (git revision 7d59d8a803; last commit 2022-04-24)
+Homebrew 3.6.18
+Homebrew/homebrew-core (git revision 447633e93bd; last commit 2023-01-09)
 
 **Packages installed:**
 
 ```
-bash-completion 1.3_3
-ca-certificates 2022-03-29
-gdbm 1.23
-mpdecimal 2.5.1
-openssl@1.1 1.1.1n
-python@3.9 3.9.12
-readline 8.1.2
-sqlite 3.38.2
-xz 5.2.5
-stats 2.7.5
+brotli 1.0.9
+c-ares 1.18.1_1
+ca-certificates 2022-10-11
+icu4c 71.1
+libnghttp2 1.51.0
+libuv 1.44.2
+node 19.4.0
+openssl@1.1 1.1.1s
 ```
 
 **Packages cask installed:**
 
 ```
-stats 2.7.5
+
 ```
 
 **Packages pinned:**
@@ -45,13 +42,13 @@ stats 2.7.5
 /usr/bin/ruby
 
 **Version:**
-ruby 2.6.3p62 (2019-04-16 revision 67580) [universal.x86_64-darwin19]
+ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin22]
 
 **Path:**
 /usr/bin/gem
 
 **Version:**
-3.0.3
+3.0.3.1
 
 **Packages installed:**
 
@@ -61,7 +58,7 @@ bundler (default: 1.17.2)
 CFPropertyList (2.3.6)
 cmath (default: 1.0.0)
 csv (default: 3.0.9)
-date (default: 2.0.0)
+date (default: 2.0.3)
 dbm (default: 1.0.0)
 did_you_mean (1.3.0)
 e2mmap (default: 0.1.0)
@@ -74,7 +71,7 @@ io-console (default: 0.4.7)
 ipaddr (default: 1.2.2)
 irb (default: 1.0.0)
 json (default: 2.1.0)
-libxml-ruby (3.1.0)
+libxml-ruby (3.2.1)
 logger (default: 1.3.0)
 matrix (default: 0.1.0)
 mini_portile2 (2.4.0)
@@ -87,9 +84,9 @@ ostruct (default: 0.1.0)
 power_assert (1.1.3)
 prime (default: 0.1.0)
 psych (default: 3.1.0)
-rake (12.3.2)
-rdoc (default: 6.1.0)
-rexml (default: 3.1.9)
+rake (12.3.3)
+rdoc (default: 6.1.2.1)
+rexml (default: 3.1.9.1)
 rss (default: 0.2.7)
 scanf (default: 1.0.0)
 sdbm (default: 1.0.0)
@@ -101,7 +98,7 @@ sync (default: 0.5.0)
 test-unit (3.2.9)
 thwait (default: 0.1.0)
 tracer (default: 0.1.0)
-webrick (default: 1.4.2)
+webrick (default: 1.4.4)
 xmlrpc (0.3.0)
 zlib (default: 1.0.0)
 ```
@@ -109,33 +106,23 @@ zlib (default: 1.0.0)
 ## NodeJS
 
 **Path:**
-/usr/local/bin/node
+/opt/homebrew/bin/node
 
 **Version:**
-v16.13.0
+v19.4.0
 
 **Path:**
-/usr/local/bin/npm
+/opt/homebrew/bin/npm
 
 **Version:**
-8.7.0
+9.2.0
 
 **Packages installed:**
 
 ```
-/usr/local/lib
-+-- corepack@0.10.0
-+-- eslint@8.14.0
-+-- npm@8.7.0
-+-- prettier@2.6.2
-`-- stylelint@14.7.1
-
+/opt/homebrew/lib
++-- eslint@8.31.0
++-- npm@9.2.0
++-- prettier@2.8.2
+`-- stylelint@14.16.1
 ```
-
-## Composer
-
-**Path:**
-/usr/local/bin/composer
-
-**Version:**
-Composer version 2.3.5 2022-04-13 16:43:00
