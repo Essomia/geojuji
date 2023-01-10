@@ -42,9 +42,8 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # --------------------------------
 
 # Shell directories to search for executable files (Default OSX).
-# - defaut export give us "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/lib/node_modules:$PATH"
+export PATH="/usr/local/bin:$PATH" # global
+export PATH="/opt/homebrew/bin:$PATH" # homebrew
 
 # Get personal directory for executable and add to shell directories to search for executable files.
 export GEOJUJI_PATH=$(dirname $(readlink "${BASH_SOURCE[0]}"))/bin;

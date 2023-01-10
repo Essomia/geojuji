@@ -43,4 +43,5 @@
     forest = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all"
     leaf   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
     tree   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short"
+
     his    = "reflog --format='* %C(red)%h%Creset %C(yellow)%gd%Creset - %gs %C(green)(%cr)%Creset' --all"

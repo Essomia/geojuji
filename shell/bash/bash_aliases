@@ -17,8 +17,6 @@ alias mkdir='mkdir -pv '       # Make directories - (recursive + verbose)
 alias mv='mv -iv '             # Move files       - (prompt + verbose)
 
 alias c='clear'                # Clear terminal display
-alias edit='subl '             # Opens any file/folder in Sublime Text editor
-alias finder='open -a Finder ' # Opens current directory in MacOS Finder
 alias sudo='sudo '             # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
 
 alias reload='exec bash -l'
@@ -43,16 +41,12 @@ alias ls_npm='npm list --depth=0'
 alias ls_bin='ls $GEOJUJI_PATH'
 
 # Edit configuration
-alias conf_apache='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-ssl.conf'
 alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
 alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitignore'
-alias conf_hosts='sudo edit /etc/hosts'
 
-# Apache
+# Php: Apache / MySQL
+alias apache_conf='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-ssl.conf'
 alias apache_errlogs='less +F /var/log/apache2/dev_error_log'
 alias apache_httplogs='tail /var/log/httpd/error_log'
 alias apache_restart='sudo apachectl graceful'
-alias php_memory='php -d memory_limit=-1'
-
-# MySQL
 alias mysql_connect='mysql -u root -p'

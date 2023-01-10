@@ -24,7 +24,6 @@ if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Packages:${RESET}";
     echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node -> composer";
     echo -e "  ${GREEN}brew${RESET}      Homebrew";
-    echo -e "  ${GREEN}composer${RESET}  Composer PHP";
     echo -e "  ${GREEN}node${RESET}      NodeJS";
     echo -e "  ${GREEN}ruby${RESET}      Ruby";
     exit 1;
@@ -33,45 +32,6 @@ fi
 
 # FUNCTIONS
 # --------------------------------
-
-function fnComposer() {
-    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
-        echo -e "";
-        echo "## Composer"
-        echo -e "";
-
-        YELLOW='\n**';
-        RESET='**\n';
-        CODE='```';
-    else
-        styleSubtitle "Composer {$1}";
-    fi
-
-    if [[ -n $(/usr/bin/which composer) ]]; then
-        BIN_COMPOSER=$(/usr/bin/which composer);
-
-        case $1 in
-            "doctor")
-                echo -e "${YELLOW}Path:${RESET}    $BIN_COMPOSER";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_COMPOSER --version)";
-                ;;
-            "outdated")
-                echo -e "${PINK_UL}Note:${RESET} Composer don't have any global packages.";
-                ;;
-            "update")
-                $BIN_COMPOSER self-update;
-                ;;
-            "upgrade")
-                echo -e "${PINK_UL}Note:${RESET} Composer don't have any global packages.";
-                ;;
-            *)
-                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
-                ;;
-        esac
-    else
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"composer\" installed.${RESET}";
-    fi
-}
 
 function fnNodejs() {
     if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
@@ -258,14 +218,10 @@ case $1 in
             "node")
                 fnNodejs $1 $3;
                 ;;
-            "composer")
-                fnComposer $1 $3;
-                ;;
             *)
                 fnBrew $1 $3;
                 fnRuby $1 $3;
                 fnNodejs $1 $3;
-                fnComposer $1 $3;
                 ;;
         esac
         ;;

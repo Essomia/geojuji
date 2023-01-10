@@ -2,16 +2,11 @@
 
 ## 1. [SSH Key](https://help.github.com/articles/connecting-to-github-with-ssh/)
 
-You will need a public SSH key to be identified in some services like Github.
+You will need a public SSH key to be identified in some services (like GitHub).
 
-1. Create a new SSH key, run the following command:
-
-    ```
-    ssh-keygen
-    ```
-
-1. Hit return a couple of times for no passphrase.
-1. Copy the new public SSH key from `~/.ssh/id_rsa.pub`.
+1. Create a new SSH key with no passphrase.
+2. Adjust your `~/.ssh/config` file.
+3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account.
 
 ## 2. XCode
 
@@ -31,7 +26,8 @@ When you develop on macOS, you will need some basic command-line tools.
 
 ## 3. [Bash](https://www.gnu.org/software/bash/)
 
-For developers, the terminal is used on a daily basis. For a better experience, you would probably like to improve it according to your needs.
+For developers, the terminal is used on a daily basis.
+For a better experience, you would probably like to improve it according to your needs.
 
 1. Since macOS set your terminal to use `bash` or `zsh` by default, check which shell your terminal is currently using:
 
@@ -50,21 +46,19 @@ For developers, the terminal is used on a daily basis. For a better experience, 
     ```bash
     # Common login configuration
     ln -sf ~/geojuji/shell/bash/bash_profile  ~/.bash_profile
-    # Contains needed aliases
+    # Contains some needed aliases
     ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
     ```
 
-:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. You can add new binaries to that folder.
-
-:no_entry: Please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set as `755` to be to executable.
+:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. You can add new binaries to that folder. So, please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set to be executable.
 
 ## 4. [Git](https://git-scm.com/)
 
-If you use `git` as version control, you would probably add you own configuration.
+If you use `git` as version control, you would probably add your own configuration.
 
-1. Rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`. Think to update the `name`, `username` and `email` with the correct informations.
-
-1. Symlink the `git` configuration files:
+1. Rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`.
+2. Think to update the `name`, `username` and `email` with the correct information.
+3. Symlink the `git` configuration files:
 
     ```bash
     # Your personal configuration

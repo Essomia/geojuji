@@ -21,6 +21,9 @@ Read the complete step-by-step guide to set and install all needed tools on a ma
 1. [Shell's configurations](./docs/shell.md)
 1. [Install packages managers](./docs/packages-manager.md)
 1. [Configure applications](./docs/applications.md)
+
+As a bonus, you can have below a starter steps to set up PHP locally:
+
 1. [Configure local environment](./docs/local-environment.md)
 
 The guide above will refer to the current repository as `~/geojuji/`. Please adjust all commands as needed.
