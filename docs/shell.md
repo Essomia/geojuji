@@ -71,8 +71,6 @@ If you use `git` as version control, you would probably add your own configurati
     ln -sf ~/geojuji/shell/git/gitaliases  ~/.gitaliases
     ```
 
-:warning: Since merge and rebase with `git` can be difficult with only the terminal, you can use third-party software like [Diffmerge](https://sourcegear.com/diffmerge/). If you use another software, you need to change the configuration in `~/geojuji/shell/git/gitconfig` accordingly.
-
 :memo: Also, if you work a lot with `git`, you may want to add autocompletion for command lines:
 
 ```

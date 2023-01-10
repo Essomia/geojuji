@@ -45,25 +45,25 @@
     untracked = cyan
 
 [merge]
-    tool = diffmerge
+    tool = vscode
 
 [mergetool]
     # Keep original file with conflict
     keepBackup = false
 
-[mergetool "diffmerge"]
-    cmd = "/Applications/DiffMerge.app/Contents/MacOS/diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE"
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
     trustExitCode = true
 
 [diff]
-    tool = diffmerge
+    tool = vscode
 
 [difftool]
     # Prompt before each invocation of the diff tool.
     prompt = false
 
-[difftool "diffmerge"]
-    cmd = "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge \"$LOCAL\" \"$REMOTE\""
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 
 [url "git@github.com:"]
     # Remove use of "https" for remote
