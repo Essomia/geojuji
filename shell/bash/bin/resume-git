@@ -4,7 +4,7 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# Git resume
+# Resume Git
 # A helper to get a status for git repository in a folder.
 ###########
 

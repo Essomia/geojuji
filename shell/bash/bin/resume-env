@@ -4,7 +4,7 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# Env resume
+# Resume Env
 # A helper to get a status for computer dependencies managers.
 ###########
 
