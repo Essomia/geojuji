@@ -50,7 +50,7 @@ For a better experience, you would probably like to improve it according to your
     ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
     ```
 
-:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. You can add new binaries to that folder. So, please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set to be executable.
+:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. You can add new binaries to that folder. Please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set to be executable (i.e. 755).
 
 ## 4. [Git](https://git-scm.com/)
 

@@ -19,6 +19,7 @@ alias mv='mv -iv '             # Move files       - (prompt + verbose)
 alias c='clear'                # Clear terminal display
 alias sudo='sudo '             # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
 
+alias edit='vscode'
 alias reload='exec bash -l'
 
 
@@ -44,9 +45,7 @@ alias ls_bin='ls $GEOJUJI_PATH'
 alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
 alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitignore'
 
-# Php: Apache / MySQL
-alias apache_conf='edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-ssl.conf'
-alias apache_errlogs='less +F /var/log/apache2/dev_error_log'
-alias apache_httplogs='tail /var/log/httpd/error_log'
-alias apache_restart='sudo apachectl graceful'
-alias mysql_connect='mysql -u root -p'
+# Php / Apache / MySQL
+alias apache_conf='sudo edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
+alias apache_restart='sudo apachectl restart'
+alias apache_logs='tail -f /var/log/apache2/dev_error_log'
