@@ -5,7 +5,7 @@ source util-titles.sh
 
 ###########
 # Docker Board
-# Helper to get docker status and some tips (+ composer checkup)
+# To get docker status and some helper commands
 ###########
 
 # USAGE
@@ -16,8 +16,39 @@ if [ $# -lt 1 ]; then
     echo -e "  $(basename "$0") ${BLUE}<command>${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}status${RESET}    Docker checkup";
-    echo -e "  ${GREEN}composer${RESET}  Composer checkup - option: ${BLUE}<doctor|update>${RESET}";
+    echo -e "  ${GREEN}start${RESET}     Start docker services";
+    echo -e "  ${GREEN}status${RESET}    Show docker status (images, containers, volumes)";
+    echo -e "  ${GREEN}stop${RESET}      Stop docker services";
+    echo -e "  ${GREEN}db:export${RESET} Export database to file";
+    echo -e "  ${GREEN}db:import${RESET} Import database from file";
+    echo "";
+    echo -e "Example:";
+    echo -e "  $(basename "$0") ${BLUE}status${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}start${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}stop${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}db:import${RESET} ${GREEN}<file>${RESET}";
+    echo -e "  $(basename "$0") ${BLUE}db:export${RESET} ${GREEN}<file>${RESET}";
+    exit 1;
+fi
+
+
+# CHECKS
+# --------------------------------
+
+if [[ -n $(which docker) ]]; then
+    DOCKER_INSTALLED=true
+else
+    DOCKER_INSTALLED=false
+fi
+
+if [[ -n $(which docker-compose) ]]; then
+    DOCKER_COMPOSE_INSTALLED=true
+else
+    DOCKER_COMPOSE_INSTALLED=false
+fi
+
+if [[ $DOCKER_INSTALLED == false && $DOCKER_COMPOSE_INSTALLED == false ]]; then
+    echo -e "${RED_UL}ERROR:${RESET}${RED} You need to have 'docker' and 'docker-compose' installed.${RESET}"
     exit 1;
 fi
 
@@ -25,67 +56,65 @@ fi
 # FUNCTIONS
 # --------------------------------
 
-function fnDockerStatus() {
-    if [[ -n $(which docker) ]]; then
-        styleSubtitle "Docker networks";
+function docker_status() {
+    styleSubtitle "Docker networks";
 
-        docker network list
+    docker network list
 
-        styleSubtitle "Docker images";
+    styleSubtitle "Docker images";
 
-        docker images -a
+    docker images -a
 
-        styleSubtitle "Docker containers";
+    styleSubtitle "Docker containers";
 
-        docker ps -a
+    docker ps -a
 
-        styleSubtitle "Docker volumes";
+    styleSubtitle "Docker volumes";
 
-        docker volume ls
-
-        styleSubtitle "Docker Reminders";
-
-        echo -e "${BLUE}- Cleanup containers and volumes:${RESET}  docker ps --filter name=testinit-* -aq | xargs docker stop | xargs docker rm -v";
-        echo -e "${BLUE}- Cleanup volumes:${RESET}                 docker volume prune";
-        echo -e "${BLUE}- Setup:${RESET}                           docker-compose up -d  |  docker-compose down";
-    else
-        echo "${RED_UL}ERROR:${RESET}${RED} You need to have docker installed.${RESET}"
-    fi
+    docker volume ls
 }
 
-function fnCheckComposer() {
-    styleSubtitle "Composer - Run: $1";
-
-    if [[ -n $(/usr/bin/which composer) ]]; then
-        BIN_COMPOSER=$(/usr/bin/which composer);
-
-        case $1 in
-            "doctor")
-                echo -e "${YELLOW}Path:${RESET}    $BIN_COMPOSER";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_COMPOSER --version)";
-                ;;
-            "update")
-                $BIN_COMPOSER self-update;
-                ;;
-            *)
-                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid. Try 'update' or 'doctor'.${RESET}";
-                ;;
-        esac
-    else
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"composer\" installed.${RESET}";
-    fi
+function docker_db_import() {
+    docker run --rm --volumes-from $(docker ps -q --filter name=-db) -v $(pwd):/backup ubuntu bash -c "rm -fr /var/lib/mysql/* && cd /var/lib/mysql && tar zxvf /backup/$1"
+    docker restart $(docker ps -q --filter name=-db)
 }
+
+function docker_db_export() {
+    docker run --rm --volumes-from $(docker ps -q --filter name=-db) -v $(pwd):/backup ubuntu tar zcvf /backup/$1 -C /var/lib/mysql .
+}
+
+function docker_start() {
+    docker-compose up -d
+}
+
+function docker_stop() {
+    docker-compose down
+}
+
 
 # SWITCHER
 # --------------------------------
 
+styleTitle "DockerBoard";
+
 case $1 in
-    "check:composer")
-        styleTitle "DockerBoard - Checker";
-        fnCheckComposer $2;
+    'db:import')
+        docker_db_import $2
+        ;;
+    'db:export')
+        docker_db_export $2
+        ;;
+    'start')
+        docker_start
+        ;;
+    'stop')
+        docker_stop
+        ;;
+    'status')
+        docker_status
         ;;
     *)
-        styleTitle "DockerBoard";
-        fnDockerStatus
+        echo -e "${BLUE}- Cleanup containers and volumes:${RESET}  docker ps --filter name=DEMO-* -aq | xargs docker stop | xargs docker rm -v";
+        echo -e "${BLUE}- Cleanup volumes:${RESET}                 docker volume prune";
         ;;
 esac
