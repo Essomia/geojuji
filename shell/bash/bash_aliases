@@ -7,29 +7,22 @@
 # PREFERRED IMPLEMENTATION
 # --------------------------------
 
-alias cp='cp -iv '             # Copy files       - (prompt + verbose)
-alias grep='grep --color -Ii ' # Preferred search - (ignore binary + ignore case)
-alias lal='ls -lFa '           # List content     - (long format with symbol + hidden)
-alias less='less -RS '         # File pager       - (raw window + nowrap)
-alias ll='ls -lF '             # List content     - (long format with symbol)
-alias ln='ln -sf '             # Create a symlink - (symbolink link + force)
-alias mkdir='mkdir -pv '       # Make directories - (recursive + verbose)
-alias mv='mv -iv '             # Move files       - (prompt + verbose)
+alias cp='cp -iv '                  # Copy files       - (prompt + verbose)
+alias grep='grep --color -Ii '      # Preferred search - (ignore binary + ignore case)
+alias lal='ls -lFa '                # List content     - (long format with symbol + hidden)
+alias less='less -RS '              # File pager       - (raw window + nowrap)
+alias ll='ls -lF '                  # List content     - (long format with symbol)
+alias ln='ln -sf '                  # Create a symlink - (symbolink link + force)
+alias mkdir='mkdir -pv '            # Make directories - (recursive + verbose)
+alias mv='mv -iv '                  # Move files       - (prompt + verbose)
+alias tail='tail -100f '            # File pager       - (last 100 lines + follow)
 
-alias c='clear'                # Clear terminal display
-alias sudo='sudo '             # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
+alias chmod_get='stat -f "%OLp" '   # Get chmod for "filename"
+alias git="LANG=en_US.UTF-8 git";   # Force git to be in english
 
-alias edit='vscode'
-alias reload='exec bash -l'
-
-
-# FILE/FOLDER MANAGEMENT
-# --------------------------------
-
-alias remind_chmod_get='# stat -f "%OLp" "filename"'
-alias remind_chmod_set='# chmod 644 "filename" / chmod 755 "folder"'
-alias remind_find='# find . -type f -name "filename"'
-alias remind_rename='# for file in *.txt; do mv "$file" "${file/.txt/.txt.bak}"; done'
+alias sudo='sudo '                  # Allow sudo in aliases comands. - See http://www.shellperson.net/using-sudo-with-an-alias/
+alias c='clear'                     # Clear terminal display
+alias reload='exec bash -l'         # Reload bash profile
 
 
 # WEB DEVELOPMENT
@@ -42,10 +35,11 @@ alias ls_npm='npm list --depth=0'
 alias ls_bin='ls $GEOJUJI_PATH'
 
 # Edit configuration
-alias conf_bash='edit ~/.bash_profile ~/.bash_aliases'
-alias conf_git='edit ~/.gitconfig ~/.gitaliases ~/.gitignore'
+alias conf_bash='nano ~/.bash_profile ~/.bash_aliases'
+alias conf_git='nano ~/.gitconfig ~/.gitaliases ~/.gitignore'
+alias conf_hosts='sudo nano /etc/hosts'
 
 # Php / Apache / MySQL
-alias apache_conf='sudo edit /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
+alias apache_conf='sudo nano /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
 alias apache_restart='sudo apachectl restart'
 alias apache_logs='tail -f /var/log/apache2/dev_error_log'
