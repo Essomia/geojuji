@@ -36,7 +36,9 @@
     author = shortlog -sn --email
     rank   = shortlog -sn --no-merges
     who    = shortlog -sn --merges
-    brd    = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
+
+    br-bydate   = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
+    reba-merges = rebase -i --rebase-merges --onto
 
     ########## LOG
 
@@ -44,4 +46,5 @@
     leaf   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
     tree   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short"
 
-    his    = "reflog --format='* %C(red)%h%Creset %C(yellow)%gd%Creset - %gs %C(green)(%cr)%Creset' --all"
+    his-act = "reflog --format='* %C(red)%h%Creset %C(yellow)%gd%Creset - %gs %C(green)(%cr)%Creset' --all"
+    his-who = "log --graph --pretty=fuller"
