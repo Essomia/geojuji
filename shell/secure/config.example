@@ -1,0 +1,16 @@
+###########
+#  ~/.ssh/config
+###########
+
+#Host *
+#    UseKeychain yes
+
+#Host domain.org
+#    HostName domain.org
+#    PreferredAuthentications publickey
+#    IdentityFile ~/.ssh/rsa-key
+
+#Host alias.domain.com
+#    HostName domain.com
+#    PreferredAuthentications publickey
+#    IdentityFile ~/.ssh/ed-key

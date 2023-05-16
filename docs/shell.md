@@ -5,7 +5,10 @@
 You will need a public SSH key to be identified in some services (like GitHub).
 
 1. Create a new SSH key with no passphrase.
-2. Adjust your `~/.ssh/config` file.
+    ```
+    ssh-keygen -t ed25519 -C "admin@localhost.com"
+    ```
+2. Adjust your `~/.ssh/config` file. You have an example under the `~/geojuji/shell/secure` folder.
 3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account.
 
 ## 2. XCode
