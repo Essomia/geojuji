@@ -64,7 +64,3 @@
 
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
-
-[url "git@github.com:"]
-    # Remove use of "https" for remote
-    insteadOf = https://github.com/
