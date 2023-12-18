@@ -39,9 +39,6 @@
 
     ########## HELPERS
 
-    file-crlf   = "grep -I --name-only -e $'\r'"
-    file-lf     = "grep -I --name-only -e $'\n'"
-
     br-bydate   = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
     reba-merges = rebase -i --rebase-merges --onto
 
