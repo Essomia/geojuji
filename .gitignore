@@ -7,3 +7,4 @@ app/apache2/indexv/*
 
 # /shell/git
 shell/git/gituser
+shell/secure/allowed_signers

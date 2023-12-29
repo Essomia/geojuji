@@ -17,12 +17,13 @@
     # Tell git to convert CRLF to LF on commit since we work on mac
     autocrlf = input
 
+# Sign commits by default
 [commit]
-    # Sign commits by default
     gpgsign = true
 [gpg]
-    # Set default signing key to use gpg signing
-    format = openpgp
+    format = ssh
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
 
 [branch]
     # Set up pull to rebase instead of merge

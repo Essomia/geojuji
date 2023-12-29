@@ -11,7 +11,7 @@ You will need a public SSH key to be identified in some services (like GitHub).
 2. Adjust your `~/.ssh/config` file. You have an example under the `~/geojuji/shell/secure` folder.
 3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account.
 
-:memo: Also check to [generate a new GPG Key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key) under `~/.gnupg/`.
+:memo: Be sure to use the same email for `git` commit and SSH keys for sign-in.
 
 ## 2. XCode
 
@@ -80,4 +80,14 @@ If you use `git` as version control, you would probably add your own configurati
 
 ```
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+```
+
+And now, let's also add signin commit configuration:
+
+```bash
+cd ~/.ssh/
+touch allowed_signers
+
+# Replace <MY_KEY> by your SSH KEY file name
+echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/<MY_KEY>.pub)" >> ~/.ssh/allowed_signers
 ```
