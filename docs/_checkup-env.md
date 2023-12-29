@@ -1,6 +1,6 @@
 # Environment Resume
 
-**Date of latest checkup:** 2023-01-09
+**Date of latest checkup:** 2023-12-29
 
 ## Brew
 
@@ -8,20 +8,34 @@
 /opt/homebrew/bin/brew
 
 **Version:**
-Homebrew 3.6.18
-Homebrew/homebrew-core (git revision 447633e93bd; last commit 2023-01-09)
+Homebrew 4.2.1
+Homebrew/homebrew-core (git revision 5fe4943f8a8; last commit 2023-12-29)
 
 **Packages installed:**
 
 ```
-brotli 1.0.9
-c-ares 1.18.1_1
-ca-certificates 2022-10-11
-icu4c 71.1
-libnghttp2 1.51.0
-libuv 1.44.2
-node 19.4.0
-openssl@1.1 1.1.1s
+apr-util 1.6.3_1
+argon2 20190702_1
+aspell 0.60.8.1_1
+autoconf 2.72
+curl 8.5.0
+freetds 1.4.10
+gd 2.3.3_6
+gnutls 3.8.2
+libgcrypt 1.10.3
+libksba 1.6.5
+libpq 16.1_1
+libsodium 1.0.19
+libusb 1.0.26
+libzip 1.10.1
+node 21.5.0
+npth 1.6
+oniguruma 6.9.9
+openssl@1.1 1.1.1w
+pcre2 10.42
+pinentry 1.2.1
+sqlite 3.44.2
+tidy-html5 5.8.0
 ```
 
 **Packages cask installed:**
@@ -42,7 +56,7 @@ openssl@1.1 1.1.1s
 /usr/bin/ruby
 
 **Version:**
-ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin22]
+ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin23]
 
 **Path:**
 /usr/bin/gem
@@ -74,11 +88,11 @@ json (default: 2.1.0)
 libxml-ruby (3.2.1)
 logger (default: 1.3.0)
 matrix (default: 0.1.0)
-mini_portile2 (2.4.0)
+mini_portile2 (2.8.0)
 minitest (5.11.3)
 mutex_m (default: 0.1.0)
 net-telnet (0.2.0)
-nokogiri (1.10.1)
+nokogiri (1.13.8)
 openssl (default: 2.1.2)
 ostruct (default: 0.1.0)
 power_assert (1.1.3)
@@ -109,20 +123,22 @@ zlib (default: 1.0.0)
 /opt/homebrew/bin/node
 
 **Version:**
-v19.4.0
+v21.5.0
 
 **Path:**
 /opt/homebrew/bin/npm
 
 **Version:**
-9.2.0
+10.2.5
 
 **Packages installed:**
 
 ```
 /opt/homebrew/lib
-+-- eslint@8.31.0
-+-- npm@9.2.0
-+-- prettier@2.8.2
-`-- stylelint@14.16.1
++-- eslint@8.56.0
++-- npm@10.2.5
++-- prettier@3.1.1
++-- stylelint@16.1.0
+`-- vercel@33.0.1
+
 ```

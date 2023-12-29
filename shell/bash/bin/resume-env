@@ -157,7 +157,7 @@ function fnBrew() {
                 echo -e "${YELLOW}Packages installed:${RESET}";
 
                 echo -e $CODE;
-                $BIN_BREW ls --versions;
+                $BIN_BREW ls --versions $(brew leaves);
                 echo -e $CODE;
 
                 echo -e "";
