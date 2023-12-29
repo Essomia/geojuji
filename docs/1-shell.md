@@ -9,9 +9,7 @@ You will need a public SSH key to be identified in some services (like GitHub).
     ssh-keygen -t ed25519 -C "admin@localhost.com"
     ```
 2. Adjust your `~/.ssh/config` file. You have an example under the `~/geojuji/shell/secure` folder.
-3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account.
-
-:memo: Be sure to use the same email for `git` commit and SSH keys for sign-in.
+3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account (as "authentication" key).
 
 ## 2. XCode
 
@@ -82,12 +80,27 @@ If you use `git` as version control, you would probably add your own configurati
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 ```
 
-And now, let's also add signin commit configuration:
+## 5. SSH & GIT - Get "verified" commits
 
-```bash
-cd ~/.ssh/
-touch allowed_signers
+After the basic configuration of `git` and `ssh` keys, we can now configure the "verified" flag for our commits with `git`.
 
-# Replace <MY_KEY> by your SSH KEY file name
-echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/<MY_KEY>.pub)" >> ~/.ssh/allowed_signers
-```
+:memo: You can commit with a "public" email and use a "private" email for your SSH keys.
+
+1. Create a new file under the `~/.ssh/` folder:
+    ```bash
+    cd ~/.ssh/
+    touch allowed_signers
+    ```
+2. Add this new file to your global `gitconfig` file:
+    ```bash
+    git config gpg.ssh.allowedSignersFile "~/.ssh/allowed_signers"
+    ```
+3. Run the following to add your SSH key (use for "authentication") into the `allowed_signers` file:
+    ```bash
+    # Replace <MY_KEY> by your SSH KEY filename
+    echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/<MY_KEY>.pub)" >> ~/.ssh/allowed_signers
+    ```
+4. Now, [add your SSH key to your account](https://docs.github.com/en/"authentication"/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account), but be sure to set it as "signing" key.
+   At the end, you should have the same key twice: one as "authentication" and one as signing.
+
+Now, you can commit on a repository and validate that your new commit is verified with: `git log --show-signature`.
