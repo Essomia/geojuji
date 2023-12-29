@@ -11,6 +11,8 @@ You will need a public SSH key to be identified in some services (like GitHub).
 2. Adjust your `~/.ssh/config` file. You have an example under the `~/geojuji/shell/secure` folder.
 3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account.
 
+:memo: Also check to [generate a new GPG Key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key) under `~/.gnupg/`.
+
 ## 2. XCode
 
 When you develop on macOS, you will need some basic command-line tools.

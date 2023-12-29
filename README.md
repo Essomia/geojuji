@@ -18,9 +18,9 @@ git clone  git@github.com:[username]/geojuji.git  ~/geojuji
 
 Read the complete step-by-step guide to set and install all needed tools on a macOS for front-end development:
 
-1. [Shell's](./docs/shell.md)
-2. [Packages managers](./docs/packages-manager.md)
-3. [Applications](./docs/applications.md)
-4. [PHP Environment](./docs/php-environment.md)
+1. [Shell's](./docs/1-shell.md)
+2. [Packages managers](./docs/2-packages-manager.md)
+3. [Applications](./docs/3-applications.md)
+4. [PHP Environment](./docs/4-php-environment.md)
 
 The guide above will refer to the current repository as `~/geojuji/`. Please adjust all commands as needed.
