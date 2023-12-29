@@ -27,10 +27,12 @@ fi
 # --------------------------------
 
 function fnRemoveDSStoreFiles() {
+    cmdPrintAndDo cd ~/Sites;
     cmdPrintAndDo find . -name ".DS_Store" -depth -exec rm {} \;
 }
 
 function fnRemoveNodeModules() {
+    cmdPrintAndDo cd ~/Sites;
     cmdPrintAndDo find . -name "node_modules" -depth -exec rm -rf {} \;
 }
 
