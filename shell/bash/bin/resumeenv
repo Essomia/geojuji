@@ -133,7 +133,7 @@ function fnRuby() {
 }
 
 function fnBrew() {
-    printStyleSubtitle $1 $2 "Homebrew"
+    printStyleSubtitle $1 $2 "Brew"
 
     if [[ -n $(/usr/bin/which brew) ]]; then
         BIN_BREW=$(/usr/bin/which brew);

@@ -34,23 +34,23 @@ Once done, you can install needed packages globally with the following command l
 npm install -g <package-name>
 ```
 
-## 5. Bonus: `resume-env`
+## 5. Bonus: `resumeenv`
 
-Once the packages managers listed above are installed, you can use our custom-made script called `resume-env`. That script help you to keep all the managers and packages up-to-date.
+Once the packages managers listed above are installed, you can use our custom-made script called `resumeenv`. That script help you to keep all the managers and packages up-to-date.
 
 You can run the following command for all managers (or for a specific one):
 
 ```bash
 # Get list of outdated packages
-resume-env outdated
+resumeenv outdated
 # Update main packages manager
-resume-env update
+resumeenv update
 # Update global outdated packages
-resume-env upgrade
+resumeenv upgrade
 # Check paths and current version of installed packages
-resume-env doctor
+resumeenv doctor
 ```
 
-:memo: For more detail, you check the [resume-env](../shell/bash/bin/resume-env) script file.
+:memo: For more detail, you check the [resumeenv](../shell/bash/bin/resumeenv) script file.
 
-:bulb: You also generate a checkup with `resume-env doctor -- print > docs/_checkup-env.md`.
+:bulb: You also generate a checkup with `resumeenv doctor -- print > docs/_checkup-env.md`.
