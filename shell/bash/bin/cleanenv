@@ -1,0 +1,57 @@
+#!/bin/bash
+
+source util-colors.sh
+source util-titles.sh
+
+###########
+# CleanEnv
+# A helper to get a status for computer dependencies managers.
+###########
+
+# USAGE
+# --------------------------------
+
+if [ $# -lt 1 ]; then
+    echo -e "${YELLOW_UL}Usage:${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}<command>${RESET}";
+    echo "";
+    echo -e "${YELLOW_UL}Commands:${RESET}";
+    echo -e "  ${GREEN}all${RESET}   Run all cleaner functions.";
+    echo -e "  ${GREEN}ds${RESET}    Remove .DS_Store files.";
+    echo -e "  ${GREEN}node${RESET}  Remove node_modules folders.";
+    exit 1;
+fi
+
+
+# FUNCTIONS
+# --------------------------------
+
+function fnRemoveDSStoreFiles() {
+    cmdPrintAndDo find . -name ".DS_Store" -depth -exec rm {} \;
+}
+
+function fnRemoveNodeModules() {
+    cmdPrintAndDo find . -name "node_modules" -depth -exec rm -rf {} \;
+}
+
+
+# SWITCHER
+# --------------------------------
+
+styleTitle "CleanEnv";
+
+case $1 in
+    "all")
+        fnRemoveDSStoreFiles;
+        fnRemoveNodeModules;
+        ;;
+    "ds")
+        fnRemoveDSStoreFiles;
+        ;;
+    "node")
+        fnRemoveNodeModules;
+        ;;
+    *)
+        styleError "Unknown command.";
+        ;;
+esac

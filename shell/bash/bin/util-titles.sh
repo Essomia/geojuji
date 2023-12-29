@@ -1,9 +1,13 @@
 #!/bin/bash
 
 ###########
-# Util titles
+# Utils bashscript
 ###########
 
+# MESSAGES
+# --------------------------------
+
+# Usage: styleTitle <message>
 function styleTitle() {
     echo -e
 
@@ -14,8 +18,24 @@ function styleTitle() {
     echo "";
 }
 
+# Usage: styleSubtitle <message>
 function styleSubtitle() {
     echo "";
     echo -e "${YELLOW_BG}$2 $1$(printf "%-$((49 - ${#1}))s" " ")${RESET}";
     echo "";
+}
+
+# Usage: styleError <message>
+function styleError() {
+    echo -e "${RED_UL}ERROR:${RESET} ${RED}$1${RESET}";
+}
+
+
+# COMMANDS
+# --------------------------------
+
+# Usage: fnPrintAndDoCmd <command>
+function cmdPrintAndDo() {
+    echo -e "${BLUE}> $@${RESET}";
+    $@;
 }

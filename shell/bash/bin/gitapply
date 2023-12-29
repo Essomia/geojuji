@@ -4,8 +4,8 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# Git Apply
-# A helper to apply a git CMD for a folder and its subfolder.
+# GitApply
+# A helper to manage git repositories.
 ###########
 
 # USAGE
@@ -13,30 +13,38 @@ source util-titles.sh
 
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${BLUE}<folder> <max-depth[1]> \"<command>\"${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth[1]> \"<command>\"${RESET}";
+    echo "";
+    echo -e "${YELLOW_UL}Commands:${RESET}";
+    echo -e "  ${GREEN}folder${RESET}     Parent folder to explore.";
+    echo -e "  ${GREEN}max-depth${RESET}  Max depth of sub-folder to explore (we will look for .git folders).";
+    echo -e "  ${GREEN}command${RESET}    Command to execute in each git repository.";
     echo "";
     echo -e "${YELLOW_UL}Examples:${RESET}";
-    echo -e "  $(basename "$0") ${PINK}sub-folder/ 2 \"git status\"${RESET}";
-    echo -e "  $(basename "$0") ${PINK}../folder 3 \"git remote -vv\"${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}sub-folder/ 2 \"git status\"${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}../folder/ 2 \"git fetch\"${RESET}";
     exit 1;
 fi
 
 
-# FUNCTIONS
+# UTILS
 # --------------------------------
 
 BIN_GIT=$(/usr/bin/which git);
 
 function fnBasic() {
     if [[ -n $($BIN_GIT status -s) ]]; then
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}You have some change to commit.${RESET}";
-        echo "";
+        styleError "You have some change to commit.";
 
         $BIN_GIT status -s;
     else
         echo -e "No changes to commit.";
     fi
 }
+
+
+# FUNCTIONS
+# --------------------------------
 
 function fnApply() {
     # actual absolute folder
@@ -70,9 +78,9 @@ function fnApply() {
 # --------------------------------
 
 if [ -d "$1" ]; then
-    styleTitle "Git Apply";
+    styleTitle "GitApply";
 
     fnApply "${@:1}"
 else
-    echo -e "${RED_UL}ERROR:${RESET} ${RED}'$1' is not a folder.${RESET}";
+    styleError "\"$1\" is not a folder.";
 fi

@@ -4,7 +4,7 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# Resume Env
+# ResumeEnv
 # A helper to get a status for computer dependencies managers.
 ###########
 
@@ -13,7 +13,7 @@ source util-titles.sh
 
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${BLUE}<command> <package>${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}<command> <package>${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
     echo -e "  ${GREEN}doctor${RESET}    Check paths and current version of installed packages.";
@@ -30,21 +30,30 @@ if [ $# -lt 1 ]; then
 fi
 
 
-# FUNCTIONS
+# UTILS
 # --------------------------------
 
-function fnNodejs() {
+# Usage: printStyleSubtitle "doctor" "print" "NodeJS"
+function printStyleSubtitle() {
     if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
         echo -e "";
-        echo "## NodeJS"
+        echo "## $3"
         echo -e "";
 
         YELLOW='\n**';
         RESET='**\n';
         CODE='```';
     else
-        styleSubtitle "NodeJS {$1}";
+        styleSubtitle "$3 {$1}";
     fi
+}
+
+
+# FUNCTIONS
+# --------------------------------
+
+function fnNodejs() {
+    printStyleSubtitle $1 $2 "NodeJS"
 
     if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
         BIN_NPM=$(/usr/bin/which npm);
@@ -73,26 +82,16 @@ function fnNodejs() {
                 $BIN_NPM update -g;
                 ;;
             *)
-                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                styleError "\"$1\" is not a valid command.";
                 ;;
         esac
     else
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"node\" or \"npm\" installed.${RESET}";
+        styleError "You don't have \"node\" or \"npm\" installed.";
     fi
 }
 
 function fnRuby() {
-    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
-        echo -e "";
-        echo "## Ruby"
-        echo -e "";
-
-        YELLOW='\n**';
-        RESET='**\n';
-        CODE='```';
-    else
-        styleSubtitle "Ruby {$1}";
-    fi
+    printStyleSubtitle $1 $2 "Ruby"
 
     if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
         BIN_RUBY=$(/usr/bin/which ruby);
@@ -125,26 +124,16 @@ function fnRuby() {
                 # $BIN_GEM cleanup;
                 ;;
             *)
-                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                styleError "\"$1\" is not a valid command.";
                 ;;
         esac
     else
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"ruby\" or \"gem\" installed.${RESET}";
+        styleError "You don't have \"ruby\" or \"gem\" installed.";
     fi
 }
 
 function fnBrew() {
-    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
-        echo -e "";
-        echo "## Brew"
-        echo -e "";
-
-        YELLOW='\n**';
-        RESET='**\n';
-        CODE='```';
-    else
-        styleSubtitle "Brew {$1}";
-    fi
+    printStyleSubtitle $1 $2 "Homebrew"
 
     if [[ -n $(/usr/bin/which brew) ]]; then
         BIN_BREW=$(/usr/bin/which brew);
@@ -185,11 +174,11 @@ function fnBrew() {
                 $BIN_BREW cleanup -s --verbose;
                 ;;
             *)
-                echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}";
+                styleError "\"$1\" is not a valid command.";
                 ;;
         esac
     else
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}You don't have \"brew\" installed.${RESET}";
+        styleError "You don't have \"brew\" installed.";
     fi
 }
 
@@ -200,12 +189,12 @@ function fnBrew() {
 case $1 in
     "doctor"|"outdated"|"update"|"upgrade")
         if [ "$3" == "print" ] && [ "$1" == "doctor" ]; then
-            echo "# Environment Resume"
+            echo "# Checkup Environment"
             echo -e "";
             echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')";
             echo -e "";
         else
-            styleTitle "Environment Resume";
+            styleTitle "ResumeEnv";
         fi
 
         case $2 in
@@ -226,6 +215,6 @@ case $1 in
         esac
         ;;
     *)
-        echo -e "${RED_UL}ERROR:${RESET} ${RED}\"$1\" is not a valid command.${RESET}"
+        styleError "Unknown command.";
         ;;
 esac
