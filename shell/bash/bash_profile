@@ -98,10 +98,12 @@ COLOR_WHITE="\e[1;37m";
 # @use: https://github.com/mathiasbynens/dotfiles
 # --------------------------------
 
+BIN_GIT=$(/usr/bin/which git);
+
 git_get_current_branch() {
     # Check if the current directory is in a Git repository.
-    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == "0" ]; then
-        local branchName="$(git branch 2>/dev/null | grep "^*" | colrm 1 2 || \
+    if [ $($BIN_GIT rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == "0" ]; then
+        local branchName="$($BIN_GIT branch 2>/dev/null | grep "^*" | colrm 1 2 || \
             echo "(unknown)")";
 
         echo -e "${1}${branchName}";

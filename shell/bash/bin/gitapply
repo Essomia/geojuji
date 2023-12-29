@@ -27,6 +27,17 @@ fi
 
 BIN_GIT=$(/usr/bin/which git);
 
+function fnBasic() {
+    if [[ -n $($BIN_GIT status -s) ]]; then
+        echo -e "${RED_UL}ERROR:${RESET} ${RED}You have some change to commit.${RESET}";
+        echo "";
+
+        $BIN_GIT status -s;
+    else
+        echo -e "No changes to commit.";
+    fi
+}
+
 function fnApply() {
     # actual absolute folder
     FOLDER_ROOT=$(pwd);
@@ -43,7 +54,12 @@ function fnApply() {
 
         styleSubtitle ${DIR%.git};
 
-        $ARGS_CMDTOEXD
+        # If $ARGS_CMDTOEXD is empty
+        if [[ -z $ARGS_CMDTOEXD ]]; then
+            fnBasic;
+        else
+            $ARGS_CMDTOEXD;
+        fi
     done
 
     cd $FOLDER_ROOT;
