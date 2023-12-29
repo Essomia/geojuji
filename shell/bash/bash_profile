@@ -58,6 +58,8 @@ export EDITOR="/usr/bin/nano"
 # Set goto binary local
 export GEOJUJI_BINARY="/usr/local"
 
+export GPG_TTY=$(tty)
+
 
 # AUTO-COMPLETIONS
 # --------------------------------
