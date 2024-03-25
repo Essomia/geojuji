@@ -36,11 +36,15 @@ function styleError() {
 
 # Usage: fnPrintAndDoCmd <command>
 function cmdPrintAndDo() {
+    echo "";
     echo -e "${BLUE_BG}RUNNING > ${BLUE} $@ ${RESET}";
-    $@;
+    echo "";
+
+    "$@"
 }
 
 function cmdPrintOnly() {
+    echo "";
     echo -e "${BLUE_BG}YOU NEED TO RUN > ${BLUE} $@ ${RESET}";
-    $@;
+    echo "";
 }
