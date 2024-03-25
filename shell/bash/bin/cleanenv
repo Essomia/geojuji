@@ -17,8 +17,8 @@ if [ $# -lt 1 ]; then
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
     echo -e "  ${GREEN}all${RESET}   Run all cleaner functions.";
-    echo -e "  ${GREEN}ds${RESET}    Remove .DS_Store files.";
-    echo -e "  ${GREEN}node${RESET}  Remove node_modules folders.";
+    echo -e "  ${GREEN}ds${RESET}    Remove .DS_Store files - from current folder.";
+    echo -e "  ${GREEN}node${RESET}  Remove 'node_modules' folders under Sites.";
     exit 1;
 fi
 
@@ -27,13 +27,16 @@ fi
 # --------------------------------
 
 function fnRemoveDSStoreFiles() {
-    cmdPrintAndDo cd ~/Sites;
-    cmdPrintAndDo find . -name ".DS_Store" -depth -exec rm {} \;
+    cmdPrintAndDo find $(PWD) -name ".DS_Store" -depth -exec rm {} \;
 }
 
 function fnRemoveNodeModules() {
-    cmdPrintAndDo cd ~/Sites;
-    cmdPrintAndDo find . -name "node_modules" -depth -exec rm -rf {} \;
+    if [[ ! $(PWD) == *"/Sites"* ]]; then
+        styleError "You are not under /Sites folder.";
+        exit 1;
+    fi
+
+    cmdPrintAndDo find $(PWD) -name "node_modules" -depth -exec rm -rf {} \;
 }
 
 
