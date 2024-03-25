@@ -5,7 +5,7 @@ source util-titles.sh
 
 ###########
 # CleanEnv
-# A helper to get a status for computer dependencies managers.
+# A helper to clean your working space.
 ###########
 
 # USAGE
@@ -17,8 +17,9 @@ if [ $# -lt 1 ]; then
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
     echo -e "  ${GREEN}all${RESET}   Run all cleaner functions.";
+    echo "";
     echo -e "  ${GREEN}ds${RESET}    Remove .DS_Store files - from current folder.";
-    echo -e "  ${GREEN}node${RESET}  Remove 'node_modules' folders under Sites.";
+    echo -e "  ${GREEN}node${RESET}  Remove 'node_modules' folders - only if folder is under Sites.";
     exit 1;
 fi
 
