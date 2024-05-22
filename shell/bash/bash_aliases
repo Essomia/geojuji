@@ -32,7 +32,7 @@ alias reload='exec bash -l'         # Reload bash profile
 alias ls_brew='brew ls --versions $(brew leaves)'
 alias ls_gem='gem list --local'
 alias ls_npm='npm list --depth=0'
-alias ls_bin='ls $GEOJUJI_PATH'
+alias ls_bin='ls -l $GEOJUJI_PATH'
 
 # Edit configuration
 alias conf_bash='nano ~/.bash_profile ~/.bash_aliases'
