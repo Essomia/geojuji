@@ -40,6 +40,8 @@
     ########## HELPERS
 
     br-bydate   = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
+    br-clean    = !bash -c 'git branch -vv | grep "gone]" | grep -o "^[[:space:]]*[^[:space:]]*" | xargs git branch -D'
+    ci-empty    = commit --allow-empty -m \"chore(ci): trigger new build\"
     reba-merges = rebase -i --rebase-merges --onto
 
     ########## LOG
