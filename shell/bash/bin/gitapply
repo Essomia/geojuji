@@ -66,7 +66,7 @@ function fnApply() {
         if [[ -z $ARGS_CMDTOEXD ]]; then
             fnBasic;
         else
-            $ARGS_CMDTOEXD;
+            eval $ARGS_CMDTOEXD;
         fi
     done
 
