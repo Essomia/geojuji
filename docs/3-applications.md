@@ -65,5 +65,5 @@ vscode --install-extension stylelint.vscode-stylelint
 To add `vscode` command, create a symlink with the following command:
 
 ```
-ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/vscode
+ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/code
 ```
