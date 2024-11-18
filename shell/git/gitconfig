@@ -22,8 +22,6 @@
     gpgsign = true
 [gpg]
     format = ssh
-[gpg "ssh"]
-    allowedSignersFile = ~/.ssh/allowed_signers
 
 [branch]
     # Set up pull to rebase instead of merge
