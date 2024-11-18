@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source util-colors.sh
+source util-titles.sh
+
 ###########
 # Utils bashscript
 ###########
