@@ -13,7 +13,7 @@ source util-titles.sh
 
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth[1]> \"<command>\"${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth> \"<command>\"${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
     echo -e "  ${GREEN}folder${RESET}     Parent folder to explore.";

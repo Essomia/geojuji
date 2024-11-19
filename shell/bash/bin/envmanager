@@ -4,7 +4,7 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# ResumeEnv
+# EnvManager
 # A helper to get a status for computer dependencies managers.
 ###########
 
@@ -22,7 +22,8 @@ if [ $# -lt 1 ]; then
     echo -e "  ${GREEN}upgrade${RESET}   Update global outdated packages.";
     echo "";
     echo -e "${YELLOW_UL}Packages:${RESET}";
-    echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node -> composer";
+    echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node";
+    echo -e "  ${GREEN}print${RESET}     [!] Print the output for doctor command.";
     echo -e "  ${GREEN}brew${RESET}      Homebrew";
     echo -e "  ${GREEN}node${RESET}      NodeJS";
     echo -e "  ${GREEN}ruby${RESET}      Ruby";
@@ -33,18 +34,18 @@ fi
 # UTILS
 # --------------------------------
 
-# Usage: printStyleSubtitle "doctor" "print" "NodeJS"
+# Usage: printStyleSubtitle "Title" "doctor" "print"
 function printStyleSubtitle() {
-    if [ "$2" == "print" ] && [ "$1" == "doctor" ]; then
+    if [ "$2" == "doctor" ] && [ "$3" == "print" ]; then
         echo -e "";
-        echo "## $3"
+        echo "## $1"
         echo -e "";
 
         YELLOW='\n**';
         RESET='**\n';
         CODE='```';
     else
-        styleSubtitle "$3 {$1}";
+        styleSubtitle "$1 - $2";
     fi
 }
 
@@ -53,7 +54,7 @@ function printStyleSubtitle() {
 # --------------------------------
 
 function fnNodejs() {
-    printStyleSubtitle $1 $2 "NodeJS"
+    printStyleSubtitle "NodeJS" $1 $2
 
     if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
         BIN_NPM=$(/usr/bin/which npm);
@@ -91,7 +92,7 @@ function fnNodejs() {
 }
 
 function fnRuby() {
-    printStyleSubtitle $1 $2 "Ruby"
+    printStyleSubtitle "Ruby" $1 $2
 
     if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
         BIN_RUBY=$(/usr/bin/which ruby);
@@ -133,7 +134,7 @@ function fnRuby() {
 }
 
 function fnBrew() {
-    printStyleSubtitle $1 $2 "Brew"
+    printStyleSubtitle "Homebrew" $1 $2
 
     if [[ -n $(/usr/bin/which brew) ]]; then
         BIN_BREW=$(/usr/bin/which brew);
@@ -188,29 +189,34 @@ function fnBrew() {
 
 case $1 in
     "doctor"|"outdated"|"update"|"upgrade")
-        if [ "$3" == "print" ] && [ "$1" == "doctor" ]; then
+        if [ "$1" == "doctor" ] && [ "$2" == "print" ]; then
             echo "# Checkup Environment"
             echo -e "";
             echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')";
             echo -e "";
         else
-            styleTitle "ResumeEnv";
+            styleTitle "EnvManager";
         fi
 
         case $2 in
             "brew")
-                fnBrew $1 $3;
+                fnBrew $@;
                 ;;
             "ruby")
-                fnRuby $1 $3;
+                fnRuby $@;
                 ;;
             "node")
-                fnNodejs $1 $3;
+                fnNodejs $@;
+                ;;
+            "print")
+                fnBrew "doctor" "print";
+                fnRuby "doctor" "print";
+                fnNodejs "doctor" "print";
                 ;;
             *)
-                fnBrew $1 $3;
-                fnRuby $1 $3;
-                fnNodejs $1 $3;
+                fnBrew $@;
+                fnRuby $@;
+                fnNodejs $@;
                 ;;
         esac
         ;;

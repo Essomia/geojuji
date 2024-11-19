@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source util-colors.sh
-source util-titles.sh
 
 ###########
 # Utils bashscript
@@ -16,7 +15,7 @@ function styleTitle() {
 
     echo "";
     echo -e "${YELLOW_BG}$(printf "%-$((50))s" " ")${RESET}";
-    echo -e "${YELLOW_BG}$2 $1$(printf "%-$((49 - ${#1}))s" " ")${RESET}";
+    echo -e "${YELLOW_BG} $1 $(printf "%-$((48 - ${#1}))s" " ")${RESET}";
     echo -e "${YELLOW_BG}$(printf "%-$((50))s" " ")${RESET}";
     echo "";
 }
@@ -24,13 +23,18 @@ function styleTitle() {
 # Usage: styleSubtitle <message>
 function styleSubtitle() {
     echo "";
-    echo -e "${YELLOW_BG}$2 $1$(printf "%-$((49 - ${#1}))s" " ")${RESET}";
+    echo -e "${YELLOW_BG} $1 $(printf "%-$((48 - ${#1}))s" " ")${RESET}";
     echo "";
 }
 
 # Usage: styleError <message>
 function styleError() {
-    echo -e "${RED_UL}ERROR:${RESET} ${RED} $1 ${RESET}";
+    echo -e "${RED_UL}ERROR:${RESET} ${RED} $@ ${RESET}";
+}
+
+# Usage: styleInfo <message>
+function styleInfo() {
+    echo -e "${BLUE_UL}INFO:${RESET} $@";
 }
 
 
@@ -48,6 +52,6 @@ function cmdPrintAndDo() {
 
 function cmdPrintOnly() {
     echo "";
-    echo -e "${BLUE_BG}YOU NEED TO RUN > ${BLUE} $@ ${RESET}";
+    echo -e "${BLUE_BG}TO RUN > ${BLUE} $@ ${RESET}";
     echo "";
 }

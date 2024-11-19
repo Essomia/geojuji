@@ -4,7 +4,7 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# Format GPT
+# GPT Code Formatter
 # A helper to get file content to copy into chat GPT.
 ###########
 
