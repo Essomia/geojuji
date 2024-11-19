@@ -1,41 +1,23 @@
 # Checkup Environment
 
-**Date of latest checkup:** 2023-12-29
+**Date of latest checkup:** 2024-11-18
 
-## Brew
+## Homebrew
 
 **Path:**
 /opt/homebrew/bin/brew
 
 **Version:**
-Homebrew 4.2.1
-Homebrew/homebrew-core (git revision 5fe4943f8a8; last commit 2023-12-29)
+Homebrew 4.4.6
 
 **Packages installed:**
 
 ```
 apr-util 1.6.3_1
-argon2 20190702_1
-aspell 0.60.8.1_1
-autoconf 2.72
-curl 8.5.0
-freetds 1.4.10
-gd 2.3.3_6
-gnutls 3.8.2
-libgcrypt 1.10.3
-libksba 1.6.5
-libpq 16.1_1
-libsodium 1.0.19
-libusb 1.0.26
-libzip 1.10.1
-node 21.5.0
-npth 1.6
-oniguruma 6.9.9
-openssl@1.1 1.1.1w
-pcre2 10.42
-pinentry 1.2.1
-sqlite 3.44.2
-tidy-html5 5.8.0
+curl 8.11.0_1
+freetds 1.4.23
+libpq 17.1
+node 23.2.0_1
 ```
 
 **Packages cask installed:**
@@ -56,7 +38,7 @@ tidy-html5 5.8.0
 /usr/bin/ruby
 
 **Version:**
-ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin23]
+ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin24]
 
 **Path:**
 /usr/bin/gem
@@ -123,22 +105,23 @@ zlib (default: 1.0.0)
 /opt/homebrew/bin/node
 
 **Version:**
-v21.5.0
+v23.2.0
 
 **Path:**
 /opt/homebrew/bin/npm
 
 **Version:**
-10.2.5
+10.9.0
 
 **Packages installed:**
 
 ```
 /opt/homebrew/lib
-+-- eslint@8.56.0
-+-- npm@10.2.5
-+-- prettier@3.1.1
-+-- stylelint@16.1.0
-`-- vercel@33.0.1
++-- corepack@0.29.4
++-- eslint@9.15.0
++-- npm@10.9.0
++-- prettier@3.3.3
++-- stylelint@16.10.0
+`-- vercel@39.0.4
 
 ```
