@@ -49,6 +49,9 @@ export PATH="/opt/homebrew/bin:$PATH" # homebrew
 export GEOJUJI_PATH=$(dirname $(readlink "${BASH_SOURCE[0]}"))/bin;
 export PATH="$GEOJUJI_PATH:$PATH"
 
+# Set node options
+export NODE_OPTIONS='--disable-warning=ExperimentalWarning'
+
 # Ignore types of files when you tab from the command line
 export FIGNORE="$FIGNORE:DS_Store"
 
