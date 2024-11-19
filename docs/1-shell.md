@@ -9,7 +9,7 @@ You will need a public SSH key to be identified in some services (like GitHub).
     ssh-keygen -t ed25519 -C "admin@localhost.com"
     ```
 2. Adjust your `~/.ssh/config` file. You have an example under the `~/geojuji/shell/secure` folder.
-3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account (as "authentication" key).
+3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account (as "authentication" key and as "signin" key).
 
 ## 2. XCode
 
@@ -21,9 +21,9 @@ When you develop on macOS, you will need some basic command-line tools.
     xcode-select --install
     ```
 
-1. A software pop-up window will appear. Click the `Accept` or `Install` button.
-1. Agree to the Terms of Service when requested.
-1. Once complete, the installer will go away.
+2. A software pop-up window will appear. Click the `Accept` or `Install` button.
+3. Agree to the Terms of Service when requested.
+4. Once complete, the installer will go away.
 
 :memo: You should have `git`, `svn`, `make` and more commands available in `/Library/Developer/CommandLineTools/usr/bin/` at the end of the installation.
 
@@ -38,13 +38,13 @@ For a better experience, you would probably like to improve it according to your
     echo $SHELL
     ```
 
-1. If you have `/bin/zsh` and you want to use `/bin/bash` instead, change with the following command:
+2. If you have `/bin/zsh` and you want to use `/bin/bash` instead, change with the following command:
 
     ```
     chsh -s /bin/bash
     ```
 
-1. If you choose to use `bash` as default, you can symlink the custom configuration to be sourced when a new shell is started:
+3. If you choose to use `bash` as default, you can symlink the custom configuration to be sourced when a new shell is started:
 
     ```bash
     # Common login configuration
@@ -53,7 +53,7 @@ For a better experience, you would probably like to improve it according to your
     ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
     ```
 
-:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. You can add new binaries to that folder. Please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set to be executable (i.e. 755).
+:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. It use a relative path based on `bash_profile` file. You can add new binaries to that folder. Please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set to be executable (i.e. 755).
 
 ## 4. [Git](https://git-scm.com/)
 
@@ -79,28 +79,3 @@ If you use `git` as version control, you would probably add your own configurati
 ```
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 ```
-
-## 5. SSH & GIT - Get "verified" commits
-
-After the basic configuration of `git` and `ssh` keys, we can now configure the "verified" flag for our commits with `git`.
-
-:memo: You can commit with a "public" email and use a "private" email for your SSH keys.
-
-1. Create a new file under the `~/.ssh/` folder:
-    ```bash
-    cd ~/.ssh/
-    touch allowed_signers
-    ```
-2. Add this new file to your global `gitconfig` file:
-    ```bash
-    git config gpg.ssh.allowedSignersFile "~/.ssh/allowed_signers"
-    ```
-3. Run the following to add your SSH key (use for "authentication") into the `allowed_signers` file:
-    ```bash
-    # Replace <MY_KEY> by your SSH KEY filename
-    echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/<MY_KEY>.pub)" >> ~/.ssh/allowed_signers
-    ```
-4. Now, [add your SSH key to your account](https://docs.github.com/en/"authentication"/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account), but be sure to set it as "signing" key.
-   At the end, you should have the same key twice: one as "authentication" and one as signing.
-
-Now, you can commit on a repository and validate that your new commit is verified with: `git log --show-signature`.
