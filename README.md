@@ -10,16 +10,16 @@ Geojuji contains all the basic configurations and dependencies needed to develop
 
 Get a version of this repository on your git account and then clone the repository on your machine before adjusting configurations.
 
-```
+```bash
 git clone  git@github.com:[username]/geojuji.git  ~/geojuji
 ```
 
 ## Step-by-Step Guide
 
-Read the complete step-by-step guide to set and install all needed tools on a macOS for front-end development:
+Follow the guide to set up all the necessary tools for macOS front-end development:
 
-1. [Shell's](./docs/1-shell.md)
-2. [Packages managers](./docs/2-packages-manager.md)
+1. [Shell Configurations](./docs/1-shell.md)
+2. [Package Managers](./docs/2-package-managers.md)
 3. [Applications](./docs/3-applications.md)
 4. [PHP Environment](./docs/4-php-environment.md)
 

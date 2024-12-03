@@ -1,25 +1,20 @@
-# Configure applications
+# Applications
 
 ## 1. [iTerm2](http://www.iterm2.com/index.html)
 
 As an alternative terminal, you can also use the `iTerm` which offer a lot of great features.
 
-1. Go to `iTerm2 -> Settings`.
-1. Under the `Profiles` tab, click the plus icon near the bottom.
-1. Give a name to your profile, and then, go to `Colors` section on the right.
-1. In the `Color presets` dropdown, select `Import`.
-1. Select the theme (`geojuji.itermcolors` file) under `~/geojuji/app/iterm/` folder.
-1. The theme imported, re-select `geojuji` preset profile in the dropdown choice.
+1. Open `iTerm2 -> Settings`.
+2. Under `Profiles`, add a new profile.
+3. Go to the `Colors` tab and import your theme (`geojuji.itermcolors`).
 
 :memo: You can also configure `iTerm` to save your preferences into a specific folder under the `General > Preferences` tab.
 
 ## 2. [Visual Studio Code](https://code.visualstudio.com/)
 
-If you use `Visual Studio Code` (VSC) as your primary IDE, you have below my current configuration setup.
-
 ### Configuration - Auto sync
 
-:memo: If you use VSC on multiple computer, I recommended you to synchronize your configuration with the option: `Code > Preferences > Settings Sync` instead of .
+If you use VSC on multiple computer, I recommended you to enable the synchronization of your configuration under `Code > Preferences > Settings Sync`.
 
 ### Configuration - Symlink
 
@@ -27,23 +22,31 @@ To ensure to have the same configurations installed between working stations in 
 
 1. Copy all current configurations you could have to the repository:
 
-    ```
+    ```bash
     cp -Riv ~/Library/Application\ Support/Code/User/ ~/geojuji/app/visual-studio-code
     ```
 
 1. Delete the current `User` folder:
 
-    ```
+    ```bash
     rm -r ~/Library/Application\ Support/Code/User/
     ```
 
 1. Create a symlink to link the configuration again:
 
-    ```
+    ```bash
     ln -s ~/geojuji/app/visual-studio-code ~/Library/Application\ Support/Code/User
     ```
 
 Now, all VSC's configurations can be found under `~/geojuji/app/visual-studio-code/` folder.
+
+### Binary
+
+To add `vscode` command, create a symlink with the following command:
+
+```
+ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/code
+```
 
 ### Extensions
 
@@ -56,14 +59,4 @@ vscode --install-extension IronGeek.vscode-env
 vscode --install-extension stylelint.vscode-stylelint
 ```
 
-:warning: The `~/geojuji/app/visual-studio-code/settings.json` file come with default configurations for these extensions. Please ensure that these settings are correct for you.
-
-:memo: If you need to share your own extension, run the following command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.
-
-### Binary
-
-To add `vscode` command, create a symlink with the following command:
-
-```
-ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/code
-```
+:bulb: If you need to share your own extension, run the following command `vscode --list-extensions | xargs -L 1 echo vscode --install-extension`.

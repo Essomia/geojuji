@@ -1,35 +1,46 @@
 # PHP Environment
 
-> Please note that this local setup is very basic and it is oriented for HTML, CSS, JS and basic PHP.
+**Note**: This local setup is very basic and tailored for HTML, CSS, JS, and basic PHP projects. For more complex PHP projects, consider using a virtual machine or Docker.
 
 ## 1. Setup PHP and Apache
 
-To develop PHP projects, you will need:
+To develop PHP projects, you'll need:
 
--   [PHP](http://php.net/): - To compile PHP projects.
--   [Apache Server](https://httpd.apache.org/) - To serve project on your local machine.
--   [MySQL](https://www.mysql.com/) - To save informations in a local database.
+-   [PHP](http://php.net/): To compile PHP projects.
+-   [Apache Server](https://httpd.apache.org/): To serve projects locally.
+-   [MySQL](https://www.mysql.com/): To save information in a local database.
 
-:memo: I recommand to use a tool like XAMPP or MAMP that provides a simple way to run PHP and Apache locally. These tools include a user interface and can be useful if you want to run multiple projects at once.
+:memo: I recommend using tools like **XAMPP** or **MAMP** for an easy setup. These tools provide a simple interface to run PHP and Apache locally and allow you to manage multiple projects simultaneously.
 
 ## 2. Setup Virtual Host: Root
 
-Since we develop multiple websites, we can use a virtual host to get easy-to-remember URL for your local PHP project.
+For handling multiple websites, you can configure a virtual host to create easy-to-remember URLs for your local PHP projects.
 
-1. Edit `/etc/apache2/httpd.conf`:
+### Steps:
 
-    - Uncommented `Include /private/etc/apache2/extra/httpd-vhosts.conf`.
-    - Uncommented and modify to have `ServerName userhost:80`.
-    - Update `User _www` to `User [username]`
-    - Updaye `Group _www` to `Group staff`
+1. **Edit the Apache configuration file** `/etc/apache2/httpd.conf`:
 
-1. Edit `/etc/apache2/extra/httpd-vhosts.conf` to add a basic localhost config:
+    - Uncomment this line:
+        ```apache
+        Include /private/etc/apache2/extra/httpd-vhosts.conf
+        ```
+    - Set the server name:
+        ```apache
+        ServerName userhost:80
+        ```
+    - Update the `User` and `Group` directives:
+        ```apache
+        User [username]
+        Group staff
+        ```
+
+2. **Edit the virtual host configuration file** `/etc/apache2/extra/httpd-vhosts.conf` to set up a basic localhost configuration:
 
     ```apache
     #
-    # Configuration LOCALHOST
+    # LOCALHOST Configuration
     #
-    <Directory /Users/[username]/Sites/>  # <-- To adjust, see [DocumentRoot]
+    <Directory /Users/[username]/Sites/>  # <-- Adjust this to match [DocumentRoot]
         Options FollowSymLinks Multiviews Indexes
         AllowOverride All
         Require all granted
@@ -37,7 +48,7 @@ Since we develop multiple websites, we can use a virtual host to get easy-to-rem
 
     <VirtualHost *:80>
         ServerName localhost
-        DocumentRoot /Users/[username]/Sites/  # <-- To adjust, see [DocumentRoot]
+        DocumentRoot /Users/[username]/Sites/  # <-- Adjust this to match [DocumentRoot]
 
         ServerAdmin admin@localhost.com
         ErrorLog "/var/log/apache2/dev_error_log"
@@ -45,26 +56,31 @@ Since we develop multiple websites, we can use a virtual host to get easy-to-rem
     </VirtualHost>
     ```
 
-    `[DocumentRoot]` is where you will have all your local websites on your machine.
+    Replace `[DocumentRoot]` with the folder where your local websites are stored.
 
-1. Restart Apache and test config to be sure everything works:
+3. Restart Apache and test the configuration:
 
     ```bash
     sudo apachectl restart
-    sudo apachectl configtest # This command should return a 'Syntax OK'
+    sudo apachectl configtest  # This should return 'Syntax OK'
     ```
 
-1. Now, `http://localhost/` should display your folders and files under your `[DocumentRoot]` folder.
+4. Verify that `http://localhost/` displays the directories and files under your `[DocumentRoot]`.
 
-## 3. Setup Virtual Host: Custom domain
+## 3. Setup Virtual Host: Custom Domain
 
-Since we have now a default localhost, let's set a custom hosts for projects.
+To simplify project URLs further, you can configure custom hosts.
 
-1. Edit `/etc/apache2/httpd.conf`:
+### Steps:
 
-    - Uncommented `LoadModule vhost_alias_module libexec/apache2/mod_vhost_alias.so`.
+1. **Enable the virtual host alias module** in `/etc/apache2/httpd.conf`:
 
-1. Edit `/etc/apache2/extra/httpd-vhosts.conf` and add your custom host configuration or adjust the one bellow:
+    - Uncomment the line:
+        ```apache
+        LoadModule vhost_alias_module libexec/apache2/mod_vhost_alias.so
+        ```
+
+2. **Edit the virtual host configuration file** `/etc/apache2/extra/httpd-vhosts.conf` to define custom hosts:
 
     ```apache
     # How it works:
@@ -72,7 +88,7 @@ Since we have now a default localhost, let's set a custom hosts for projects.
     # - http://%-5.%-4.%-3.%-2.%-1/  # We start replace from the end
 
     #
-    # Configuration custom
+    # Custom Host Configuration
     #
 
     <VirtualHost *:80>
@@ -87,9 +103,11 @@ Since we have now a default localhost, let's set a custom hosts for projects.
     </VirtualHost>
     ```
 
-1. Then, edit `/etc/hosts` to list your local websites urls.
+    This configuration supports custom subdomains like `project1.domain.local` and maps them to your project folder automatically.
 
-    ```apache
+3. **Update the `/etc/hosts` file** to list your local website URLs:
+
+    ```plaintext
     #
     # VIRTUAL HOSTS
     #
@@ -97,11 +115,11 @@ Since we have now a default localhost, let's set a custom hosts for projects.
     127.0.0.1   project1.domain.local
     ```
 
-1. Restart Apache and test config to be sure everything works:
+4. Restart Apache and verify the configuration:
 
     ```bash
     sudo apachectl restart
-    sudo apachectl configtest # This command should return a 'Syntax OK'
+    sudo apachectl configtest  # This should return 'Syntax OK'
     ```
 
-1. Now, when you go to `http://project1.domain.local`, you can see the sources of your website that you develop under `[DocumentRoot]/develop/project1/` folder.
+5. Access your project in a browser by navigating to `http://project1.domain.local`. This will load the website files located in `[DocumentRoot]/develop/project1/`.

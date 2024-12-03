@@ -1,4 +1,4 @@
-# Install packages managers
+# Package Managers
 
 ## 1. [Homebrew](http://brew.sh/)
 
@@ -6,31 +6,29 @@ Install Homebrew with the command line given here: https://brew.sh/
 
 Once Homebrew is installed, you can install the formulas you need, with the following command line:
 
-```
+```bash
 brew install <package-name>
 ```
 
 ## 2. [Ruby](https://www.ruby-lang.org/)
 
-On macOS, `ruby` is already installed. Check which version and packages is installed by default, run the following command:
+On macOS, `ruby` is already installed. Check which version and packages is installed by default:
 
-```
+```bash
 gem environment
 ```
 
-:memo: Since for development `gem` or `ruby` aren't always necessary, you can use Google to find the correct way to install them if you need them.
-
 ## 3. [Node.js](http://nodejs.org/)
 
-We install `node` with Homebrew:
+Install `node` using Homebrew:
 
-```
+```bash
 brew install node
 ```
 
 Once done, you can install needed packages globally with the following command line:
 
-```
+```bash
 npm install -g <package-name>
 ```
 
@@ -53,4 +51,4 @@ envmanager doctor
 
 :memo: For more detail, you check the [envmanager](../shell/bash/bin/envmanager) script file.
 
-:bulb: You also generate a checkup with `envmanager doctor print > docs/_checkup-env.md`.
+:bulb: You can generate a checkup with `envmanager doctor --print > docs/_checkup-env.md`.

@@ -1,50 +1,63 @@
-# Shell's configurations
+# Shell Configurations
 
 ## 1. [SSH Key](https://help.github.com/articles/connecting-to-github-with-ssh/)
 
-You will need a public SSH key to be identified in some services (like GitHub).
+You will need a public SSH key to authenticate with services like GitHub.
 
-1. Create a new SSH key with no passphrase.
-    ```
+1. Create a new SSH key:
+    ```bash
     ssh-keygen -t ed25519 -C "admin@localhost.com"
     ```
-2. Adjust your `~/.ssh/config` file. You have an example under the `~/geojuji/shell/secure` folder.
-3. Copy your new public SSH key (`~/.ssh/*.pub`) and add it to your git account (as "authentication" key and as "signin" key).
+2. Adjust your `~/.ssh/config` file.
+
+    ```plaintext
+    ###########
+    #  ~/.ssh/config
+    ###########
+
+    Host *
+      AddKeysToAgent yes
+      UseKeychain yes
+
+    Host github.com
+      HostName github.com
+      PreferredAuthentications publickey
+      IdentityFile ~/.ssh/github-id_ed25519
+    ```
+
+3. Copy your new public SSH key (`~/.ssh/*.pub`)
+4. Add it to your Git account as an authentication key and a signing key.
 
 ## 2. XCode
 
-When you develop on macOS, you will need some basic command-line tools.
+If you're developing on macOS, you'll need XCode command-line tools.
 
 1. Run the command to install:
 
-    ```
+    ```bash
     xcode-select --install
     ```
 
-2. A software pop-up window will appear. Click the `Accept` or `Install` button.
-3. Agree to the Terms of Service when requested.
-4. Once complete, the installer will go away.
-
-:memo: You should have `git`, `svn`, `make` and more commands available in `/Library/Developer/CommandLineTools/usr/bin/` at the end of the installation.
+2. Follow the on-screen instructions to complete the installation.
+3. After installation, verify the tools (e.g., `git`, `svn`, `make`) are available in: `/Library/Developer/CommandLineTools/usr/bin/`.
 
 ## 3. [Bash](https://www.gnu.org/software/bash/)
 
-For developers, the terminal is used on a daily basis.
-For a better experience, you would probably like to improve it according to your needs.
+For a better terminal experience, customize it to fit your workflow.
 
-1. Since macOS set your terminal to use `bash` or `zsh` by default, check which shell your terminal is currently using:
+1. Check your current shell:
 
-    ```
+    ```bash
     echo $SHELL
     ```
 
-2. If you have `/bin/zsh` and you want to use `/bin/bash` instead, change with the following command:
+2. If you want to switch to `bash`, run the following command:
 
-    ```
+    ```bash
     chsh -s /bin/bash
     ```
 
-3. If you choose to use `bash` as default, you can symlink the custom configuration to be sourced when a new shell is started:
+3. Set up configuration symlinks:
 
     ```bash
     # Common login configuration
@@ -53,15 +66,21 @@ For a better experience, you would probably like to improve it according to your
     ln -sf ~/geojuji/shell/bash/bash_aliases  ~/.bash_aliases
     ```
 
-:memo: The `~/geojuji/shell/bash/bin/` folder have been added to the default `$PATH` as directories to search for executable files. It use a relative path based on `bash_profile` file. You can add new binaries to that folder. Please ensure that all scripts added to the `~/geojuji/shell/bash/bin/` folder have its permissions set to be executable (i.e. 755).
+:memo: In the `bash_profile` file, a reference to the `~/geojuji/shell/bash/bin/` folder has been added to the `$PATH` for executable files. You can add new binaries to that folder but make sure all scripts added have their permissions set to executable (e.g., `chmod 755`).
 
 ## 4. [Git](https://git-scm.com/)
 
-If you use `git` as version control, you would probably add your own configuration.
+Configure `git` for version control.
 
-1. Rename `~/geojuji/shell/git/gituser.example` into `~/geojuji/shell/git/gituser`.
-2. Think to update the `name`, `username` and `email` with the correct information.
-3. Symlink the `git` configuration files:
+1. Rename and update your personal Git configuration file:
+
+    ```bash
+    mv ~/geojuji/shell/git/gituser.example ~/geojuji/shell/git/gituser
+    ```
+
+    Update `name`, `username`, and `email` fields.
+
+2. Symlink `git` configuration files:
 
     ```bash
     # Your personal configuration
@@ -74,8 +93,8 @@ If you use `git` as version control, you would probably add your own configurati
     ln -sf ~/geojuji/shell/git/gitaliases  ~/.gitaliases
     ```
 
-:memo: Also, if you work a lot with `git`, you may want to add autocompletion for command lines:
+:memo: For installing some `git` autocompletion, run:
 
-```
+```bash
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 ```
