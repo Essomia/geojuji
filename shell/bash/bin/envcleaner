@@ -49,13 +49,16 @@ function fnRemoveDSStoreFiles() {
 
 function fnRemoveNodeModules() {
     checkIfUnderSites;
+
     cmdPrintAndDo find $(PWD) -name "node_modules" -depth -exec rm -rf {} \;
 }
 
 function fnRemoveIgnoredFiles() {
     checkIfUnderSites;
     checkIsInGitProject;
+
     cmdPrintAndDo git status --ignored --porcelain | grep '^!!' | sed 's/^!! //' | grep -v 'env' | grep -v 'config' | xargs rm -rf;
+    styleInfo "Ignored files removed.";
 }
 
 
