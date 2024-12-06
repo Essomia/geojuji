@@ -1,6 +1,6 @@
 # Checkup Environment
 
-**Date of latest checkup:** 2024-11-18
+**Date of latest checkup:** 2024-12-05
 
 ## Homebrew
 
@@ -8,7 +8,7 @@
 /opt/homebrew/bin/brew
 
 **Version:**
-Homebrew 4.4.6
+Homebrew 4.4.10
 
 **Packages installed:**
 
@@ -16,8 +16,8 @@ Homebrew 4.4.6
 apr-util 1.6.3_1
 curl 8.11.0_1
 freetds 1.4.23
-libpq 17.1
-node 23.2.0_1
+libpq 17.2
+node 23.3.0
 ```
 
 **Packages cask installed:**
@@ -46,7 +46,7 @@ ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin24]
 **Version:**
 3.0.3.1
 
-**Packages installed:**
+**Gems installed:**
 
 ```
 bigdecimal (default: 1.4.1)
@@ -105,23 +105,23 @@ zlib (default: 1.0.0)
 /opt/homebrew/bin/node
 
 **Version:**
-v23.2.0
+v23.3.0
 
 **Path:**
 /opt/homebrew/bin/npm
 
 **Version:**
-10.9.0
+10.9.2
 
 **Packages installed:**
 
 ```
 /opt/homebrew/lib
-+-- corepack@0.29.4
-+-- eslint@9.15.0
-+-- npm@10.9.0
-+-- prettier@3.3.3
-+-- stylelint@16.10.0
-`-- vercel@39.0.4
++-- corepack@0.30.0
++-- eslint@9.16.0
++-- npm@10.9.2
++-- prettier@3.4.2
++-- stylelint@16.11.0
+`-- vercel@39.1.3
 
 ```
