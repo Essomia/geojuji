@@ -43,6 +43,10 @@ function fnApply() {
     # args command to execute
     ARGS_CMDTOEXD="${@:3}"
 
+    echo -e "${YELLOW_UL}Exploring:${RESET} $FOLDER_ROOT/$ARGS_FOLDER";
+    echo -e "${YELLOW_UL}Max Depth:${RESET} $ARGS_MAXDEPTH";
+    echo -e "${YELLOW_UL}Command:${RESET} $ARGS_CMDTOEXD";
+
     # Loop in all git repositories found with given arguments
     find -s $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
         cd $FOLDER_ROOT/${DIR%.git};
@@ -60,12 +64,6 @@ function fnApply() {
 # --------------------------------
 
 styleTitle "GitApply";
-
-# Check if we can run git commands
-if [[ -n $(/usr/bin/which git) ]]; then
-    styleError "Git is not installed.";
-    exit 1;
-fi
 
 # Check if the folder exists
 if [[ -d $1 ]]; then
