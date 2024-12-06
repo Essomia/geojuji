@@ -4,7 +4,7 @@ source util-colors.sh
 source util-titles.sh
 
 ###########
-# GPT Code Formatter
+# GPTCodeFormatter
 # A helper to get file content to copy into chat GPT.
 ###########
 
@@ -14,6 +14,9 @@ source util-titles.sh
 if [ "$#" -eq 0 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
     echo -e "  $(basename "$0") ${GREEN}[file1] [file2] [file3] [...]${RESET}"
+    echo "";
+    echo -e "${YELLOW_UL}Output file:${RESET}";
+    echo -e "  gptoutput.txt";
     exit 1
 fi
 

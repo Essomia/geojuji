@@ -29,7 +29,7 @@ function styleSubtitle() {
 
 # Usage: styleError <message>
 function styleError() {
-    echo -e "${RED_UL}ERROR:${RESET} ${RED} $@ ${RESET}";
+    echo -e "${RED_UL}ERROR:${RESET} ${RED} $@${RESET}";
 }
 
 # Usage: styleInfo <message>
@@ -44,7 +44,7 @@ function styleInfo() {
 # Usage: fnPrintAndDoCmd <command>
 function cmdPrintAndDo() {
     echo "";
-    echo -e "${BLUE_BG}RUNNING > ${BLUE} $@ ${RESET}";
+    echo -e "${BLUE_BG}RUNNING >${BLUE} $@${RESET}";
     echo "";
 
     "$@"
@@ -52,6 +52,6 @@ function cmdPrintAndDo() {
 
 function cmdPrintOnly() {
     echo "";
-    echo -e "${BLUE_BG}TO RUN > ${BLUE} $@ ${RESET}";
+    echo -e "${BLUE_BG}TO RUN >${BLUE} $@${RESET}";
     echo "";
 }

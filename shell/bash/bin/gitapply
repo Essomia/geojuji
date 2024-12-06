@@ -5,54 +5,41 @@ source util-titles.sh
 
 ###########
 # GitApply
-# A helper to manage git repositories.
+# A helper to apply a command in all git repositories.
 ###########
 
 # USAGE
 # --------------------------------
 
+# Check if there is at least one argument.
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth> \"<command>\"${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth> <gitcommand>${RESET}";
     echo "";
-    echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}folder${RESET}     Parent folder to explore.";
-    echo -e "  ${GREEN}max-depth${RESET}  Max depth of sub-folder to explore (we will look for .git folders).";
-    echo -e "  ${GREEN}command${RESET}    Command to execute in each git repository.";
-    echo "";
-    echo -e "${YELLOW_UL}Examples:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}sub-folder/ 2 \"git status\"${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}../folder/ 2 \"git fetch\"${RESET}";
+    echo -e "${YELLOW_UL}Arguments:${RESET}";
+    echo -e "  ${GREEN}<folder>${RESET}      The folder to explore.";
+    echo -e "  ${GREEN}<max-depth>${RESET}   The max depth to explore - default 1.";
+    echo -e "  ${GREEN}<gitcommand>${RESET}  The command to apply in each git repository.";
     exit 1;
 fi
-
-
-# UTILS
-# --------------------------------
-
-BIN_GIT=$(/usr/bin/which git);
-
-function fnBasic() {
-    if [[ -n $($BIN_GIT status -s) ]]; then
-        styleError "You have some change to commit.";
-
-        $BIN_GIT status -s;
-    else
-        echo -e "No changes to commit.";
-    fi
-}
 
 
 # FUNCTIONS
 # --------------------------------
 
 function fnApply() {
+    # Check if the command is empty
+    if [[ -z $3 ]]; then
+        styleError "Missing command.";
+        exit 1;
+    fi
+
     # actual absolute folder
     FOLDER_ROOT=$(pwd);
     # relative path to explore
     ARGS_FOLDER=${1%/};
     # max depth sub-folder to check
-    ARGS_MAXDEPTH=$([[ -z $2 ]] && echo '1' || echo $2);
+    ARGS_MAXDEPTH=$2
     # args command to execute
     ARGS_CMDTOEXD="${@:3}"
 
@@ -62,12 +49,7 @@ function fnApply() {
 
         styleSubtitle ${DIR%.git};
 
-        # If $ARGS_CMDTOEXD is empty
-        if [[ -z $ARGS_CMDTOEXD ]]; then
-            fnBasic;
-        else
-            eval $ARGS_CMDTOEXD;
-        fi
+        eval $ARGS_CMDTOEXD;
     done
 
     cd $FOLDER_ROOT;
@@ -77,10 +59,22 @@ function fnApply() {
 # SWITCHER
 # --------------------------------
 
-if [ -d "$1" ]; then
-    styleTitle "GitApply";
+styleTitle "GitApply";
 
-    fnApply "${@:1}"
+# Check if we can run git commands
+if [[ -n $(/usr/bin/which git) ]]; then
+    styleError "Git is not installed.";
+    exit 1;
+fi
+
+# Check if the folder exists
+if [[ -d $1 ]]; then
+    # Check if the max-depth is a number
+    if ! [[ $2 =~ ^[0-9]+$ ]]; then
+        fnApply $1 1 "${@:2}";
+    else
+        fnApply $1 $2 "${@:3}";
+    fi
 else
-    styleError "\"$1\" is not a folder.";
+    styleError "Folder not found.";
 fi

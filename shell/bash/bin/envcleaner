@@ -5,21 +5,21 @@ source util-titles.sh
 
 ###########
 # EnvCleaner
-# A helper to clean your working space.
+# A helper to clean your working space from useless files.
 ###########
 
 # USAGE
 # --------------------------------
 
+# Check if there is at least one argument.
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
     echo -e "  $(basename "$0") ${GREEN}<command>${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}all${RESET}   Run all cleaner functions.";
-    echo "";
-    echo -e "  ${GREEN}ds${RESET}    Remove .DS_Store files - from current folder.";
-    echo -e "  ${GREEN}node${RESET}  Remove 'node_modules' folders - only if folder is under Sites.";
+    echo -e "  ${GREEN}ds${RESET}       Remove .DS_Store files";
+    echo -e "  ${GREEN}ignored${RESET}  Remove ignored files - only if folder is under Sites.";
+    echo -e "  ${GREEN}node${RESET}     Remove 'node_modules' folders - only if folder is under Sites.";
     exit 1;
 fi
 
@@ -27,17 +27,35 @@ fi
 # FUNCTIONS
 # --------------------------------
 
+function checkIfUnderSites() {
+    # Check if the current folder is under /Sites.
+    if [[ ! $(PWD) == *"/Sites"* ]]; then
+        styleError "You are not under /Sites folder.";
+        exit 1;
+    fi
+}
+
+function checkIsInGitProject() {
+    # Check if the current folder is a Git project.
+    if [[ ! -d ".git" ]]; then
+        styleError "You are not in a Git project.";
+        exit 1;
+    fi
+}
+
 function fnRemoveDSStoreFiles() {
     cmdPrintAndDo find $(PWD) -name ".DS_Store" -depth -exec rm {} \;
 }
 
 function fnRemoveNodeModules() {
-    if [[ ! $(PWD) == *"/Sites"* ]]; then
-        styleError "You are not under /Sites folder.";
-        exit 1;
-    fi
-
+    checkIfUnderSites;
     cmdPrintAndDo find $(PWD) -name "node_modules" -depth -exec rm -rf {} \;
+}
+
+function fnRemoveIgnoredFiles() {
+    checkIfUnderSites;
+    checkIsInGitProject;
+    cmdPrintAndDo git status --ignored --porcelain | grep '^!!' | sed 's/^!! //' | grep -v 'env' | grep -v 'config' | xargs rm -rf;
 }
 
 
@@ -47,15 +65,14 @@ function fnRemoveNodeModules() {
 styleTitle "EnvCleaner";
 
 case $1 in
-    "all")
-        fnRemoveDSStoreFiles;
-        fnRemoveNodeModules;
-        ;;
     "ds")
         fnRemoveDSStoreFiles;
         ;;
     "node")
         fnRemoveNodeModules;
+        ;;
+    "ignored")
+        fnRemoveIgnoredFiles;
         ;;
     *)
         styleError "Unknown command.";

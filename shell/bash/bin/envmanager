@@ -11,9 +11,10 @@ source util-titles.sh
 # USAGE
 # --------------------------------
 
+# Check if there is at least one argument.
 if [ $# -lt 1 ]; then
     echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}<command> <package>${RESET}";
+    echo -e "  $(basename "$0") ${GREEN}<command> <package> [--print]${RESET}";
     echo "";
     echo -e "${YELLOW_UL}Commands:${RESET}";
     echo -e "  ${GREEN}doctor${RESET}    Check paths and current version of installed packages.";
@@ -23,22 +24,36 @@ if [ $# -lt 1 ]; then
     echo "";
     echo -e "${YELLOW_UL}Packages:${RESET}";
     echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node";
-    echo -e "  ${GREEN}print${RESET}     [!] Print the output for doctor command.";
     echo -e "  ${GREEN}brew${RESET}      Homebrew";
     echo -e "  ${GREEN}node${RESET}      NodeJS";
     echo -e "  ${GREEN}ruby${RESET}      Ruby";
+    echo "";
+    echo -e "${YELLOW_UL}Options:${RESET}";
+    echo -e "  ${GREEN}--print${RESET}   Print the result in markdown format.";
     exit 1;
 fi
 
 
-# UTILS
+# FUNCTIONS
 # --------------------------------
 
-# Usage: printStyleSubtitle "Title" "doctor" "print"
-function printStyleSubtitle() {
-    if [ "$2" == "doctor" ] && [ "$3" == "print" ]; then
+# usage: printMDTitle <title> <command> true|false
+function printMDTitle() {
+    if [ "$2" == "doctor" ] && [ "$3" == "true" ]; then
+        echo "# Checkup Environment"
         echo -e "";
-        echo "## $1"
+        echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')";
+        echo -e "";
+    else
+        styleTitle "$1";
+    fi
+}
+
+# usage: printMDSubtitle <subtitle> <command> true|false
+function printMDSubtitle() {
+    if [ "$2" == "doctor" ] && [ "$3" == "true" ]; then
+        echo -e "";
+        echo "## $1";
         echo -e "";
 
         YELLOW='\n**';
@@ -49,16 +64,12 @@ function printStyleSubtitle() {
     fi
 }
 
-
-# FUNCTIONS
-# --------------------------------
-
 function fnNodejs() {
-    printStyleSubtitle "NodeJS" $1 $2
+    printMDSubtitle "NodeJS" $1 $2
 
-    if [[ -n $(/usr/bin/which npm) && -n $(/usr/bin/which node) ]]; then
-        BIN_NPM=$(/usr/bin/which npm);
+    if [[ -n $(/usr/bin/which npm) ]]; then
         BIN_NODE=$(/usr/bin/which node);
+        BIN_NPM=$(/usr/bin/which npm);
 
         case $1 in
             "doctor")
@@ -74,10 +85,10 @@ function fnNodejs() {
                 echo -e $CODE;
                 ;;
             "outdated")
-                $BIN_NPM outdated -g;
+                $BIN_NPM outdated -g --depth=0;
                 ;;
             "update")
-                $BIN_NPM update -g npm;
+                $BIN_NPM install -g npm;
                 ;;
             "upgrade")
                 $BIN_NPM update -g;
@@ -87,14 +98,14 @@ function fnNodejs() {
                 ;;
         esac
     else
-        styleError "You don't have \"node\" or \"npm\" installed.";
+        styleError "You don't have \"npm\" installed.";
     fi
 }
 
 function fnRuby() {
-    printStyleSubtitle "Ruby" $1 $2
+    printMDSubtitle "Ruby" $1 $2
 
-    if [[ -n $(/usr/bin/which ruby) && -n $(/usr/bin/which gem) ]]; then
+    if [[ -n $(/usr/bin/which ruby) ]]; then
         BIN_RUBY=$(/usr/bin/which ruby);
         BIN_GEM=$(/usr/bin/which gem);
 
@@ -105,7 +116,7 @@ function fnRuby() {
                 echo -e "${YELLOW}Path:${RESET}    $BIN_GEM";
                 echo -e "${YELLOW}Version:${RESET} $($BIN_GEM --version)";
                 echo -e "";
-                echo -e "${YELLOW}Packages installed:${RESET}";
+                echo -e "${YELLOW}Gems installed:${RESET}";
 
                 echo -e $CODE;
                 $BIN_GEM list --local;
@@ -113,28 +124,24 @@ function fnRuby() {
                 ;;
             "outdated")
                 echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-                # $BIN_GEM outdated;
                 ;;
             "update")
                 echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-                # $BIN_GEM update --system;
                 ;;
             "upgrade")
                 echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-                # $BIN_GEM update;
-                # $BIN_GEM cleanup;
                 ;;
             *)
                 styleError "\"$1\" is not a valid command.";
                 ;;
         esac
     else
-        styleError "You don't have \"ruby\" or \"gem\" installed.";
+        styleError "You don't have \"ruby\" installed.";
     fi
 }
 
 function fnBrew() {
-    printStyleSubtitle "Homebrew" $1 $2
+    printMDSubtitle "Homebrew" $1 $2
 
     if [[ -n $(/usr/bin/which brew) ]]; then
         BIN_BREW=$(/usr/bin/which brew);
@@ -189,34 +196,36 @@ function fnBrew() {
 
 case $1 in
     "doctor"|"outdated"|"update"|"upgrade")
-        if [ "$1" == "doctor" ] && [ "$2" == "print" ]; then
-            echo "# Checkup Environment"
-            echo -e "";
-            echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')";
-            echo -e "";
-        else
-            styleTitle "EnvManager";
+        COMMAND=$1
+        PACKAGE=$2
+        PRINT="false"
+
+        if [ "$PACKAGE" == "--print" ]; then
+            PRINT="true"
+            PACKAGE="-"
+        elif [ "$3" == "--print" ]; then
+            PRINT="true"
         fi
 
-        case $2 in
+        printMDTitle "EnvManager" $COMMAND $PRINT
+
+        case $PACKAGE in
             "brew")
-                fnBrew $@;
+                fnBrew $COMMAND $PRINT;
                 ;;
             "ruby")
-                fnRuby $@;
+                fnRuby $COMMAND $PRINT;
                 ;;
             "node")
-                fnNodejs $@;
+                fnNodejs $COMMAND $PRINT;
                 ;;
-            "print")
-                fnBrew "doctor" "print";
-                fnRuby "doctor" "print";
-                fnNodejs "doctor" "print";
+            "-"|"")
+                fnBrew $COMMAND $PRINT;
+                fnRuby $COMMAND $PRINT;
+                fnNodejs $COMMAND $PRINT;
                 ;;
             *)
-                fnBrew $@;
-                fnRuby $@;
-                fnNodejs $@;
+                styleError "\"$PACKAGE\" is not a valid package.";
                 ;;
         esac
         ;;
