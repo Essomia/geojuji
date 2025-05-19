@@ -21,6 +21,7 @@ if [ $# -lt 1 ]; then
     echo -e "  ${GREEN}outdated${RESET}  List outdated packages."
     echo -e "  ${GREEN}update${RESET}    Update installed global packages."
     echo -e "  ${GREEN}upgrade${RESET}   Update global packages and clean up."
+    echo -e "  ${GREEN}all${RESET}       Update all packages without printing the result."
     echo ""
     echo -e "${YELLOW_UL}Packages:${RESET}"
     echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node"
@@ -223,6 +224,43 @@ case $1 in
                 ;;
             *)
                 styleError "Unknown package: $PACKAGE"
+                ;;
+        esac
+        ;;
+    "all")
+        # Arguments check
+        PACKAGE=$2
+        PRINT="false"
+
+        # Check for --print flag
+        if [[ "$2" == "--print" || "$3" == "--print" ]]; then
+            styleError "'all' command cannot be used with --print flag."
+            exit 1
+        fi
+
+        styleTitle "EnvManager"
+
+        # Switch commands based on package
+        case $PACKAGE in
+            "brew")
+                fnBrew "upgrade" $PRINT
+                fnBrew "update" $PRINT
+                ;;
+            "ruby")
+                fnRuby "upgrade" $PRINT
+                fnRuby "update" $PRINT
+                ;;
+            "node")
+                fnNodejs "upgrade" $PRINT
+                fnNodejs "update" $PRINT
+                ;;
+            *)
+                fnBrew "upgrade" $PRINT
+                fnBrew "update" $PRINT
+                fnRuby "upgrade" $PRINT
+                fnRuby "update" $PRINT
+                fnNodejs "upgrade" $PRINT
+                fnNodejs "update" $PRINT
                 ;;
         esac
         ;;
