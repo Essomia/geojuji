@@ -1,6 +1,6 @@
 # Checkup Environment
 
-**Date of latest checkup:** 2024-12-05
+**Date of latest checkup:** 2025-05-19
 
 ## Homebrew
 
@@ -8,16 +8,16 @@
 /opt/homebrew/bin/brew
 
 **Version:**
-Homebrew 4.4.10
+Homebrew 4.5.2
 
 **Packages installed:**
 
 ```
 apr-util 1.6.3_1
-curl 8.11.0_1
-freetds 1.4.23
-libpq 17.2
-node 23.3.0
+curl 8.13.0
+freetds 1.5.1
+libpq 17.5
+node 23.11.0
 ```
 
 **Packages cask installed:**
@@ -105,23 +105,23 @@ zlib (default: 1.0.0)
 /opt/homebrew/bin/node
 
 **Version:**
-v23.3.0
+v23.11.0
 
 **Path:**
 /opt/homebrew/bin/npm
 
 **Version:**
-10.9.2
+11.4.0
 
 **Packages installed:**
 
 ```
 /opt/homebrew/lib
-+-- corepack@0.30.0
-+-- eslint@9.16.0
-+-- npm@10.9.2
-+-- prettier@3.4.2
-+-- stylelint@16.11.0
-`-- vercel@39.1.3
+├── corepack@0.32.0
+├── eslint@9.27.0
+├── npm@11.4.0
+├── prettier@3.5.3
+├── stylelint@16.19.1
+└── vercel@41.7.8
 
 ```
