@@ -3,7 +3,6 @@
 #  Additional aliases into a separate file.
 ###########
 
-
 # PREFERRED IMPLEMENTATION
 # --------------------------------
 
@@ -28,19 +27,11 @@ alias reload='exec bash -l'         # Reload bash profile
 # WEB DEVELOPMENT
 # --------------------------------
 
-# Packages managers
+alias ls_bin='ls -l $GEOJUJI_PATH'
 alias ls_brew='brew ls --versions $(brew leaves)'
 alias ls_gem='gem list --local'
 alias ls_npm='npm list --depth=0'
-alias ls_bin='ls -l $GEOJUJI_PATH'
+
 alias npm_allupdate="npm outdated | sed '1d; s/ .*/@latest/' | xargs npm i --save"
 
-# Edit configuration
-alias conf_bash='nano ~/.bash_profile ~/.bash_aliases'
-alias conf_git='nano ~/.gitconfig ~/.gitaliases ~/.gitignore'
-alias conf_hosts='sudo nano /etc/hosts'
-
-# Php / Apache / MySQL
-alias apache_conf='sudo nano /etc/apache2/httpd.conf /etc/apache2/extra/httpd-vhosts.conf'
-alias apache_restart='sudo apachectl restart'
-alias apache_logs='tail -f /var/log/apache2/dev_error_log'
+alias hosts='sudo nano /etc/hosts'
