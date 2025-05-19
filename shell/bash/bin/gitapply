@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source util-colors.sh
-source util-titles.sh
+source utils-ui.sh
+source utils-functions.sh
 
 ###########
 # GitApply
@@ -13,14 +13,14 @@ source util-titles.sh
 
 # Check if there is at least one argument.
 if [ $# -lt 1 ]; then
-    echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth> <gitcommand>${RESET}";
-    echo "";
-    echo -e "${YELLOW_UL}Arguments:${RESET}";
-    echo -e "  ${GREEN}<folder>${RESET}      The folder to explore.";
-    echo -e "  ${GREEN}<max-depth>${RESET}   The max depth to explore - default 1.";
-    echo -e "  ${GREEN}<gitcommand>${RESET}  The command to apply in each git repository.";
-    exit 1;
+    echo -e "${YELLOW_UL}Usage:${RESET}"
+    echo -e "  $(basename "$0") ${GREEN}<folder> <max-depth> <git-command>${RESET}"
+    echo ""
+    echo -e "${YELLOW_UL}Arguments:${RESET}"
+    echo -e "  ${GREEN}<folder>${RESET}      The folder to explore."
+    echo -e "  ${GREEN}<max-depth>${RESET}   The max depth to explore - default 1."
+    echo -e "  ${GREEN}<git-command>${RESET}  The command to apply in each git repository."
+    exit 1
 fi
 
 
@@ -28,51 +28,50 @@ fi
 # --------------------------------
 
 function fnApply() {
-    # Check if the command is empty
-    if [[ -z $3 ]]; then
-        styleError "Missing command.";
-        exit 1;
+    # Check if command is provided
+    if [ -z "$3" ]; then
+        styleError "No command provided to apply in git repositories."
+        exit 1
     fi
 
     # actual absolute folder
-    FOLDER_ROOT=$(pwd);
+    FOLDER_ROOT=$(pwd)
     # relative path to explore
-    ARGS_FOLDER=${1%/};
+    ARGS_FOLDER=${1%/}
     # max depth sub-folder to check
     ARGS_MAXDEPTH=$2
     # args command to execute
     ARGS_CMDTOEXD="${@:3}"
 
-    echo -e "${YELLOW_UL}Exploring:${RESET} $FOLDER_ROOT/$ARGS_FOLDER";
-    echo -e "${YELLOW_UL}Max Depth:${RESET} $ARGS_MAXDEPTH";
-    echo -e "${YELLOW_UL}Command:${RESET} $ARGS_CMDTOEXD";
+    echo -e "${YELLOW_UL}Exploring:${RESET} $FOLDER_ROOT/$ARGS_FOLDER"
+    echo -e "${YELLOW_UL}Max Depth:${RESET} $ARGS_MAXDEPTH"
+    echo -e "${YELLOW_UL}Command:${RESET} $ARGS_CMDTOEXD"
 
     # Loop in all git repositories found with given arguments
     find -s $ARGS_FOLDER -type d -maxdepth $ARGS_MAXDEPTH -name ".git" | while read DIR; do
-        cd $FOLDER_ROOT/${DIR%.git};
+        REPO_PATH="${DIR%/.git}"
 
-        styleSubtitle ${DIR%.git};
+        styleSubtitle "Repository: ${REPO_PATH#./}"
 
-        eval $ARGS_CMDTOEXD;
+        cd $FOLDER_ROOT/${DIR%.git}
+        eval $ARGS_CMDTOEXD
     done
 
-    cd $FOLDER_ROOT;
+    cd $FOLDER_ROOT
 }
 
 
 # SWITCHER
 # --------------------------------
 
-styleTitle "GitApply";
+styleTitle "GitApply"
 
 # Check if the folder exists
-if [[ -d $1 ]]; then
-    # Check if the max-depth is a number
-    if ! [[ $2 =~ ^[0-9]+$ ]]; then
-        fnApply $1 1 "${@:2}";
-    else
-        fnApply $1 $2 "${@:3}";
-    fi
+doFolderExist $1
+
+# If the max-depth is not a number, set it to 1
+if ! [[ $2 =~ ^[0-9]+$ ]]; then
+    fnApply $1 1 "${@:2}"
 else
-    styleError "Folder not found.";
+    fnApply $1 $2 "${@:3}"
 fi

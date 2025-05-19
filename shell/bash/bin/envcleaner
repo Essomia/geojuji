@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source util-colors.sh
-source util-titles.sh
+source utils-ui.sh
+source utils-functions.sh
 
 ###########
 # EnvCleaner
@@ -13,71 +13,50 @@ source util-titles.sh
 
 # Check if there is at least one argument.
 if [ $# -lt 1 ]; then
-    echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}<command>${RESET}";
-    echo "";
-    echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}ds${RESET}       Remove .DS_Store files";
-    echo -e "  ${GREEN}ignored${RESET}  Remove ignored files - only if folder is under Sites.";
-    echo -e "  ${GREEN}node${RESET}     Remove 'node_modules' folders - only if folder is under Sites.";
-    exit 1;
+    echo -e "${YELLOW_UL}Usage:${RESET}"
+    echo -e "  $(basename "$0") ${GREEN}<command>${RESET}"
+    echo ""
+    echo -e "${YELLOW_UL}Commands:${RESET}"
+    echo -e "  ${GREEN}ds${RESET}       Remove .DS_Store files."
+    echo -e "  ${GREEN}node${RESET}     Remove 'node_modules' folders - only if folder is under Sites."
+    exit 1
 fi
 
 
 # FUNCTIONS
 # --------------------------------
 
-function checkIfUnderSites() {
-    # Check if the current folder is under /Sites.
-    if [[ ! $(PWD) == *"/Sites"* ]]; then
-        styleError "You are not under /Sites folder.";
-        exit 1;
-    fi
-}
-
-function checkIsInGitProject() {
-    # Check if the current folder is a Git project.
-    if [[ ! -d ".git" ]]; then
-        styleError "You are not in a Git project.";
-        exit 1;
-    fi
-}
-
+# Remove .DS_Store files
 function fnRemoveDSStoreFiles() {
-    cmdPrintAndDo find $(PWD) -name ".DS_Store" -depth -exec rm {} \;
+    cmdPrintAndDo find $(PWD) -type f -name ".DS_Store" -depth -delete
+
+    styleSuccess ".DS_Store files removed successfully."
 }
 
+# Remove node_modules folders
 function fnRemoveNodeModules() {
-    checkIfUnderSites;
+    isUnderSitesFolder
+    isInGitProject
 
-    cmdPrintAndDo find $(PWD) -name "node_modules" -depth -exec rm -rf {} \;
-}
+    cmdPrintAndDo find $(PWD) -type d -name "node_modules" -depth -exec rm -rf {} +
 
-function fnRemoveIgnoredFiles() {
-    checkIfUnderSites;
-    checkIsInGitProject;
-
-    cmdPrintAndDo git status --ignored --porcelain | grep '^!!' | sed 's/^!! //' | grep -v 'env' | grep -v 'config' | xargs rm -rf;
-    styleInfo "Ignored files removed.";
+    styleSuccess "node_modules folders removed successfully."
 }
 
 
 # SWITCHER
 # --------------------------------
 
-styleTitle "EnvCleaner";
+styleTitle "EnvCleaner"
 
 case $1 in
     "ds")
-        fnRemoveDSStoreFiles;
+        fnRemoveDSStoreFiles
         ;;
     "node")
-        fnRemoveNodeModules;
-        ;;
-    "ignored")
-        fnRemoveIgnoredFiles;
+        fnRemoveNodeModules
         ;;
     *)
-        styleError "Unknown command.";
+        styleError "Unknown command: $1"
         ;;
 esac

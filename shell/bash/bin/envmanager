@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source util-colors.sh
-source util-titles.sh
+source utils-ui.sh
+source utils-functions.sh
 
 ###########
 # EnvManager
@@ -13,181 +13,168 @@ source util-titles.sh
 
 # Check if there is at least one argument.
 if [ $# -lt 1 ]; then
-    echo -e "${YELLOW_UL}Usage:${RESET}";
-    echo -e "  $(basename "$0") ${GREEN}<command> <package> [--print]${RESET}";
-    echo "";
-    echo -e "${YELLOW_UL}Commands:${RESET}";
-    echo -e "  ${GREEN}doctor${RESET}    Check paths and current version of installed packages.";
-    echo -e "  ${GREEN}outdated${RESET}  Get list of outdated packages.";
-    echo -e "  ${GREEN}update${RESET}    Update main packages manager.";
-    echo -e "  ${GREEN}upgrade${RESET}   Update global outdated packages.";
-    echo "";
-    echo -e "${YELLOW_UL}Packages:${RESET}";
-    echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node";
-    echo -e "  ${GREEN}brew${RESET}      Homebrew";
-    echo -e "  ${GREEN}node${RESET}      NodeJS";
-    echo -e "  ${GREEN}ruby${RESET}      Ruby";
-    echo "";
-    echo -e "${YELLOW_UL}Options:${RESET}";
-    echo -e "  ${GREEN}--print${RESET}   Print the result in markdown format.";
-    exit 1;
+    echo -e "${YELLOW_UL}Usage:${RESET}"
+    echo -e "  $(basename "$0") ${GREEN}<command> [<package> --print]${RESET}"
+    echo ""
+    echo -e "${YELLOW_UL}Commands:${RESET}"
+    echo -e "  ${GREEN}doctor${RESET}    Verify the environment of installed packages."
+    echo -e "  ${GREEN}outdated${RESET}  List outdated packages."
+    echo -e "  ${GREEN}update${RESET}    Update installed global packages."
+    echo -e "  ${GREEN}upgrade${RESET}   Update global packages and clean up."
+    echo ""
+    echo -e "${YELLOW_UL}Packages:${RESET}"
+    echo -e "  ${GREEN}-${RESET}         [!] If none, all will be done: brew -> ruby -> node"
+    echo -e "  ${GREEN}brew${RESET}      Homebrew."
+    echo -e "  ${GREEN}node${RESET}      NodeJS."
+    echo -e "  ${GREEN}ruby${RESET}      Ruby."
+    echo ""
+    echo -e "${YELLOW_UL}Options:${RESET}"
+    echo -e "  ${GREEN}--print${RESET}   Print the result in markdown format."
+    exit 1
 fi
 
 
 # FUNCTIONS
 # --------------------------------
 
-# usage: printMDTitle <title> <command> true|false
-function printMDTitle() {
-    if [ "$2" == "doctor" ] && [ "$3" == "true" ]; then
-        echo "# Checkup Environment"
-        echo -e "";
-        echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')";
-        echo -e "";
-    else
-        styleTitle "$1";
-    fi
-}
-
-# usage: printMDSubtitle <subtitle> <command> true|false
+# Usage: printMDSubtitle <subtitle> <command> <print:true|false>
 function printMDSubtitle() {
     if [ "$2" == "doctor" ] && [ "$3" == "true" ]; then
-        echo -e "";
-        echo "## $1";
-        echo -e "";
+        echo -e ""
+        echo "## $1"
+        echo -e ""
 
-        YELLOW='\n**';
-        RESET='**\n';
-        CODE='```';
+        YELLOW='\n**'
+        RESET='**\n'
+        CODE='```'
     else
-        styleSubtitle "$1 - $2";
+        styleSubtitle "$1 - $2"
     fi
 }
 
 function fnNodejs() {
     printMDSubtitle "NodeJS" $1 $2
 
-    if [[ -n $(/usr/bin/which npm) ]]; then
-        BIN_NODE=$(/usr/bin/which node);
-        BIN_NPM=$(/usr/bin/which npm);
+    haveCommandExec node
+    haveCommandExec npm
 
-        case $1 in
-            "doctor")
-                echo -e "${YELLOW}Path:${RESET}    $BIN_NODE";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_NODE --version)";
-                echo -e "${YELLOW}Path:${RESET}    $BIN_NPM";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_NPM --version)";
-                echo -e "";
-                echo -e "${YELLOW}Packages installed:${RESET}";
+    BIN_NODE=$(/usr/bin/which node)
+    BIN_NPM=$(/usr/bin/which npm)
 
-                echo -e $CODE;
-                $BIN_NPM list -g --depth=0;
-                echo -e $CODE;
-                ;;
-            "outdated")
-                $BIN_NPM outdated -g --depth=0;
-                ;;
-            "update")
-                $BIN_NPM install -g npm;
-                ;;
-            "upgrade")
-                $BIN_NPM update -g;
-                ;;
-            *)
-                styleError "\"$1\" is not a valid command.";
-                ;;
-        esac
-    else
-        styleError "You don't have \"npm\" installed.";
-    fi
+    case $1 in
+        "doctor")
+            echo -e "${YELLOW}Path:${RESET}    $BIN_NODE"
+            echo -e "${YELLOW}Version:${RESET} $($BIN_NODE --version)"
+            echo -e "${YELLOW}Path:${RESET}    $BIN_NPM"
+            echo -e "${YELLOW}Version:${RESET} $($BIN_NPM --version)"
+
+            echo -e ""
+            echo -e "${YELLOW}Packages installed:${RESET}"
+
+            echo -e $CODE
+            $BIN_NPM list -g --depth=0
+            echo -e $CODE
+            ;;
+        "outdated")
+            $BIN_NPM outdated -g --depth=0
+            ;;
+        "update")
+            $BIN_NPM install -g npm
+            ;;
+        "upgrade")
+            $BIN_NPM update -g
+            ;;
+        *)
+            styleError "Unknown command: $1"
+            ;;
+    esac
 }
 
 function fnRuby() {
     printMDSubtitle "Ruby" $1 $2
 
-    if [[ -n $(/usr/bin/which ruby) ]]; then
-        BIN_RUBY=$(/usr/bin/which ruby);
-        BIN_GEM=$(/usr/bin/which gem);
+    haveCommandExec ruby
+    haveCommandExec gem
 
-        case $1 in
-            "doctor")
-                echo -e "${YELLOW}Path:${RESET}    $BIN_RUBY";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_RUBY --version)";
-                echo -e "${YELLOW}Path:${RESET}    $BIN_GEM";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_GEM --version)";
-                echo -e "";
-                echo -e "${YELLOW}Gems installed:${RESET}";
+    BIN_RUBY=$(/usr/bin/which ruby)
+    BIN_GEM=$(/usr/bin/which gem)
 
-                echo -e $CODE;
-                $BIN_GEM list --local;
-                echo -e $CODE;
-                ;;
-            "outdated")
-                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-                ;;
-            "update")
-                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-                ;;
-            "upgrade")
-                echo -e "${PINK_UL}Note:${RESET} Main ruby package is used.";
-                ;;
-            *)
-                styleError "\"$1\" is not a valid command.";
-                ;;
-        esac
-    else
-        styleError "You don't have \"ruby\" installed.";
-    fi
+    case $1 in
+        "doctor")
+            echo -e "${YELLOW}Path:${RESET}    $BIN_RUBY"
+            echo -e "${YELLOW}Version:${RESET} $($BIN_RUBY --version)"
+            echo -e "${YELLOW}Path:${RESET}    $BIN_GEM"
+            echo -e "${YELLOW}Version:${RESET} $($BIN_GEM --version)"
+
+            echo -e ""
+            echo -e "${YELLOW}Gems installed:${RESET}"
+
+            echo -e $CODE
+            $BIN_GEM list --local
+            echo -e $CODE
+            ;;
+        "outdated")
+            echo -e "${PINK_UL}Note:${RESET} Main ruby package is used."
+            ;;
+        "update")
+            echo -e "${PINK_UL}Note:${RESET} Main ruby package is used."
+            ;;
+        "upgrade")
+            echo -e "${PINK_UL}Note:${RESET} Main ruby package is used."
+            ;;
+        *)
+            styleError "Unknown command: $1"
+            ;;
+    esac
 }
 
 function fnBrew() {
     printMDSubtitle "Homebrew" $1 $2
 
-    if [[ -n $(/usr/bin/which brew) ]]; then
-        BIN_BREW=$(/usr/bin/which brew);
+    haveCommandExec brew
 
-        case $1 in
-            "doctor")
-                echo -e "${YELLOW}Path:${RESET}    $BIN_BREW";
-                echo -e "${YELLOW}Version:${RESET} $($BIN_BREW --version)";
-                echo -e "";
-                echo -e "${YELLOW}Packages installed:${RESET}";
+    BIN_BREW=$(/usr/bin/which brew)
 
-                echo -e $CODE;
-                $BIN_BREW ls --versions $(brew leaves);
-                echo -e $CODE;
+    case $1 in
+        "doctor")
+            echo -e "${YELLOW}Path:${RESET}    $BIN_BREW"
+            echo -e "${YELLOW}Version:${RESET} $($BIN_BREW --version)"
 
-                echo -e "";
-                echo -e "${YELLOW}Packages cask installed:${RESET}";
+            echo -e ""
+            echo -e "${YELLOW}Packages installed:${RESET}"
 
-                echo -e $CODE;
-                $BIN_BREW list --cask --versions;
-                echo -e $CODE;
+            echo -e $CODE
+            $BIN_BREW ls --versions $(brew leaves)
+            echo -e $CODE
 
-                echo -e "";
-                echo -e "${YELLOW}Packages pinned:${RESET}";
+            echo -e ""
+            echo -e "${YELLOW}Packages cask installed:${RESET}"
 
-                echo -e $CODE;
-                $BIN_BREW list --pinned;
-                echo -e $CODE;
-                ;;
-            "outdated")
-                $BIN_BREW outdated;
-                ;;
-            "update")
-                $BIN_BREW update --verbose;
-                ;;
-            "upgrade")
-                $BIN_BREW upgrade --verbose;
-                $BIN_BREW cleanup -s --verbose;
-                ;;
-            *)
-                styleError "\"$1\" is not a valid command.";
-                ;;
-        esac
-    else
-        styleError "You don't have \"brew\" installed.";
-    fi
+            echo -e $CODE
+            $BIN_BREW list --cask --versions
+            echo -e $CODE
+
+            echo -e ""
+            echo -e "${YELLOW}Packages pinned:${RESET}"
+
+            echo -e $CODE
+            $BIN_BREW list --pinned
+            echo -e $CODE
+            ;;
+        "outdated")
+            $BIN_BREW outdated
+            ;;
+        "update")
+            $BIN_BREW update --verbose
+            ;;
+        "upgrade")
+            $BIN_BREW upgrade --verbose
+            $BIN_BREW cleanup -s --verbose
+            ;;
+        *)
+            styleError "Unknown command: $1"
+            ;;
+    esac
 }
 
 
@@ -196,40 +183,50 @@ function fnBrew() {
 
 case $1 in
     "doctor"|"outdated"|"update"|"upgrade")
+        # Arguments check
         COMMAND=$1
         PACKAGE=$2
         PRINT="false"
 
         if [ "$PACKAGE" == "--print" ]; then
-            PRINT="true"
             PACKAGE="-"
+            PRINT="true"
         elif [ "$3" == "--print" ]; then
             PRINT="true"
         fi
 
-        printMDTitle "EnvManager" $COMMAND $PRINT
+        # Script title
+        if [ "$COMMAND" == "doctor" ] && [ "$PRINT" == "true" ]; then
+            echo "# Checkup Environment"
+            echo -e ""
+            echo -e "**Date of latest checkup:** $(date '+%Y-%m-%d')"
+            echo -e ""
+        else
+            styleTitle "EnvManager"
+        fi
 
+        # Switch commands based on package
         case $PACKAGE in
             "brew")
-                fnBrew $COMMAND $PRINT;
+                fnBrew $COMMAND $PRINT
                 ;;
             "ruby")
-                fnRuby $COMMAND $PRINT;
+                fnRuby $COMMAND $PRINT
                 ;;
             "node")
-                fnNodejs $COMMAND $PRINT;
+                fnNodejs $COMMAND $PRINT
                 ;;
             "-"|"")
-                fnBrew $COMMAND $PRINT;
-                fnRuby $COMMAND $PRINT;
-                fnNodejs $COMMAND $PRINT;
+                fnBrew $COMMAND $PRINT
+                fnRuby $COMMAND $PRINT
+                fnNodejs $COMMAND $PRINT
                 ;;
             *)
-                styleError "\"$PACKAGE\" is not a valid package.";
+                styleError "Unknown package: $PACKAGE"
                 ;;
         esac
         ;;
     *)
-        styleError "Unknown command.";
+        styleError "Unknown command: $1"
         ;;
 esac
