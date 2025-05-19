@@ -40,16 +40,17 @@
 
     ########## HELPERS
 
-    br-bydate   = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
-    br-clean    = !bash -c 'git branch -vv | grep "gone]" | grep -o "^[[:space:]]*[^[:space:]]*" | xargs git branch -D'
-    ci-empty    = commit --allow-empty -m \"chore(ci): trigger new build\"
-    reba-merges = rebase -i --rebase-merges --onto
+    br-bydate      = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) %(color:green)(%(committerdate:relative))%(color:reset) - %(contents:subject) %(color:cyan)<%(authorname)>%(color:reset)'"
+    br-clean       = !bash -c 'git branch -vv | grep "gone]" | grep -o "^[[:space:]]*[^[:space:]]*" | xargs git branch -D'
+    ci-empty       = commit --allow-empty -m \"chore(ci): trigger new build\"
+    reba-merges    = rebase -i --rebase-merges --onto
+    history-action = "reflog --format='* %C(red)%h%Creset %C(yellow)%gd%Creset - %gs %C(green)(%cr)%Creset' --all"
 
     ########## LOG
 
+    # Show tree across all branches.
     forest = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%cr)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --all"
-    leaf   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
+    # Show tree for main branch, ignoring merges from feature branches.
+    leafs  = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short --first-parent"
+    # Show tree for your current branch only.
     tree   = "log --graph --pretty=format:'%C(red)%h%Creset %C(green)(%ad)%Creset -%C(yellow)%d%Creset %s %C(cyan)<%an>%Creset' --date=short"
-
-    his-act = "reflog --format='* %C(red)%h%Creset %C(yellow)%gd%Creset - %gs %C(green)(%cr)%Creset' --all"
-    his-who = "log --graph --pretty=fuller"
