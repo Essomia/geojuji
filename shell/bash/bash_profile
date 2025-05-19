@@ -3,7 +3,6 @@
 #  Personal initialization file for login shells.
 ###########
 
-
 # INCLUDES
 # --------------------------------
 
@@ -31,9 +30,6 @@ HISTCONTROL=ignoreboth
 HISTFILESIZE=2000
 HISTSIZE=1000
 
-# Set shell language to english
-LANG=C
-
 # Disable message `The default interactive shell is now zsh.`
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
@@ -42,7 +38,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # --------------------------------
 
 # Shell directories to search for executable files (Default OSX).
-export PATH="/usr/local/bin:$PATH" # global
+# export PATH="/usr/local/bin:$PATH" # global
 export PATH="/opt/homebrew/bin:$PATH" # homebrew
 
 # Get personal directory for executable and add to shell directories to search for executable files.
@@ -57,9 +53,6 @@ export FIGNORE="$FIGNORE:DS_Store"
 
 # Set default editor to be "nano"
 export EDITOR="/usr/bin/nano"
-
-# Set goto binary local
-export GEOJUJI_BINARY="/usr/local"
 
 
 # AUTO-COMPLETIONS
@@ -78,7 +71,9 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 
-# LS COLORS
+# COLORED PROMPT
+# @use: http://geoff.greer.fm/lscolors/
+# @use: https://github.com/mathiasbynens/dotfiles
 # --------------------------------
 
 export TERM="xterm-color"
@@ -86,24 +81,17 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 COLOR_RESET=$(tput sgr0);
-COLOR_BLACK="\e[1;30m";
 COLOR_RED="\e[1;31m";
 COLOR_GREEN="\e[1;32m";
 COLOR_YELLOW="\e[1;33m";
-COLOR_BLUE="\e[1;34m";
 COLOR_PURPLE="\e[1;35m";
 COLOR_CYAN="\e[1;36m";
 COLOR_WHITE="\e[1;37m";
 
 
-# COLORED PROMPT
-# @use: http://geoff.greer.fm/lscolors/
-# @use: https://github.com/mathiasbynens/dotfiles
-# --------------------------------
-
-BIN_GIT=$(/usr/bin/which git);
-
 git_get_current_branch() {
+    BIN_GIT=$(/usr/bin/which git);
+
     # Check if the current directory is in a Git repository.
     if [ $($BIN_GIT rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == "0" ]; then
         local branchName="$($BIN_GIT branch 2>/dev/null | grep "^*" | colrm 1 2 || \
@@ -118,8 +106,8 @@ git_get_current_branch() {
 PS1="\n"; # newline
 PS1+="\[${COLOR_CYAN}\][\A] "; # time short (HH:MM)
 PS1+="\[${COLOR_RED}\]\u"; # username
-PS1+="\[${COLOR_WHITE}\] on ";
-PS1+="\[${COLOR_GREEN}\]\h"; # hostname
+# PS1+="\[${COLOR_WHITE}\] on ";
+# PS1+="\[${COLOR_GREEN}\]\h"; # hostname
 PS1+="\[${COLOR_WHITE}\] in ";
 PS1+="\[${COLOR_YELLOW}\]\w"; # current directory full path
 PS1+="\$(git_get_current_branch \"\[${COLOR_WHITE}\] on \[${COLOR_PURPLE}\]\")"; # .git details
